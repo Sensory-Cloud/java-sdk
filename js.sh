@@ -9,6 +9,7 @@ USAGE="Usage: ./js.sh [COMMAND]"
 COMMANDS="
     Commands:\n
     genproto | gp [tag]\t Generates proto files from the files in the /proto directory\n
+    releaseversion | rv [vX.Y.Z] Tags current branch with the version and pushes\n
     help | h\t\t Display This Help Message\n
 "
 
@@ -57,6 +58,8 @@ export GO_ENV
 export GO_PATH=$(go env GOPATH)
 export GOPATH=$GO_PATH
 export PATH="$PATH:$GO_PATH/bin"
+export OPERATING_SYSTEM=$(uname -s)
+VERSION_FILE="${PWD}/SensoryCloud/build.gradle"
 
 # --- Body ---------------------------------------------------------
 case "$1" in
@@ -80,6 +83,40 @@ case "$1" in
 
     exit 0;
     ;;
+
+  "releaseversion"|"rv")
+    if [[ $# -eq 1 ]]; then
+        echo "This commands a version string to be specified ex: \"./js.sh rv v1.2.3\""
+        exit 1;
+    fi
+
+    version=$2
+    regex_version='^v[0-9]+\.[0-9]+\.[0-9]+$'
+
+    if [[ ! ${version} =~ ${regex_version} ]]; then
+      echo "Version string should be of the format v{Major}.{Minor}.{Trivial} ex: v1.2.3"
+      exit 1
+    fi
+
+    # Check if version exists
+    git fetch --tags
+    if [ $(git tag -l "${version}") ]; then
+      echo "Version ${version} already exists. Exiting."
+      exit 1
+    fi
+
+    echo "Updating version file to ${2}"
+    if [ ${OPERATING_SYSTEM} == "Darwin" ]; then
+      sed -i '' "s/version = '[^\"]*'/version = '${version}'/" ${VERSION_FILE}
+    else
+      sed -i "s/version = '[^\"]*'/version = '${version}'/" ${VERSION_FILE}
+    fi
+
+    git commit -am "Release [${version}]"
+    git tag ${version}
+    git push --atomic origin HEAD ${version}
+    exit 0;
+  ;;
 
   "help"|"h")
     print_helper

@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/Sensory-Cloud/java-sdk.svg)](https://jitpack.io/#Sensory-Cloud/java-sdk)
+
 # Sensory Cloud Java SDK
 
 This repository contains the source code for the Sensory Cloud Java SDK.
@@ -10,7 +12,40 @@ Before getting started, you must spin up a Sensory Cloud inference server or hav
 - Your Sensory Tenant ID (UUID)
 - Your Sensory Cloud API token
 
-where `<VERSION>` is the specific SDK version to use, ex: `com.github.Sensory-Cloud:java-sdk:v0.13.0`
+## Integration
+
+The Android SDK is available via [JitPack.io](https://jitpack.io/#Sensory-Cloud/android-sdk). Jitpack can be easily integrated by first adding their repository to the root `build.gradle` file:
+
+```Java
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+For Android projects that are setup for "settings repositories" over "project repositories", add the Jitpack repository to the `settings.gradle` file instead:
+
+```Java
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Now that the repository has been added, just add the dependency to `build.gradle`
+
+```Java
+dependencies {
+    implementation 'com.github.Sensory-Cloud:android-sdk:<VERSION>'
+}
+```
+
+where `<VERSION>` is the specific SDK version to use, ex: `com.github.Sensory-Cloud:android-sdk:v0.12.0`
 
 # Examples
 
