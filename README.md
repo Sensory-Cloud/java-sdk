@@ -31,7 +31,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         ...
-        maven { url 'https://jitpack.io' }
+        maven { url 'https://jitpack.io' } d
     }
 }
 ```
@@ -674,3 +674,7 @@ Ensure you have gradle installed and you are compiling with JDK8
 ```bash
 brew install gradle
 ```
+
+You will also need to build grpc-java from scratch and ensure it is in your $PATH
+
+https://github.com/grpc/grpc-java/tree/master/compiler
