@@ -21,6 +21,7 @@ dependencies {
     // Use JUnit 4 for testing.
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.mockito:mockito-core:4+'
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
     testImplementation 'org.awaitility:awaitility:3+'
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.

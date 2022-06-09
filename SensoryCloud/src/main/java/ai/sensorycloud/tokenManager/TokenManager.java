@@ -3,7 +3,6 @@ package ai.sensorycloud.tokenManager;
 import ai.sensorycloud.api.common.TokenResponse;
 import ai.sensorycloud.service.OAuthService;
 import io.grpc.ClientInterceptor;
-import io.grpc.Context;
 import io.grpc.Metadata;
 import io.grpc.stub.MetadataUtils;
 
@@ -14,23 +13,20 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TokenManager {
 
-    private String token = "";
-    private Long expires = 0L;
+    protected String token = "";
+    protected Long expires = 0L;
 
     private final long expirationBuffer = 5 * 60 * 1000; // 5 minutes in ms
 
-    private Context context;
     private OAuthService oAuthService;
     private ReentrantLock tokenMutex = new ReentrantLock();
 
     /**
      * Creates a new Token Manager instance
      *
-     * @param context Application context, used for caching the current OAuth token
      * @param oAuthService OAuth service for fetching new OAuth tokens from
      */
-    public TokenManager(Context context, OAuthService oAuthService) {
-        this.context = context;
+    public TokenManager(OAuthService oAuthService) {
         this.oAuthService = oAuthService;
     }
 
@@ -42,19 +38,18 @@ public class TokenManager {
      * @Throws Exception – if an error occurs while requesting a new token
      */
     public String getAccessToken() throws Exception {
-        this.tokenMutex.lock();
+        tokenMutex.lock();
         long now = System.currentTimeMillis();
-        String token = this.token;
-        if (this.token.equals("") || now > this.expires - expirationBuffer) {
+        if (token.equals("") || now > expires - expirationBuffer) {
             try {
                 token = fetchNewAccessToken();
             } catch (Exception ex) {
-                this.tokenMutex.unlock();
+                tokenMutex.unlock();
                 throw  ex;
             }
         }
 
-        this.tokenMutex.unlock();
+        tokenMutex.unlock();
         return token;
     }
 
@@ -86,5 +81,13 @@ public class TokenManager {
         this.token = response.getAccessToken();
         this.expires = System.currentTimeMillis() + (response.getExpiresIn() * 1000L);
         return response.getAccessToken();
+    }
+
+    protected void setToken(String token) {
+        this.token = token;
+    }
+
+    protected void setExpires(Long expires) {
+        this.expires = expires;
     }
 }
