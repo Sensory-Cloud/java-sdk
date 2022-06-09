@@ -9,7 +9,7 @@ USAGE="Usage: ./js.sh [COMMAND]"
 COMMANDS="
     Commands:\n
     genproto | gp [tag]\t Generates proto files from the files in the /proto directory\n
-    releaseversion | rv [X.Y.Z] Tags current branch with the version and pushes\n
+    releaseversion | rv [vX.Y.Z] Tags current branch with the version and pushes\n
     help | h\t\t Display This Help Message\n
 "
 
@@ -86,15 +86,15 @@ case "$1" in
 
   "releaseversion"|"rv")
     if [[ $# -eq 1 ]]; then
-        echo "This commands a version string to be specified ex: \"./js.sh rv 1.2.3\""
+        echo "This commands a version string to be specified ex: \"./js.sh rv v1.2.3\""
         exit 1;
     fi
 
     version=$2
-    regex_version='^[0-9]+\.[0-9]+\.[0-9]+$'
+    regex_version='^v[0-9]+\.[0-9]+\.[0-9]+$'
 
     if [[ ! ${version} =~ ${regex_version} ]]; then
-      echo "Version string should be of the format v{Major}.{Minor}.{Trivial} ex: 1.2.3"
+      echo "Version string should be of the format v{Major}.{Minor}.{Trivial} ex: v1.2.3"
       exit 1
     fi
 
