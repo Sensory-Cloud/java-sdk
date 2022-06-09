@@ -113,6 +113,8 @@ public class OAuthService {
         this.config = config;
         this.secureCredentialStore = secureCredentialStore;
         this.unitTestingManagedChannel = null;
+
+
     }
 
     /**
