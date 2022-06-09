@@ -41,7 +41,7 @@ Now that the repository has been added, just add the dependency to `build.gradle
 
 ```Java
 dependencies {
-    implementation 'com.github.Sensory-Cloud:android-sdk:<VERSION>'
+    implementation 'com.github.Sensory-Cloud:java-sdk:<VERSION>'
 }
 ```
 
