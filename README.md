@@ -14,22 +14,10 @@ Before getting started, you must spin up a Sensory Cloud inference server or hav
 
 ## Integration
 
-The Android SDK is available via [JitPack.io](https://jitpack.io/#Sensory-Cloud/android-sdk). Jitpack can be easily integrated by first adding their repository to the root `build.gradle` file:
+The Java SDK is available via [JitPack.io](https://jitpack.io/#Sensory-Cloud/java-sdk). Jitpack can be easily integrated by first adding their repository to the root `build.gradle` file:
 
 ```Java
 allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-For Android projects that are setup for "settings repositories" over "project repositories", add the Jitpack repository to the `settings.gradle` file instead:
-
-```Java
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         ...
         maven { url 'https://jitpack.io' }
@@ -45,7 +33,7 @@ dependencies {
 }
 ```
 
-where `<VERSION>` is the specific SDK version to use, ex: `com.github.Sensory-Cloud:android-sdk:v0.12.0`
+where `<VERSION>` is the specific SDK version to use, ex: `com.github.Sensory-Cloud:java-sdk:v0.12.0`
 
 # Examples
 
