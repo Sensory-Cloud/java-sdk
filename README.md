@@ -395,6 +395,32 @@ class AudioTranscriptionExample {
     public static void main(String[] args) {
         String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
         String modelName = "speech_recognition_en";
+        int audioChunkSize = 1024; // 1kb Audio Chunk Size
+        AtomicBoolean isTranscribing = new AtomicBoolean(true);
+
+        Config config = ConfigExample.getConfig();
+        SecureCredentialStorageExample credentialStore = new SecureCredentialStorageExample();
+
+        OAuthService oAuthService = new OAuthService(config, credentialStore);
+        TokenManager tokenManager = new TokenManager(oAuthService);
+        AudioService audioService = new AudioService(config, tokenManager);
+
+        // Load data from file. Data MUST be in linear16 PCM format. 16KHz.
+        String filePath = "/Users/bryanmcgrane/Downloads/20211230T174226.165Z.raw";
+
+        // Check server health
+        HealthService healthService = new HealthService(config);
+        healthService.getHealth(new HealthService.GetHealthListener() {
+            @Override
+            public void onSuccess(ServerHealthResponse serverHealthResponse) {
+                System.out.println(serverHealthResponse);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+
+            }
+        });
 
         // Open the grpc stream
         StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio(
@@ -409,24 +435,67 @@ class AudioTranscriptionExample {
 
                         // Transcript contains the current running transcript of the data
                         String transcript = value.getTranscript();
+                        if (value.getPostProcessingAction().getAction().equals(AudioPostProcessingAction.FINAL)) {
+                            System.out.println("Final Result: " + transcript);
+                            isTranscribing.set(false);
+                        } else {
+                            System.out.println("Partial Result: " + transcript);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         // Handle server error
+                        t.printStackTrace();
+                        isTranscribing.set(false);
                     }
 
                     @Override
                     public void onCompleted() {
                         // Handle grpc stream close
+                        isTranscribing.set(false);
                     }
                 }
         );
 
         // Start Audio Recording
         // See audio enrollment example for details
-        
-        // The SDK implementer can decide when they want to close the audio stream by calling
+        Thread mThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (RandomAccessFile file = new RandomAccessFile(filePath, "r")) {
+                    // Buffer size is 1024
+                    ByteBuffer buffer = ByteBuffer.allocate(audioChunkSize);
+                    FileChannel inChannel = file.getChannel();
+                    while (inChannel.read(buffer) > 0) {
+                        buffer.flip();
+                        TranscribeRequest request = TranscribeRequest.newBuilder()
+                                .setAudioContent(ByteString.copyFrom(buffer))
+                                .build();
+                        requestObserver.onNext(request);
+
+                        buffer.clear(); // do something with the data and clear/compact it.
+                    }
+                }
+                catch (Exception e) {
+                    // Handle errors (usually `InterruptedException` on the audioQueue.take call)
+                    e.printStackTrace();
+                    requestObserver.onCompleted();
+                }
+
+                TranscribeRequest request = TranscribeRequest.newBuilder()
+                        .setPostProcessingAction(
+                                AudioRequestPostProcessingAction.newBuilder()
+                                        .setAction(AudioPostProcessingAction.FINAL)
+                                        .build()
+                        )
+                        .setAudioContent(ByteString.EMPTY)
+                        .build();
+                requestObserver.onNext(request);
+            }
+        });
+        mThread.start();
+        while (isTranscribing.get()) {}
         requestObserver.onCompleted();
     }
 }
