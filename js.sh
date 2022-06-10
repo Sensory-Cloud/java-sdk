@@ -60,6 +60,7 @@ export GOPATH=$GO_PATH
 export PATH="$PATH:$GO_PATH/bin"
 export OPERATING_SYSTEM=$(uname -s)
 VERSION_FILE="${PWD}/SensoryCloud/build.gradle"
+README_FILE="${PWD}/README.md"
 
 # --- Body ---------------------------------------------------------
 case "$1" in
@@ -108,8 +109,10 @@ case "$1" in
     echo "Updating version file to ${2}"
     if [ ${OPERATING_SYSTEM} == "Darwin" ]; then
       sed -i '' "s/version = '[^\"]*'/version = '${version}'/" ${VERSION_FILE}
+      sed -i '' "s/java-sdk:[^\"]*'/java-sdk:${version}'/" ${README_FILE}
     else
       sed -i "s/version = '[^\"]*'/version = '${version}'/" ${VERSION_FILE}
+      sed -i "s/java-sdk:[^\"]*'/java-sdk:${version}'/" ${README_FILE}
     fi
 
     git commit -am "Release [${version}]"
