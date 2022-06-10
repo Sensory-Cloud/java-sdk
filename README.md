@@ -29,6 +29,8 @@ Now that the repository has been added, just add the dependency to `build.gradle
 
 ```Java
 dependencies {
+    implementation "io.grpc:grpc-protobuf:1.47.0"
+    implementation "io.grpc:grpc-stub:1.47.0"
     implementation 'com.github.Sensory-Cloud:java-sdk:<VERSION>'
 }
 ```
@@ -117,10 +119,10 @@ class TokenManagerExample {
         Config config = getConfig();
 
         // It is up to you to implement the SecureCredentialStore
-        // CustomerImplementedSecureCredentialStore credentialStore = new CustomerImplementedSecureCredentialStore();
+        CustomerImplementedSecureCredentialStore credentialStore = new CustomerImplementedSecureCredentialStore();
 
         OAuthService oAuthService = new OAuthService(config, credentialStore);
-        TokenManager tokenManager = new TokenManager(getContext(), oAuthService);
+        TokenManager tokenManager = new TokenManager(oAuthService);
 
         String OAuthToken = tokenManager.getAccessToken();
     }
@@ -392,7 +394,7 @@ Transcription is used to convert audio into text.
 class AudioTranscriptionExample {
     public static void main(String[] args) {
         String userId = "72f286b8-173f-436a-8869-6f7887789ee9";
-        String modelName = "wakeword-16kHz-open_sesame.ubm";
+        String modelName = "speech_recognition_en";
 
         // Open the grpc stream
         StreamObserver<TranscribeRequest> requestObserver = audioService.transcribeAudio(
