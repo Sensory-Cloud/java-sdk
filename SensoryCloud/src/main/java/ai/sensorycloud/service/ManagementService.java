@@ -1,8 +1,8 @@
 package ai.sensorycloud.service;
 
 import ai.sensorycloud.api.v1.management.*;
-import ai.sensorycloud.config.Config;
-import ai.sensorycloud.config.SDKInitConfig;
+import ai.sensorycloud.Config;
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;

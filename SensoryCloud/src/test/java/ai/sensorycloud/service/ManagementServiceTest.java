@@ -2,7 +2,7 @@ package ai.sensorycloud.service;
 
 import ai.sensorycloud.api.common.ModelType;
 import ai.sensorycloud.api.v1.management.*;
-import ai.sensorycloud.config.SDKInitConfig;
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.tokenManager.TokenManager;
 import io.grpc.*;
 import io.grpc.inprocess.InProcessChannelBuilder;

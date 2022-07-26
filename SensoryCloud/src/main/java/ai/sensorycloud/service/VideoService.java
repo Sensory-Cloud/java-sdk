@@ -1,8 +1,8 @@
 package ai.sensorycloud.service;
 
 import ai.sensorycloud.api.v1.video.*;
-import ai.sensorycloud.config.Config;
-import ai.sensorycloud.config.SDKInitConfig;
+import ai.sensorycloud.Config;
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.tokenManager.TokenManager;
 import com.google.protobuf.ByteString;
 import io.grpc.ClientInterceptor;

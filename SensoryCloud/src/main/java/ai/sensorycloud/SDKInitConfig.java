@@ -1,4 +1,4 @@
-package ai.sensorycloud.config;
+package ai.sensorycloud;
 
 import java.util.Arrays;
 

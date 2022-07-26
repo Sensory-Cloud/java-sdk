@@ -3,7 +3,7 @@ package ai.sensorycloud.service;
 import ai.sensorycloud.api.common.ServerHealthResponse;
 import ai.sensorycloud.api.health.HealthRequest;
 import ai.sensorycloud.api.health.HealthServiceGrpc;
-import ai.sensorycloud.config.SDKInitConfig;
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.*;
 import io.grpc.inprocess.InProcessChannelBuilder;
 import io.grpc.inprocess.InProcessServerBuilder;
