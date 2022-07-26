@@ -2,11 +2,14 @@ package ai.sensorycloud.service;
 
 import ai.sensorycloud.api.v1.management.*;
 import ai.sensorycloud.config.Config;
+import ai.sensorycloud.config.SDKInitConfig;
 import ai.sensorycloud.tokenManager.TokenManager;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+
+import java.util.UUID;
 
 /**
  * A collection of grpc service calls for managing existing enrollments and enrollment groups
@@ -81,30 +84,25 @@ public class ManagementService {
         void onFailure(Throwable t);
     }
 
-    private Config config;
     private TokenManager tokenManager;
     private ManagedChannel unitTestingManagedChannel;
 
     /**
      * Creates a new ManagementService instance
      *
-     * @param config SDK configuration to use for management calls
      * @param tokenManager Token Manager instance to get OAuth credentials from
      */
-    public ManagementService(Config config, TokenManager tokenManager) {
-        this.config = config;
+    public ManagementService(TokenManager tokenManager) {
         this.tokenManager = tokenManager;
     }
 
     /**
      * Creates a new ManagementService instance
      *
-     * @param config SDK configuration to use for management calls
      * @param tokenManager Token Manager instance to get OAuth credentials from
      * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
      */
-    public ManagementService(Config config, TokenManager tokenManager, ManagedChannel managedChannel) {
-        this.config = config;
+    public ManagementService(TokenManager tokenManager, ManagedChannel managedChannel) {
         this.tokenManager = tokenManager;
         this.unitTestingManagedChannel = managedChannel;
     }
@@ -189,7 +187,7 @@ public class ManagementService {
      * Creates a new group of enrollments that can be used for group authentication
      *
      * @param userId userID of the user that owns the enrollment group
-     * @param groupId unique group identifier for the enrollment group
+     * @param groupId unique group identifier for the enrollment group, if null or an empty string, an ID will be generated for you
      * @param groupName Friendly display name for the enrollment group
      * @param description User supplied description of the enrollment group
      * @param modelName The name of the model that all enrollments in this group will use
@@ -197,7 +195,7 @@ public class ManagementService {
      */
     public void createEnrollmentGroup(
             String userId,
-            String groupId, // TODO - config/default value
+            String groupId,
             String groupName,
             String description,
             String modelName,
@@ -208,6 +206,10 @@ public class ManagementService {
         } catch (Exception e) {
             listener.onFailure(e);
             return;
+        }
+
+        if (groupId == null || groupId.isEmpty()) {
+            groupId = UUID.randomUUID().toString();
         }
 
         CreateEnrollmentGroupRequest request = CreateEnrollmentGroupRequest.newBuilder()
@@ -371,7 +373,12 @@ public class ManagementService {
     private ManagedClient getManagedClient() throws Exception {
         ManagedChannel managedChannel = unitTestingManagedChannel;
         if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+            SDKInitConfig config = Config.getSharedConfig();
+            if (config.isSecure) {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).useTransportSecurity().build();
+            } else {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).usePlaintext().build();
+            }
         }
 
         ClientInterceptor header = tokenManager.getAuthorizationMetadata();

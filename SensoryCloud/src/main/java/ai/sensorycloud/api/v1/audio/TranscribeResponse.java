@@ -69,6 +69,19 @@ private static final long serialVersionUID = 0L;
             isPartialResult_ = input.readBool();
             break;
           }
+          case 34: {
+            ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder subBuilder = null;
+            if (wordList_ != null) {
+              subBuilder = wordList_.toBuilder();
+            }
+            wordList_ = input.readMessage(ai.sensorycloud.api.v1.audio.TranscribeWordResponse.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(wordList_);
+              wordList_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           case 82: {
             ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.Builder subBuilder = null;
             if (postProcessingAction_ != null) {
@@ -93,6 +106,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -133,7 +148,7 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object transcript_;
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -154,7 +169,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Text of the current transcript
+   * Text of the current transcript, sliding window on ~7 seconds
    * </pre>
    *
    * <code>string transcript = 2;</code>
@@ -182,12 +197,52 @@ private static final long serialVersionUID = 0L;
    * Indicates if the returned transcript is an intermediate result
    * </pre>
    *
-   * <code>bool isPartialResult = 3;</code>
+   * <code>bool isPartialResult = 3 [deprecated = true];</code>
+   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+   *     See v1/audio/audio.proto;l=402
    * @return The isPartialResult.
    */
   @java.lang.Override
-  public boolean getIsPartialResult() {
+  @java.lang.Deprecated public boolean getIsPartialResult() {
     return isPartialResult_;
+  }
+
+  public static final int WORDLIST_FIELD_NUMBER = 4;
+  private ai.sensorycloud.api.v1.audio.TranscribeWordResponse wordList_;
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   * @return Whether the wordList field is set.
+   */
+  @java.lang.Override
+  public boolean hasWordList() {
+    return wordList_ != null;
+  }
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   * @return The wordList.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.TranscribeWordResponse getWordList() {
+    return wordList_ == null ? ai.sensorycloud.api.v1.audio.TranscribeWordResponse.getDefaultInstance() : wordList_;
+  }
+  /**
+   * <pre>
+   * A response including word metadata
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder getWordListOrBuilder() {
+    return getWordList();
   }
 
   public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
@@ -254,6 +309,9 @@ private static final long serialVersionUID = 0L;
     if (isPartialResult_ != false) {
       output.writeBool(3, isPartialResult_);
     }
+    if (wordList_ != null) {
+      output.writeMessage(4, getWordList());
+    }
     if (postProcessingAction_ != null) {
       output.writeMessage(10, getPostProcessingAction());
     }
@@ -276,6 +334,10 @@ private static final long serialVersionUID = 0L;
     if (isPartialResult_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, isPartialResult_);
+    }
+    if (wordList_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getWordList());
     }
     if (postProcessingAction_ != null) {
       size += com.google.protobuf.CodedOutputStream
@@ -303,6 +365,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getTranscript())) return false;
     if (getIsPartialResult()
         != other.getIsPartialResult()) return false;
+    if (hasWordList() != other.hasWordList()) return false;
+    if (hasWordList()) {
+      if (!getWordList()
+          .equals(other.getWordList())) return false;
+    }
     if (hasPostProcessingAction() != other.hasPostProcessingAction()) return false;
     if (hasPostProcessingAction()) {
       if (!getPostProcessingAction()
@@ -327,6 +394,10 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ISPARTIALRESULT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getIsPartialResult());
+    if (hasWordList()) {
+      hash = (37 * hash) + WORDLIST_FIELD_NUMBER;
+      hash = (53 * hash) + getWordList().hashCode();
+    }
     if (hasPostProcessingAction()) {
       hash = (37 * hash) + POSTPROCESSINGACTION_FIELD_NUMBER;
       hash = (53 * hash) + getPostProcessingAction().hashCode();
@@ -474,6 +545,12 @@ private static final long serialVersionUID = 0L;
 
       isPartialResult_ = false;
 
+      if (wordListBuilder_ == null) {
+        wordList_ = null;
+      } else {
+        wordList_ = null;
+        wordListBuilder_ = null;
+      }
       if (postProcessingActionBuilder_ == null) {
         postProcessingAction_ = null;
       } else {
@@ -509,6 +586,11 @@ private static final long serialVersionUID = 0L;
       result.audioEnergy_ = audioEnergy_;
       result.transcript_ = transcript_;
       result.isPartialResult_ = isPartialResult_;
+      if (wordListBuilder_ == null) {
+        result.wordList_ = wordList_;
+      } else {
+        result.wordList_ = wordListBuilder_.build();
+      }
       if (postProcessingActionBuilder_ == null) {
         result.postProcessingAction_ = postProcessingAction_;
       } else {
@@ -571,6 +653,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getIsPartialResult() != false) {
         setIsPartialResult(other.getIsPartialResult());
+      }
+      if (other.hasWordList()) {
+        mergeWordList(other.getWordList());
       }
       if (other.hasPostProcessingAction()) {
         mergePostProcessingAction(other.getPostProcessingAction());
@@ -650,7 +735,7 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object transcript_ = "";
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -670,7 +755,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -691,7 +776,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -710,7 +795,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -724,7 +809,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Text of the current transcript
+     * Text of the current transcript, sliding window on ~7 seconds
      * </pre>
      *
      * <code>string transcript = 2;</code>
@@ -749,11 +834,13 @@ private static final long serialVersionUID = 0L;
      * Indicates if the returned transcript is an intermediate result
      * </pre>
      *
-     * <code>bool isPartialResult = 3;</code>
+     * <code>bool isPartialResult = 3 [deprecated = true];</code>
+     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+     *     See v1/audio/audio.proto;l=402
      * @return The isPartialResult.
      */
     @java.lang.Override
-    public boolean getIsPartialResult() {
+    @java.lang.Deprecated public boolean getIsPartialResult() {
       return isPartialResult_;
     }
     /**
@@ -761,11 +848,13 @@ private static final long serialVersionUID = 0L;
      * Indicates if the returned transcript is an intermediate result
      * </pre>
      *
-     * <code>bool isPartialResult = 3;</code>
+     * <code>bool isPartialResult = 3 [deprecated = true];</code>
+     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+     *     See v1/audio/audio.proto;l=402
      * @param value The isPartialResult to set.
      * @return This builder for chaining.
      */
-    public Builder setIsPartialResult(boolean value) {
+    @java.lang.Deprecated public Builder setIsPartialResult(boolean value) {
       
       isPartialResult_ = value;
       onChanged();
@@ -776,14 +865,171 @@ private static final long serialVersionUID = 0L;
      * Indicates if the returned transcript is an intermediate result
      * </pre>
      *
-     * <code>bool isPartialResult = 3;</code>
+     * <code>bool isPartialResult = 3 [deprecated = true];</code>
+     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
+     *     See v1/audio/audio.proto;l=402
      * @return This builder for chaining.
      */
-    public Builder clearIsPartialResult() {
+    @java.lang.Deprecated public Builder clearIsPartialResult() {
       
       isPartialResult_ = false;
       onChanged();
       return this;
+    }
+
+    private ai.sensorycloud.api.v1.audio.TranscribeWordResponse wordList_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ai.sensorycloud.api.v1.audio.TranscribeWordResponse, ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder, ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder> wordListBuilder_;
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     * @return Whether the wordList field is set.
+     */
+    public boolean hasWordList() {
+      return wordListBuilder_ != null || wordList_ != null;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     * @return The wordList.
+     */
+    public ai.sensorycloud.api.v1.audio.TranscribeWordResponse getWordList() {
+      if (wordListBuilder_ == null) {
+        return wordList_ == null ? ai.sensorycloud.api.v1.audio.TranscribeWordResponse.getDefaultInstance() : wordList_;
+      } else {
+        return wordListBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder setWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
+      if (wordListBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        wordList_ = value;
+        onChanged();
+      } else {
+        wordListBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder setWordList(
+        ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder builderForValue) {
+      if (wordListBuilder_ == null) {
+        wordList_ = builderForValue.build();
+        onChanged();
+      } else {
+        wordListBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder mergeWordList(ai.sensorycloud.api.v1.audio.TranscribeWordResponse value) {
+      if (wordListBuilder_ == null) {
+        if (wordList_ != null) {
+          wordList_ =
+            ai.sensorycloud.api.v1.audio.TranscribeWordResponse.newBuilder(wordList_).mergeFrom(value).buildPartial();
+        } else {
+          wordList_ = value;
+        }
+        onChanged();
+      } else {
+        wordListBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public Builder clearWordList() {
+      if (wordListBuilder_ == null) {
+        wordList_ = null;
+        onChanged();
+      } else {
+        wordList_ = null;
+        wordListBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder getWordListBuilder() {
+      
+      onChanged();
+      return getWordListFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder getWordListOrBuilder() {
+      if (wordListBuilder_ != null) {
+        return wordListBuilder_.getMessageOrBuilder();
+      } else {
+        return wordList_ == null ?
+            ai.sensorycloud.api.v1.audio.TranscribeWordResponse.getDefaultInstance() : wordList_;
+      }
+    }
+    /**
+     * <pre>
+     * A response including word metadata
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ai.sensorycloud.api.v1.audio.TranscribeWordResponse, ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder, ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder> 
+        getWordListFieldBuilder() {
+      if (wordListBuilder_ == null) {
+        wordListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            ai.sensorycloud.api.v1.audio.TranscribeWordResponse, ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder, ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder>(
+                getWordList(),
+                getParentForChildren(),
+                isClean());
+        wordList_ = null;
+      }
+      return wordListBuilder_;
     }
 
     private ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction_;

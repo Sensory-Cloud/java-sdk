@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private AuthenticateConfig() {
     livenessThreshold_ = 0;
+    enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -94,6 +95,11 @@ private static final long serialVersionUID = 0L;
             doIncludeToken_ = input.readBool();
             break;
           }
+          case 58: {
+
+            enrollmentToken_ = input.readBytes();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -105,6 +111,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -392,6 +400,22 @@ private static final long serialVersionUID = 0L;
     return doIncludeToken_;
   }
 
+  public static final int ENROLLMENTTOKEN_FIELD_NUMBER = 7;
+  private com.google.protobuf.ByteString enrollmentToken_;
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 7;</code>
+   * @return The enrollmentToken.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getEnrollmentToken() {
+    return enrollmentToken_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -424,6 +448,9 @@ private static final long serialVersionUID = 0L;
     if (doIncludeToken_ != false) {
       output.writeBool(6, doIncludeToken_);
     }
+    if (!enrollmentToken_.isEmpty()) {
+      output.writeBytes(7, enrollmentToken_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -455,6 +482,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(6, doIncludeToken_);
     }
+    if (!enrollmentToken_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(7, enrollmentToken_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -480,6 +511,8 @@ private static final long serialVersionUID = 0L;
     }
     if (getDoIncludeToken()
         != other.getDoIncludeToken()) return false;
+    if (!getEnrollmentToken()
+        .equals(other.getEnrollmentToken())) return false;
     if (!getAuthIdCase().equals(other.getAuthIdCase())) return false;
     switch (authIdCase_) {
       case 1:
@@ -516,6 +549,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + DOINCLUDETOKEN_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getDoIncludeToken());
+    hash = (37 * hash) + ENROLLMENTTOKEN_FIELD_NUMBER;
+    hash = (53 * hash) + getEnrollmentToken().hashCode();
     switch (authIdCase_) {
       case 1:
         hash = (37 * hash) + ENROLLMENTID_FIELD_NUMBER;
@@ -677,6 +712,8 @@ private static final long serialVersionUID = 0L;
       }
       doIncludeToken_ = false;
 
+      enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
+
       authIdCase_ = 0;
       authId_ = null;
       return this;
@@ -719,6 +756,7 @@ private static final long serialVersionUID = 0L;
         result.compression_ = compressionBuilder_.build();
       }
       result.doIncludeToken_ = doIncludeToken_;
+      result.enrollmentToken_ = enrollmentToken_;
       result.authIdCase_ = authIdCase_;
       onBuilt();
       return result;
@@ -779,6 +817,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getDoIncludeToken() != false) {
         setDoIncludeToken(other.getDoIncludeToken());
+      }
+      if (other.getEnrollmentToken() != com.google.protobuf.ByteString.EMPTY) {
+        setEnrollmentToken(other.getEnrollmentToken());
       }
       switch (other.getAuthIdCase()) {
         case ENROLLMENTID: {
@@ -1400,6 +1441,55 @@ private static final long serialVersionUID = 0L;
     public Builder clearDoIncludeToken() {
       
       doIncludeToken_ = false;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.ByteString enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 7;</code>
+     * @return The enrollmentToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getEnrollmentToken() {
+      return enrollmentToken_;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 7;</code>
+     * @param value The enrollmentToken to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnrollmentToken(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      enrollmentToken_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnrollmentToken() {
+      
+      enrollmentToken_ = getDefaultInstance().getEnrollmentToken();
       onChanged();
       return this;
     }

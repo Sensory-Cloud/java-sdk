@@ -89,6 +89,11 @@ private static final long serialVersionUID = 0L;
             serverType_ = rawValue;
             break;
           }
+          case 48: {
+
+            isLeader_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -100,6 +105,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -318,6 +325,17 @@ private static final long serialVersionUID = 0L;
     return result == null ? ai.sensorycloud.api.common.ServerType.UNRECOGNIZED : result;
   }
 
+  public static final int ISLEADER_FIELD_NUMBER = 6;
+  private boolean isLeader_;
+  /**
+   * <code>bool isLeader = 6;</code>
+   * @return The isLeader.
+   */
+  @java.lang.Override
+  public boolean getIsLeader() {
+    return isLeader_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -347,6 +365,9 @@ private static final long serialVersionUID = 0L;
     if (serverType_ != ai.sensorycloud.api.common.ServerType.TITAN.getNumber()) {
       output.writeEnum(5, serverType_);
     }
+    if (isLeader_ != false) {
+      output.writeBool(6, isLeader_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -374,6 +395,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(5, serverType_);
     }
+    if (isLeader_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(6, isLeader_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -398,6 +423,8 @@ private static final long serialVersionUID = 0L;
     if (!getServicesList()
         .equals(other.getServicesList())) return false;
     if (serverType_ != other.serverType_) return false;
+    if (getIsLeader()
+        != other.getIsLeader()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -422,6 +449,9 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + SERVERTYPE_FIELD_NUMBER;
     hash = (53 * hash) + serverType_;
+    hash = (37 * hash) + ISLEADER_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsLeader());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -574,6 +604,8 @@ private static final long serialVersionUID = 0L;
       }
       serverType_ = 0;
 
+      isLeader_ = false;
+
       return this;
     }
 
@@ -614,6 +646,7 @@ private static final long serialVersionUID = 0L;
         result.services_ = servicesBuilder_.build();
       }
       result.serverType_ = serverType_;
+      result.isLeader_ = isLeader_;
       onBuilt();
       return result;
     }
@@ -701,6 +734,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.serverType_ != 0) {
         setServerTypeValue(other.getServerTypeValue());
+      }
+      if (other.getIsLeader() != false) {
+        setIsLeader(other.getIsLeader());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1349,6 +1385,37 @@ private static final long serialVersionUID = 0L;
     public Builder clearServerType() {
       
       serverType_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private boolean isLeader_ ;
+    /**
+     * <code>bool isLeader = 6;</code>
+     * @return The isLeader.
+     */
+    @java.lang.Override
+    public boolean getIsLeader() {
+      return isLeader_;
+    }
+    /**
+     * <code>bool isLeader = 6;</code>
+     * @param value The isLeader to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsLeader(boolean value) {
+      
+      isLeader_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isLeader = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsLeader() {
+      
+      isLeader_ = false;
       onChanged();
       return this;
     }

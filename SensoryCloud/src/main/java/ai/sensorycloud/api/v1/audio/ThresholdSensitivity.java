@@ -166,7 +166,7 @@ public enum ThresholdSensitivity
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return ai.sensorycloud.api.v1.audio.SensoryApiV1AudioProto.getDescriptor().getEnumTypes().get(1);
+    return ai.sensorycloud.api.v1.audio.SensoryApiV1AudioProto.getDescriptor().getEnumTypes().get(2);
   }
 
   private static final ThresholdSensitivity[] VALUES = values();

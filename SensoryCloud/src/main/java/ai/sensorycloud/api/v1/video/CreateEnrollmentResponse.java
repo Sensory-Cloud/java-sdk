@@ -88,6 +88,19 @@ private static final long serialVersionUID = 0L;
             score_ = input.readFloat();
             break;
           }
+          case 58: {
+            ai.sensorycloud.api.common.EnrollmentToken.Builder subBuilder = null;
+            if (enrollmentToken_ != null) {
+              subBuilder = enrollmentToken_.toBuilder();
+            }
+            enrollmentToken_ = input.readMessage(ai.sensorycloud.api.common.EnrollmentToken.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(enrollmentToken_);
+              enrollmentToken_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -99,6 +112,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -303,6 +318,47 @@ private static final long serialVersionUID = 0L;
     return score_;
   }
 
+  public static final int ENROLLMENTTOKEN_FIELD_NUMBER = 7;
+  private ai.sensorycloud.api.common.EnrollmentToken enrollmentToken_;
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   * @return Whether the enrollmentToken field is set.
+   */
+  @java.lang.Override
+  public boolean hasEnrollmentToken() {
+    return enrollmentToken_ != null;
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   * @return The enrollmentToken.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.common.EnrollmentToken getEnrollmentToken() {
+    return enrollmentToken_ == null ? ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance() : enrollmentToken_;
+  }
+  /**
+   * <pre>
+   * Encrypted enrollment token, this token should be included in authentication requests
+   * If the server is configured to store enrollments server side, this will be left empty
+   * </pre>
+   *
+   * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.common.EnrollmentTokenOrBuilder getEnrollmentTokenOrBuilder() {
+    return getEnrollmentToken();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -335,6 +391,9 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToRawIntBits(score_) != 0) {
       output.writeFloat(6, score_);
     }
+    if (enrollmentToken_ != null) {
+      output.writeMessage(7, getEnrollmentToken());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -365,6 +424,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(6, score_);
     }
+    if (enrollmentToken_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(7, getEnrollmentToken());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -393,6 +456,11 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToIntBits(getScore())
         != java.lang.Float.floatToIntBits(
             other.getScore())) return false;
+    if (hasEnrollmentToken() != other.hasEnrollmentToken()) return false;
+    if (hasEnrollmentToken()) {
+      if (!getEnrollmentToken()
+          .equals(other.getEnrollmentToken())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -419,6 +487,10 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + SCORE_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getScore());
+    if (hasEnrollmentToken()) {
+      hash = (37 * hash) + ENROLLMENTTOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getEnrollmentToken().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -568,6 +640,12 @@ private static final long serialVersionUID = 0L;
 
       score_ = 0F;
 
+      if (enrollmentTokenBuilder_ == null) {
+        enrollmentToken_ = null;
+      } else {
+        enrollmentToken_ = null;
+        enrollmentTokenBuilder_ = null;
+      }
       return this;
     }
 
@@ -600,6 +678,11 @@ private static final long serialVersionUID = 0L;
       result.modelName_ = modelName_;
       result.modelVersion_ = modelVersion_;
       result.score_ = score_;
+      if (enrollmentTokenBuilder_ == null) {
+        result.enrollmentToken_ = enrollmentToken_;
+      } else {
+        result.enrollmentToken_ = enrollmentTokenBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -668,6 +751,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getScore() != 0F) {
         setScore(other.getScore());
+      }
+      if (other.hasEnrollmentToken()) {
+        mergeEnrollmentToken(other.getEnrollmentToken());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1113,6 +1199,170 @@ private static final long serialVersionUID = 0L;
       score_ = 0F;
       onChanged();
       return this;
+    }
+
+    private ai.sensorycloud.api.common.EnrollmentToken enrollmentToken_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ai.sensorycloud.api.common.EnrollmentToken, ai.sensorycloud.api.common.EnrollmentToken.Builder, ai.sensorycloud.api.common.EnrollmentTokenOrBuilder> enrollmentTokenBuilder_;
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     * @return Whether the enrollmentToken field is set.
+     */
+    public boolean hasEnrollmentToken() {
+      return enrollmentTokenBuilder_ != null || enrollmentToken_ != null;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     * @return The enrollmentToken.
+     */
+    public ai.sensorycloud.api.common.EnrollmentToken getEnrollmentToken() {
+      if (enrollmentTokenBuilder_ == null) {
+        return enrollmentToken_ == null ? ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance() : enrollmentToken_;
+      } else {
+        return enrollmentTokenBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder setEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
+      if (enrollmentTokenBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        enrollmentToken_ = value;
+        onChanged();
+      } else {
+        enrollmentTokenBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder setEnrollmentToken(
+        ai.sensorycloud.api.common.EnrollmentToken.Builder builderForValue) {
+      if (enrollmentTokenBuilder_ == null) {
+        enrollmentToken_ = builderForValue.build();
+        onChanged();
+      } else {
+        enrollmentTokenBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder mergeEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
+      if (enrollmentTokenBuilder_ == null) {
+        if (enrollmentToken_ != null) {
+          enrollmentToken_ =
+            ai.sensorycloud.api.common.EnrollmentToken.newBuilder(enrollmentToken_).mergeFrom(value).buildPartial();
+        } else {
+          enrollmentToken_ = value;
+        }
+        onChanged();
+      } else {
+        enrollmentTokenBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public Builder clearEnrollmentToken() {
+      if (enrollmentTokenBuilder_ == null) {
+        enrollmentToken_ = null;
+        onChanged();
+      } else {
+        enrollmentToken_ = null;
+        enrollmentTokenBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public ai.sensorycloud.api.common.EnrollmentToken.Builder getEnrollmentTokenBuilder() {
+      
+      onChanged();
+      return getEnrollmentTokenFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    public ai.sensorycloud.api.common.EnrollmentTokenOrBuilder getEnrollmentTokenOrBuilder() {
+      if (enrollmentTokenBuilder_ != null) {
+        return enrollmentTokenBuilder_.getMessageOrBuilder();
+      } else {
+        return enrollmentToken_ == null ?
+            ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance() : enrollmentToken_;
+      }
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token, this token should be included in authentication requests
+     * If the server is configured to store enrollments server side, this will be left empty
+     * </pre>
+     *
+     * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ai.sensorycloud.api.common.EnrollmentToken, ai.sensorycloud.api.common.EnrollmentToken.Builder, ai.sensorycloud.api.common.EnrollmentTokenOrBuilder> 
+        getEnrollmentTokenFieldBuilder() {
+      if (enrollmentTokenBuilder_ == null) {
+        enrollmentTokenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            ai.sensorycloud.api.common.EnrollmentToken, ai.sensorycloud.api.common.EnrollmentToken.Builder, ai.sensorycloud.api.common.EnrollmentTokenOrBuilder>(
+                getEnrollmentToken(),
+                getParentForChildren(),
+                isClean());
+        enrollmentToken_ = null;
+      }
+      return enrollmentTokenBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
