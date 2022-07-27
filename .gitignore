@@ -4,5 +4,8 @@
 # Ignore Gradle build output directory
 build
 
+# Intellij
+.idea/uiDesigner.xml
+
 # Mac
 .DS_Store
