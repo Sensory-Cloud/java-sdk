@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
   private AuthenticateConfig() {
     sensitivity_ = 0;
     security_ = 0;
+    enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -101,6 +102,11 @@ private static final long serialVersionUID = 0L;
             isLivenessEnabled_ = input.readBool();
             break;
           }
+          case 66: {
+
+            enrollmentToken_ = input.readBytes();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -112,6 +118,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -575,6 +583,22 @@ private static final long serialVersionUID = 0L;
     return isLivenessEnabled_;
   }
 
+  public static final int ENROLLMENTTOKEN_FIELD_NUMBER = 8;
+  private com.google.protobuf.ByteString enrollmentToken_;
+  /**
+   * <pre>
+   * Encrypted enrollment token that was provided on enrollment creation
+   * If the server is configured to store enrollments server side, this may be left blank
+   * </pre>
+   *
+   * <code>bytes enrollmentToken = 8;</code>
+   * @return The enrollmentToken.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getEnrollmentToken() {
+    return enrollmentToken_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -609,6 +633,9 @@ private static final long serialVersionUID = 0L;
     }
     if (isLivenessEnabled_ != false) {
       output.writeBool(7, isLivenessEnabled_);
+    }
+    if (!enrollmentToken_.isEmpty()) {
+      output.writeBytes(8, enrollmentToken_);
     }
     unknownFields.writeTo(output);
   }
@@ -645,6 +672,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(7, isLivenessEnabled_);
     }
+    if (!enrollmentToken_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(8, enrollmentToken_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -671,6 +702,8 @@ private static final long serialVersionUID = 0L;
     if (security_ != other.security_) return false;
     if (getIsLivenessEnabled()
         != other.getIsLivenessEnabled()) return false;
+    if (!getEnrollmentToken()
+        .equals(other.getEnrollmentToken())) return false;
     if (!getAuthIdCase().equals(other.getAuthIdCase())) return false;
     switch (authIdCase_) {
       case 2:
@@ -709,6 +742,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ISLIVENESSENABLED_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getIsLivenessEnabled());
+    hash = (37 * hash) + ENROLLMENTTOKEN_FIELD_NUMBER;
+    hash = (53 * hash) + getEnrollmentToken().hashCode();
     switch (authIdCase_) {
       case 2:
         hash = (37 * hash) + ENROLLMENTID_FIELD_NUMBER;
@@ -872,6 +907,8 @@ private static final long serialVersionUID = 0L;
 
       isLivenessEnabled_ = false;
 
+      enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
+
       authIdCase_ = 0;
       authId_ = null;
       return this;
@@ -915,6 +952,7 @@ private static final long serialVersionUID = 0L;
       result.sensitivity_ = sensitivity_;
       result.security_ = security_;
       result.isLivenessEnabled_ = isLivenessEnabled_;
+      result.enrollmentToken_ = enrollmentToken_;
       result.authIdCase_ = authIdCase_;
       onBuilt();
       return result;
@@ -978,6 +1016,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getIsLivenessEnabled() != false) {
         setIsLivenessEnabled(other.getIsLivenessEnabled());
+      }
+      if (other.getEnrollmentToken() != com.google.protobuf.ByteString.EMPTY) {
+        setEnrollmentToken(other.getEnrollmentToken());
       }
       switch (other.getAuthIdCase()) {
         case ENROLLMENTID: {
@@ -1682,6 +1723,55 @@ private static final long serialVersionUID = 0L;
     public Builder clearIsLivenessEnabled() {
       
       isLivenessEnabled_ = false;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.ByteString enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 8;</code>
+     * @return The enrollmentToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getEnrollmentToken() {
+      return enrollmentToken_;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 8;</code>
+     * @param value The enrollmentToken to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnrollmentToken(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      enrollmentToken_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Encrypted enrollment token that was provided on enrollment creation
+     * If the server is configured to store enrollments server side, this may be left blank
+     * </pre>
+     *
+     * <code>bytes enrollmentToken = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnrollmentToken() {
+      
+      enrollmentToken_ = getDefaultInstance().getEnrollmentToken();
       onChanged();
       return this;
     }

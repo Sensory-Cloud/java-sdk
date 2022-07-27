@@ -155,6 +155,11 @@ private static final long serialVersionUID = 0L;
             billableFunction_ = rawValue;
             break;
           }
+          case 105: {
+
+            credits_ = input.readDouble();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -166,6 +171,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -674,6 +681,21 @@ private static final long serialVersionUID = 0L;
     return result == null ? ai.sensorycloud.api.common.ModelType.UNRECOGNIZED : result;
   }
 
+  public static final int CREDITS_FIELD_NUMBER = 13;
+  private double credits_;
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 13;</code>
+   * @return The credits.
+   */
+  @java.lang.Override
+  public double getCredits() {
+    return credits_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -728,6 +750,9 @@ private static final long serialVersionUID = 0L;
     }
     if (billableFunction_ != ai.sensorycloud.api.common.ModelType.UNKNOWN.getNumber()) {
       output.writeEnum(12, billableFunction_);
+    }
+    if (java.lang.Double.doubleToRawLongBits(credits_) != 0) {
+      output.writeDouble(13, credits_);
     }
     unknownFields.writeTo(output);
   }
@@ -793,6 +818,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(12, billableFunction_);
     }
+    if (java.lang.Double.doubleToRawLongBits(credits_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(13, credits_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -832,6 +861,9 @@ private static final long serialVersionUID = 0L;
     if (!getTenantId()
         .equals(other.getTenantId())) return false;
     if (billableFunction_ != other.billableFunction_) return false;
+    if (java.lang.Double.doubleToLongBits(getCredits())
+        != java.lang.Double.doubleToLongBits(
+            other.getCredits())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -875,6 +907,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getTenantId().hashCode();
     hash = (37 * hash) + BILLABLEFUNCTION_FIELD_NUMBER;
     hash = (53 * hash) + billableFunction_;
+    hash = (37 * hash) + CREDITS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCredits()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -1036,6 +1071,8 @@ private static final long serialVersionUID = 0L;
 
       billableFunction_ = 0;
 
+      credits_ = 0D;
+
       return this;
     }
 
@@ -1087,6 +1124,7 @@ private static final long serialVersionUID = 0L;
       result.billableUnits_ = billableUnits_;
       result.tenantId_ = tenantId_;
       result.billableFunction_ = billableFunction_;
+      result.credits_ = credits_;
       onBuilt();
       return result;
     }
@@ -1189,6 +1227,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.billableFunction_ != 0) {
         setBillableFunctionValue(other.getBillableFunctionValue());
+      }
+      if (other.getCredits() != 0D) {
+        setCredits(other.getCredits());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -2419,6 +2460,49 @@ private static final long serialVersionUID = 0L;
     public Builder clearBillableFunction() {
       
       billableFunction_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private double credits_ ;
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 13;</code>
+     * @return The credits.
+     */
+    @java.lang.Override
+    public double getCredits() {
+      return credits_;
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 13;</code>
+     * @param value The credits to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCredits(double value) {
+      
+      credits_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 13;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCredits() {
+      
+      credits_ = 0D;
       onChanged();
       return this;
     }

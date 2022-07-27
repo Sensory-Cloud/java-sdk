@@ -69,6 +69,11 @@ public final class SensoryApiCommonProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sensory_api_common_PaginationResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sensory_api_common_EnrollmentToken_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sensory_api_common_EnrollmentToken_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -86,63 +91,65 @@ public final class SensoryApiCommonProto {
       "nse\022\023\n\013accessToken\030\001 \001(\t\022\021\n\texpiresIn\030\002 " +
       "\001(\005\022\r\n\005keyId\030\003 \001(\t\022\021\n\ttokenType\030\004 \001(\t\"A\n" +
       "\rServiceHealth\022\021\n\tisHealthy\030\001 \001(\010\022\014\n\004nam" +
-      "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\265\001\n\024ServerHealt" +
+      "e\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\307\001\n\024ServerHealt" +
       "hResponse\022\021\n\tisHealthy\030\001 \001(\010\022\025\n\rserverVe" +
       "rsion\030\002 \001(\t\022\n\n\002id\030\003 \001(\t\0223\n\010services\030\004 \003(" +
       "\0132!.sensory.api.common.ServiceHealth\0222\n\n" +
       "serverType\030\005 \001(\0162\036.sensory.api.common.Se" +
-      "rverType\"\203\001\n\rSystemSummary\0225\n\003cpu\030\001 \001(\0132" +
-      "\036.sensory.api.common.CpuSummaryB\010\372B\005\212\001\002\020" +
-      "\001\022;\n\006memory\030\002 \001(\0132!.sensory.api.common.M" +
-      "emorySummaryB\010\372B\005\212\001\002\020\001\"\245\001\n\nCpuSummary\022\014\n" +
-      "\004user\030\001 \001(\004\022\014\n\004nice\030\002 \001(\004\022\016\n\006system\030\003 \001(" +
-      "\004\022\014\n\004idle\030\004 \001(\004\022\016\n\006ioWait\030\005 \001(\004\022\013\n\003irq\030\006" +
-      " \001(\004\022\017\n\007softIrq\030\007 \001(\004\022\r\n\005steal\030\010 \001(\004\022\r\n\005" +
-      "guest\030\t \001(\004\022\021\n\tguestNice\030\n \001(\004\"H\n\rMemory" +
-      "Summary\022\020\n\010memTotal\030\001 \001(\004\022\017\n\007memFree\030\002 \001" +
-      "(\004\022\024\n\014memAvailable\030\003 \001(\004\"D\n\rGenericClien" +
-      "t\022\032\n\010clientId\030\001 \001(\tB\010\372B\005r\003\260\001\001\022\027\n\006secret\030" +
-      "\002 \001(\tB\007\372B\004r\002\020\n\"\210\001\n\016TenantResponse\022\n\n\002id\030" +
-      "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022-\n\tcreatedAt\030\003 \001(\0132\032" +
-      ".google.protobuf.Timestamp\022-\n\tupdatedAt\030" +
-      "\004 \001(\0132\032.google.protobuf.Timestamp\"]\n\021Pag" +
-      "inationOptions\022\020\n\010ordering\030\001 \001(\t\022\021\n\tdece" +
-      "nding\030\002 \001(\010\022\021\n\tpageIndex\030\003 \001(\005\022\020\n\010pageSi" +
-      "ze\030\004 \001(\005\"\302\001\n\022PaginationResponse\022\020\n\010order" +
-      "ing\030\001 \001(\t\022\021\n\tdecending\030\002 \001(\010\022\031\n\021possible" +
-      "Orderings\030\003 \003(\t\022\022\n\ntotalCount\030\004 \001(\003\022\020\n\010p" +
-      "ageSize\030\005 \001(\005\022\025\n\rprevPageIndex\030\006 \001(\005\022\030\n\020" +
-      "currentPageIndex\030\007 \001(\005\022\025\n\rnextPageIndex\030" +
-      "\010 \001(\005*\026\n\004Void\022\016\n\nVOID_VALUE\020\000*Q\n\007KeyType" +
-      "\022\016\n\nPUBLIC_KEY\020\000\022\026\n\022PUBLIC_KEY_ED25519\020\001" +
-      "\022\021\n\rSHARED_SECRET\020\003\022\013\n\007AES_256\020\004*4\n\013Feat" +
-      "ureFlag\022\014\n\010TSSV_ALL\020\000\022\n\n\006TS_ALL\020\001\022\013\n\007TNL" +
-      "_ALL\020\002*\244\004\n\tModelType\022\013\n\007UNKNOWN\020\000\022$\n VOI" +
-      "CE_BIOMETRIC_TEXT_INDEPENDENT\020\001\022\034\n\030VOICE" +
-      "_BIOMETRIC_WAKEWORD\020\002\022\030\n\024VOICE_EVENT_WAK" +
-      "EWORD\020\003\022\034\n\030VOICE_TRANSCRIBE_GRAMMAR\020\004\022\'\n" +
-      "#VOICE_TRANSCRIBE_COMMAND_AND_SEARCH\020\005\022(" +
-      "\n$VOICE_RECOGNITION_ACTIVITY_DETECTION\020\006" +
-      "\022\033\n\027VOICE_FEATURE_EXTRACTOR\020\007\022\"\n\036VOICE_B" +
-      "IOMETRIC_LIVENESS_DIGIT\020\010\022\"\n\036VOICE_BIOME" +
-      "TRIC_TEXT_DEPENDENT\020\t\022\023\n\017VOICE_SYNTHESIS" +
-      "\020\n\022\032\n\026SOUND_EVENT_ENROLLABLE\020d\022\034\n\030SOUND_" +
-      "EVENT_REVALIDATION\020e\022\025\n\021SOUND_EVENT_FIXE" +
-      "D\020f\022\025\n\021SOUND_SCENE_FIXED\020g\022\023\n\016FACE_BIOME" +
-      "TRIC\020\311\001\022\025\n\020FACE_RECOGNITION\020\312\001\022\027\n\022OBJECT" +
-      "_RECOGNITION\020\313\001\022\024\n\017IMAGE_TRANSFORM\020\314\001*J\n" +
-      "\016TechnologyType\022\013\n\007NOT_SET\020\000\022\010\n\004TSSV\020\001\022\006" +
-      "\n\002TS\020\002\022\007\n\003TNL\020\003\022\007\n\003STT\020\004\022\007\n\003TTS\020\005*&\n\017Com" +
-      "pressionType\022\023\n\017IMAGE_GRAYSCALE\020\000*[\n\nCli" +
-      "entType\022\010\n\004ROOT\020\000\022\n\n\006DEVICE\020\001\022\013\n\007CLUSTER" +
-      "\020\002\022\010\n\004USER\020\003\022\016\n\nSUPER_USER\020\004\022\020\n\014BILLING_" +
-      "USER\020\005*g\n\016UsageEventType\022\022\n\016AUTHENTICATI" +
-      "ON\020\000\022\017\n\013RECOGNITION\020\001\022\016\n\nENROLLMENT\020\002\022\r\n" +
-      "\tSYNTHESIS\020\003\022\021\n\rTRANSCRIPTION\020\004*\037\n\nServe" +
-      "rType\022\t\n\005TITAN\020\000\022\006\n\002IO\020\001Bo\n\032ai.sensorycl" +
-      "oud.api.commonB\025SensoryApiCommonProtoP\001Z" +
-      "8gitlab.com/sensory-cloud/server/titan.g" +
-      "it/pkg/api/commonb\006proto3"
+      "rverType\022\020\n\010isLeader\030\006 \001(\010\"\203\001\n\rSystemSum" +
+      "mary\0225\n\003cpu\030\001 \001(\0132\036.sensory.api.common.C" +
+      "puSummaryB\010\372B\005\212\001\002\020\001\022;\n\006memory\030\002 \001(\0132!.se" +
+      "nsory.api.common.MemorySummaryB\010\372B\005\212\001\002\020\001" +
+      "\"\245\001\n\nCpuSummary\022\014\n\004user\030\001 \001(\004\022\014\n\004nice\030\002 " +
+      "\001(\004\022\016\n\006system\030\003 \001(\004\022\014\n\004idle\030\004 \001(\004\022\016\n\006ioW" +
+      "ait\030\005 \001(\004\022\013\n\003irq\030\006 \001(\004\022\017\n\007softIrq\030\007 \001(\004\022" +
+      "\r\n\005steal\030\010 \001(\004\022\r\n\005guest\030\t \001(\004\022\021\n\tguestNi" +
+      "ce\030\n \001(\004\"H\n\rMemorySummary\022\020\n\010memTotal\030\001 " +
+      "\001(\004\022\017\n\007memFree\030\002 \001(\004\022\024\n\014memAvailable\030\003 \001" +
+      "(\004\"D\n\rGenericClient\022\032\n\010clientId\030\001 \001(\tB\010\372" +
+      "B\005r\003\260\001\001\022\027\n\006secret\030\002 \001(\tB\007\372B\004r\002\020\n\"\210\001\n\016Ten" +
+      "antResponse\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022-\n" +
+      "\tcreatedAt\030\003 \001(\0132\032.google.protobuf.Times" +
+      "tamp\022-\n\tupdatedAt\030\004 \001(\0132\032.google.protobu" +
+      "f.Timestamp\"]\n\021PaginationOptions\022\020\n\010orde" +
+      "ring\030\001 \001(\t\022\021\n\tdecending\030\002 \001(\010\022\021\n\tpageInd" +
+      "ex\030\003 \001(\005\022\020\n\010pageSize\030\004 \001(\005\"\302\001\n\022Paginatio" +
+      "nResponse\022\020\n\010ordering\030\001 \001(\t\022\021\n\tdecending" +
+      "\030\002 \001(\010\022\031\n\021possibleOrderings\030\003 \003(\t\022\022\n\ntot" +
+      "alCount\030\004 \001(\003\022\020\n\010pageSize\030\005 \001(\005\022\025\n\rprevP" +
+      "ageIndex\030\006 \001(\005\022\030\n\020currentPageIndex\030\007 \001(\005" +
+      "\022\025\n\rnextPageIndex\030\010 \001(\005\"4\n\017EnrollmentTok" +
+      "en\022\r\n\005token\030\001 \001(\014\022\022\n\nexpiration\030\002 \001(\003*\026\n" +
+      "\004Void\022\016\n\nVOID_VALUE\020\000*Q\n\007KeyType\022\016\n\nPUBL" +
+      "IC_KEY\020\000\022\026\n\022PUBLIC_KEY_ED25519\020\001\022\021\n\rSHAR" +
+      "ED_SECRET\020\003\022\013\n\007AES_256\020\004*4\n\013FeatureFlag\022" +
+      "\014\n\010TSSV_ALL\020\000\022\n\n\006TS_ALL\020\001\022\013\n\007TNL_ALL\020\002*\244" +
+      "\004\n\tModelType\022\013\n\007UNKNOWN\020\000\022$\n VOICE_BIOME" +
+      "TRIC_TEXT_INDEPENDENT\020\001\022\034\n\030VOICE_BIOMETR" +
+      "IC_WAKEWORD\020\002\022\030\n\024VOICE_EVENT_WAKEWORD\020\003\022" +
+      "\034\n\030VOICE_TRANSCRIBE_GRAMMAR\020\004\022\'\n#VOICE_T" +
+      "RANSCRIBE_COMMAND_AND_SEARCH\020\005\022(\n$VOICE_" +
+      "RECOGNITION_ACTIVITY_DETECTION\020\006\022\033\n\027VOIC" +
+      "E_FEATURE_EXTRACTOR\020\007\022\"\n\036VOICE_BIOMETRIC" +
+      "_LIVENESS_DIGIT\020\010\022\"\n\036VOICE_BIOMETRIC_TEX" +
+      "T_DEPENDENT\020\t\022\023\n\017VOICE_SYNTHESIS\020\n\022\032\n\026SO" +
+      "UND_EVENT_ENROLLABLE\020d\022\034\n\030SOUND_EVENT_RE" +
+      "VALIDATION\020e\022\025\n\021SOUND_EVENT_FIXED\020f\022\025\n\021S" +
+      "OUND_SCENE_FIXED\020g\022\023\n\016FACE_BIOMETRIC\020\311\001\022" +
+      "\025\n\020FACE_RECOGNITION\020\312\001\022\027\n\022OBJECT_RECOGNI" +
+      "TION\020\313\001\022\024\n\017IMAGE_TRANSFORM\020\314\001*J\n\016Technol" +
+      "ogyType\022\013\n\007NOT_SET\020\000\022\010\n\004TSSV\020\001\022\006\n\002TS\020\002\022\007" +
+      "\n\003TNL\020\003\022\007\n\003STT\020\004\022\007\n\003TTS\020\005*&\n\017Compression" +
+      "Type\022\023\n\017IMAGE_GRAYSCALE\020\000*[\n\nClientType\022" +
+      "\010\n\004ROOT\020\000\022\n\n\006DEVICE\020\001\022\013\n\007CLUSTER\020\002\022\010\n\004US" +
+      "ER\020\003\022\016\n\nSUPER_USER\020\004\022\020\n\014BILLING_USER\020\005*g" +
+      "\n\016UsageEventType\022\022\n\016AUTHENTICATION\020\000\022\017\n\013" +
+      "RECOGNITION\020\001\022\016\n\nENROLLMENT\020\002\022\r\n\tSYNTHES" +
+      "IS\020\003\022\021\n\rTRANSCRIPTION\020\004*\037\n\nServerType\022\t\n" +
+      "\005TITAN\020\000\022\006\n\002IO\020\001Bo\n\032ai.sensorycloud.api." +
+      "commonB\025SensoryApiCommonProtoP\001Z8gitlab." +
+      "com/sensory-cloud/server/titan.git/pkg/a" +
+      "pi/commonb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -173,7 +180,7 @@ public final class SensoryApiCommonProto {
     internal_static_sensory_api_common_ServerHealthResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_common_ServerHealthResponse_descriptor,
-        new java.lang.String[] { "IsHealthy", "ServerVersion", "Id", "Services", "ServerType", });
+        new java.lang.String[] { "IsHealthy", "ServerVersion", "Id", "Services", "ServerType", "IsLeader", });
     internal_static_sensory_api_common_SystemSummary_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_sensory_api_common_SystemSummary_fieldAccessorTable = new
@@ -216,6 +223,12 @@ public final class SensoryApiCommonProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_common_PaginationResponse_descriptor,
         new java.lang.String[] { "Ordering", "Decending", "PossibleOrderings", "TotalCount", "PageSize", "PrevPageIndex", "CurrentPageIndex", "NextPageIndex", });
+    internal_static_sensory_api_common_EnrollmentToken_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_sensory_api_common_EnrollmentToken_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sensory_api_common_EnrollmentToken_descriptor,
+        new java.lang.String[] { "Token", "Expiration", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(io.envoyproxy.pgv.validate.Validate.rules);

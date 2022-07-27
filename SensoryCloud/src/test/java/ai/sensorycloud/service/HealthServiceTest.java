@@ -3,7 +3,7 @@ package ai.sensorycloud.service;
 import ai.sensorycloud.api.common.ServerHealthResponse;
 import ai.sensorycloud.api.health.HealthRequest;
 import ai.sensorycloud.api.health.HealthServiceGrpc;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.SDKInitConfig;
 import io.grpc.*;
 import io.grpc.inprocess.InProcessChannelBuilder;
 import io.grpc.inprocess.InProcessServerBuilder;
@@ -21,10 +21,14 @@ public class HealthServiceTest extends TestCase {
 
     final Metadata.Key<String> authKey = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
 
-    final public Config mockConfig = new Config(
-            new Config.CloudConfig("host"),
-            new Config.TenantConfig("tenantID"),
-            new Config.DeviceConfig("deviceID", "lanCode")
+    final public SDKInitConfig mockConfig = new SDKInitConfig(
+            "host",
+            false,
+            "tenantID",
+            SDKInitConfig.EnrollmentType.NONE,
+            "doesntmatter",
+            "deviceID",
+            "deviceName"
     );
 
     final ServerHealthResponse expectedResponse = ServerHealthResponse.newBuilder()
@@ -65,6 +69,9 @@ public class HealthServiceTest extends TestCase {
     public void setUp() throws Exception {
         responseRecieved = false;
 
+        MockConfig conf = new MockConfig();
+        conf.setConfig(mockConfig);
+
         String serverName = InProcessServerBuilder.generateName();
         grpcCleanup.register(InProcessServerBuilder.forName(serverName).directExecutor()
                 .addService(ServerInterceptors.intercept(serviceImpl, mockServerInterceptor))
@@ -72,7 +79,7 @@ public class HealthServiceTest extends TestCase {
         ManagedChannel channel = grpcCleanup.register(InProcessChannelBuilder.forName(serverName)
                 .directExecutor().build());
 
-        service = new HealthService(mockConfig, channel);
+        service = new HealthService(channel);
     }
 
     public void testGetHealth() {

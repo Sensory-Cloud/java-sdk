@@ -115,6 +115,11 @@ private static final long serialVersionUID = 0L;
             referenceId_ = s;
             break;
           }
+          case 80: {
+
+            disableServerEnrollmentTemplateStorage_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -126,6 +131,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -544,6 +551,21 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int DISABLESERVERENROLLMENTTEMPLATESTORAGE_FIELD_NUMBER = 10;
+  private boolean disableServerEnrollmentTemplateStorage_;
+  /**
+   * <pre>
+   * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+   * </pre>
+   *
+   * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+   * @return The disableServerEnrollmentTemplateStorage.
+   */
+  @java.lang.Override
+  public boolean getDisableServerEnrollmentTemplateStorage() {
+    return disableServerEnrollmentTemplateStorage_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -587,6 +609,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(referenceId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 9, referenceId_);
     }
+    if (disableServerEnrollmentTemplateStorage_ != false) {
+      output.writeBool(10, disableServerEnrollmentTemplateStorage_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -629,6 +654,10 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(referenceId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, referenceId_);
     }
+    if (disableServerEnrollmentTemplateStorage_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(10, disableServerEnrollmentTemplateStorage_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -661,6 +690,8 @@ private static final long serialVersionUID = 0L;
         != other.getIsLivenessEnabled()) return false;
     if (!getReferenceId()
         .equals(other.getReferenceId())) return false;
+    if (getDisableServerEnrollmentTemplateStorage()
+        != other.getDisableServerEnrollmentTemplateStorage()) return false;
     if (!getEnrollLengthCase().equals(other.getEnrollLengthCase())) return false;
     switch (enrollLengthCase_) {
       case 7:
@@ -703,6 +734,9 @@ private static final long serialVersionUID = 0L;
         getIsLivenessEnabled());
     hash = (37 * hash) + REFERENCEID_FIELD_NUMBER;
     hash = (53 * hash) + getReferenceId().hashCode();
+    hash = (37 * hash) + DISABLESERVERENROLLMENTTEMPLATESTORAGE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getDisableServerEnrollmentTemplateStorage());
     switch (enrollLengthCase_) {
       case 7:
         hash = (37 * hash) + ENROLLMENTNUMUTTERANCES_FIELD_NUMBER;
@@ -871,6 +905,8 @@ private static final long serialVersionUID = 0L;
 
       referenceId_ = "";
 
+      disableServerEnrollmentTemplateStorage_ = false;
+
       enrollLengthCase_ = 0;
       enrollLength_ = null;
       return this;
@@ -916,6 +952,7 @@ private static final long serialVersionUID = 0L;
         result.enrollLength_ = enrollLength_;
       }
       result.referenceId_ = referenceId_;
+      result.disableServerEnrollmentTemplateStorage_ = disableServerEnrollmentTemplateStorage_;
       result.enrollLengthCase_ = enrollLengthCase_;
       onBuilt();
       return result;
@@ -990,6 +1027,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getReferenceId().isEmpty()) {
         referenceId_ = other.referenceId_;
         onChanged();
+      }
+      if (other.getDisableServerEnrollmentTemplateStorage() != false) {
+        setDisableServerEnrollmentTemplateStorage(other.getDisableServerEnrollmentTemplateStorage());
       }
       switch (other.getEnrollLengthCase()) {
         case ENROLLMENTNUMUTTERANCES: {
@@ -1873,6 +1913,49 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       referenceId_ = value;
+      onChanged();
+      return this;
+    }
+
+    private boolean disableServerEnrollmentTemplateStorage_ ;
+    /**
+     * <pre>
+     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+     * </pre>
+     *
+     * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+     * @return The disableServerEnrollmentTemplateStorage.
+     */
+    @java.lang.Override
+    public boolean getDisableServerEnrollmentTemplateStorage() {
+      return disableServerEnrollmentTemplateStorage_;
+    }
+    /**
+     * <pre>
+     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+     * </pre>
+     *
+     * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+     * @param value The disableServerEnrollmentTemplateStorage to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDisableServerEnrollmentTemplateStorage(boolean value) {
+      
+      disableServerEnrollmentTemplateStorage_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Prevent the server from storing the enrollment template. The template will be returned to the client for storage.
+     * </pre>
+     *
+     * <code>bool disableServerEnrollmentTemplateStorage = 10;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDisableServerEnrollmentTemplateStorage() {
+      
+      disableServerEnrollmentTemplateStorage_ = false;
       onChanged();
       return this;
     }

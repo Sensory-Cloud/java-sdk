@@ -3,8 +3,10 @@ package ai.sensorycloud.service;
 import ai.sensorycloud.api.common.ModelType;
 import ai.sensorycloud.api.common.TechnologyType;
 import ai.sensorycloud.api.v1.audio.*;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.tokenManager.TokenManager;
+import com.google.protobuf.ByteString;
 import io.grpc.*;
 import io.grpc.inprocess.InProcessChannelBuilder;
 import io.grpc.inprocess.InProcessServerBuilder;
@@ -14,6 +16,8 @@ import io.grpc.testing.GrpcCleanupRule;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Rule;
+
+import java.nio.charset.StandardCharsets;
 
 import static org.awaitility.Awaitility.*;
 import static org.mockito.AdditionalAnswers.delegatesTo;
@@ -25,10 +29,14 @@ public class AudioServiceTest extends TestCase {
     final Metadata.Key<String> authKey = Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER);
     final String authValue = "Bearer Some-OAuth-Token";
 
-    final public Config mockConfig = new Config(
-            new Config.CloudConfig("host"),
-            new Config.TenantConfig("tenantID"),
-            new Config.DeviceConfig("deviceID", "lanCode")
+    final public SDKInitConfig mockConfig = new SDKInitConfig(
+            "host",
+            false,
+            "tenantID",
+            SDKInitConfig.EnrollmentType.NONE,
+            "doesntmatter",
+            "deviceID",
+            "deviceName"
     );
 
     final GetModelsRequest expectedModelsRequest = GetModelsRequest.getDefaultInstance();
@@ -50,7 +58,7 @@ public class AudioServiceTest extends TestCase {
             .setEncoding(AudioConfig.AudioEncoding.LINEAR16)
             .setSampleRateHertz(16000)
             .setAudioChannelCount(1)
-            .setLanguageCode(mockConfig.deviceConfig.defaultLanguageCode)
+            .setLanguageCode("lanCode")
             .build();
 
     final CreateEnrollmentRequest expectedEnrollmentRequest = CreateEnrollmentRequest.newBuilder()
@@ -58,7 +66,7 @@ public class AudioServiceTest extends TestCase {
                     .setAudio(mockAudioConfig)
                     .setModelName("Audio Model")
                     .setUserId("Some User")
-                    .setDeviceId(mockConfig.deviceConfig.deviceId)
+                    .setDeviceId(mockConfig.deviceID)
                     .setDescription("Enrollment Description")
                     .setIsLivenessEnabled(true)
                     .setEnrollmentDuration(10)
@@ -141,6 +149,19 @@ public class AudioServiceTest extends TestCase {
             .setTranscript("Some Transcription")
             .build();
 
+    final SynthesizeSpeechRequest expectedSynthesizeSpeechRequest = SynthesizeSpeechRequest.newBuilder()
+            .setConfig(VoiceSynthesisConfig.newBuilder()
+                    .setAudio(mockAudioConfig)
+                    .setVoice("Some Voice")
+            )
+            .setPhrase("Some Phrase")
+            .build();
+
+    final SynthesizeSpeechResponse expectedSynthesizeSpeechResponse = SynthesizeSpeechResponse.newBuilder()
+            .setConfig(mockAudioConfig)
+            .setAudioContent(ByteString.copyFrom("Some Byte String", StandardCharsets.UTF_8))
+            .build();
+
     private final ServerInterceptor mockServerInterceptor = mock(ServerInterceptor.class, delegatesTo(
             new ServerInterceptor() {
                 @Override
@@ -184,7 +205,9 @@ public class AudioServiceTest extends TestCase {
                                 }
 
                                 @Override
-                                public void onCompleted() { }
+                                public void onCompleted() {
+                                    System.out.println("complete");
+                                }
                             };
                         }
 
@@ -300,6 +323,18 @@ public class AudioServiceTest extends TestCase {
                     }
             ));
 
+    private final AudioSynthesisGrpc.AudioSynthesisImplBase synthesisImpl =
+            mock(AudioSynthesisGrpc.AudioSynthesisImplBase.class, delegatesTo(
+                    new AudioSynthesisGrpc.AudioSynthesisImplBase() {
+                        @Override
+                        public void synthesizeSpeech(SynthesizeSpeechRequest request, StreamObserver<SynthesizeSpeechResponse> responseObserver) {
+                            assertEquals("Request should match", expectedSynthesizeSpeechRequest, request);
+                            responseObserver.onNext(expectedSynthesizeSpeechResponse);
+                            responseObserver.onCompleted();
+                        }
+                    }
+            ));
+
     @Rule
     public final GrpcCleanupRule grpcCleanup = new GrpcCleanupRule();
 
@@ -313,12 +348,17 @@ public class AudioServiceTest extends TestCase {
         requestReceived = false;
         responseReceived = false;
 
+        MockConfig conf = new MockConfig();
+        conf.setConfig(mockConfig);
+        Config.defaultLanguageCode = "lanCode";
+
         String serverName = InProcessServerBuilder.generateName();
         grpcCleanup.register(InProcessServerBuilder.forName(serverName).directExecutor()
                 .addService(ServerInterceptors.intercept(modelsImpl, mockServerInterceptor))
                 .addService(ServerInterceptors.intercept(biometricsImpl, mockServerInterceptor))
                 .addService(ServerInterceptors.intercept(eventsImpl, mockServerInterceptor))
                 .addService(ServerInterceptors.intercept(transcriptionsImpl, mockServerInterceptor))
+                .addService(ServerInterceptors.intercept(synthesisImpl, mockServerInterceptor))
                 .build().start());
         ManagedChannel channel = grpcCleanup.register(InProcessChannelBuilder.forName(serverName)
                 .directExecutor().build());
@@ -329,7 +369,7 @@ public class AudioServiceTest extends TestCase {
         ClientInterceptor mockAuth = MetadataUtils.newAttachHeadersInterceptor(mockHeader);
         when(mockTokenManager.getAuthorizationMetadata()).thenReturn(mockAuth);
 
-        service = new AudioService(mockConfig, mockTokenManager, channel);
+        service = new AudioService(mockTokenManager, channel);
     }
 
     public void testGetModels() {
@@ -356,6 +396,7 @@ public class AudioServiceTest extends TestCase {
                 expectedEnrollmentRequest.getConfig().getIsLivenessEnabled(),
                 0,
                 expectedEnrollmentRequest.getConfig().getEnrollmentDuration(),
+                false,
                 new StreamObserver<CreateEnrollmentResponse>() {
                     @Override
                     public void onNext(CreateEnrollmentResponse value) {
@@ -371,6 +412,7 @@ public class AudioServiceTest extends TestCase {
                 });
 
         await().until(() -> requestReceived && responseReceived);
+        System.out.println("done");
     }
 
     public void testAuthenticate() {
@@ -379,6 +421,7 @@ public class AudioServiceTest extends TestCase {
                 expectedAuthenticateRequest.getConfig().getEnrollmentId(),
                 "",
                 expectedAuthenticateRequest.getConfig().getIsLivenessEnabled(),
+                null,
                 new StreamObserver<AuthenticateResponse>() {
                     @Override
                     public void onNext(AuthenticateResponse value) {
@@ -448,6 +491,7 @@ public class AudioServiceTest extends TestCase {
                 expectedValidateEnrolledEventRequest.getConfig().getEnrollmentGroupId(),
                 "",
                 expectedValidateEnrolledEventRequest.getConfig().getSensitivity(),
+                new byte[0],
                 new StreamObserver<ValidateEnrolledEventResponse>() {
                     @Override
                     public void onNext(ValidateEnrolledEventResponse value) {
@@ -485,5 +529,27 @@ public class AudioServiceTest extends TestCase {
                 });
 
         await().until(() -> requestReceived && responseReceived);
+    }
+
+    public void testSynthesizeSpeech() {
+        service.synthesizeSpeech(
+                expectedSynthesizeSpeechRequest.getPhrase(),
+                expectedSynthesizeSpeechRequest.getConfig().getVoice(),
+                "",
+                new StreamObserver<SynthesizeSpeechResponse>() {
+                    @Override
+                    public void onNext(SynthesizeSpeechResponse value) {
+                        assertEquals("Response should match", expectedSynthesizeSpeechResponse, value);
+                        responseReceived = true;
+                    }
+
+                    @Override
+                    public void onError(Throwable t) { fail("Call should not fail: " + t.getMessage()); }
+
+                    @Override
+                    public void onCompleted() { }
+                });
+
+        await().until(() -> responseReceived);
     }
 }

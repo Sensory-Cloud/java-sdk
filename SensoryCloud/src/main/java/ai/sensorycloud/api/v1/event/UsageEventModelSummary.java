@@ -72,6 +72,11 @@ private static final long serialVersionUID = 0L;
             count_ = input.readInt64();
             break;
           }
+          case 41: {
+
+            credits_ = input.readDouble();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -83,6 +88,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -207,6 +214,21 @@ private static final long serialVersionUID = 0L;
     return count_;
   }
 
+  public static final int CREDITS_FIELD_NUMBER = 5;
+  private double credits_;
+  /**
+   * <pre>
+   * Credits used by this event
+   * </pre>
+   *
+   * <code>double credits = 5;</code>
+   * @return The credits.
+   */
+  @java.lang.Override
+  public double getCredits() {
+    return credits_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -233,6 +255,9 @@ private static final long serialVersionUID = 0L;
     if (count_ != 0L) {
       output.writeInt64(4, count_);
     }
+    if (java.lang.Double.doubleToRawLongBits(credits_) != 0) {
+      output.writeDouble(5, credits_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -257,6 +282,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(4, count_);
     }
+    if (java.lang.Double.doubleToRawLongBits(credits_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(5, credits_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -279,6 +308,9 @@ private static final long serialVersionUID = 0L;
         != other.getValue()) return false;
     if (getCount()
         != other.getCount()) return false;
+    if (java.lang.Double.doubleToLongBits(getCredits())
+        != java.lang.Double.doubleToLongBits(
+            other.getCredits())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -300,6 +332,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + COUNT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getCount());
+    hash = (37 * hash) + CREDITS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCredits()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -441,6 +476,8 @@ private static final long serialVersionUID = 0L;
 
       count_ = 0L;
 
+      credits_ = 0D;
+
       return this;
     }
 
@@ -471,6 +508,7 @@ private static final long serialVersionUID = 0L;
       result.units_ = units_;
       result.value_ = value_;
       result.count_ = count_;
+      result.credits_ = credits_;
       onBuilt();
       return result;
     }
@@ -531,6 +569,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getCount() != 0L) {
         setCount(other.getCount());
+      }
+      if (other.getCredits() != 0D) {
+        setCredits(other.getCredits());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -813,6 +854,49 @@ private static final long serialVersionUID = 0L;
     public Builder clearCount() {
       
       count_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private double credits_ ;
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 5;</code>
+     * @return The credits.
+     */
+    @java.lang.Override
+    public double getCredits() {
+      return credits_;
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 5;</code>
+     * @param value The credits to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCredits(double value) {
+      
+      credits_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Credits used by this event
+     * </pre>
+     *
+     * <code>double credits = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCredits() {
+      
+      credits_ = 0D;
       onChanged();
       return this;
     }

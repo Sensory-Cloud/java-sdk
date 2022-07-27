@@ -10,7 +10,8 @@ import ai.sensorycloud.api.v1.management.DeviceResponse;
 import ai.sensorycloud.api.v1.management.DeviceServiceGrpc;
 import ai.sensorycloud.api.v1.management.EnrollDeviceRequest;
 import ai.sensorycloud.api.v1.management.RenewDeviceCredentialRequest;
-import ai.sensorycloud.config.Config;
+import ai.sensorycloud.Config;
+import ai.sensorycloud.SDKInitConfig;
 import ai.sensorycloud.tokenManager.SecureCredentialStore;
 import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
@@ -31,7 +32,7 @@ public class OAuthService {
     /**
      * Wrapper struct for OAuth client credentials
      */
-    public class OAuthClient {
+    public static class OAuthClient {
         /**
          * OAuth client ID
          */
@@ -98,34 +99,34 @@ public class OAuthService {
         void onFailure(Throwable t);
     }
 
-    private Config config;
     private SecureCredentialStore secureCredentialStore;
     private ManagedChannel unitTestingManagedChannel;
     private final char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 
     /**
-     * Creates a new OAuthService instance
-     *
-     * @param config SDK configuration to use
-     * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
+     * @return The underlying SecureCredentialStore being used
      */
-    public OAuthService(Config config, SecureCredentialStore secureCredentialStore) {
-        this.config = config;
-        this.secureCredentialStore = secureCredentialStore;
-        this.unitTestingManagedChannel = null;
-
-
+    public SecureCredentialStore getSecureCredentialStore() {
+        return secureCredentialStore;
     }
 
     /**
      * Creates a new OAuthService instance
      *
-     * @param config SDK configuration to use
+     * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
+     */
+    public OAuthService(SecureCredentialStore secureCredentialStore) {
+        this.secureCredentialStore = secureCredentialStore;
+        this.unitTestingManagedChannel = null;
+    }
+
+    /**
+     * Creates a new OAuthService instance
+     *
      * @param secureCredentialStore A secure credential store to fetch OAuth credentials from
      * @param managedChannel A grpc managed channel to use for grpc calls, this is primarily used to assist with unit testing
      */
-    public OAuthService(Config config, SecureCredentialStore secureCredentialStore, ManagedChannel managedChannel) {
-        this.config = config;
+    public OAuthService(SecureCredentialStore secureCredentialStore, ManagedChannel managedChannel) {
         this.secureCredentialStore = secureCredentialStore;
         this.unitTestingManagedChannel = managedChannel;
     }
@@ -153,8 +154,8 @@ public class OAuthService {
             OauthServiceGrpc.OauthServiceBlockingStub client = OauthServiceGrpc.newBlockingStub(managedChannel);
 
             TokenRequest tokenRequest = TokenRequest.newBuilder()
-                    .setClientId(secureCredentialStore.getClientId())
-                    .setSecret(secureCredentialStore.getClientSecret())
+                    .setClientId(secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage")))
+                    .setSecret(secureCredentialStore.getClientSecret().orElseThrow(() -> new Exception("Client secret could not be found in secure storage")))
                     .build();
 
             TokenResponse token = client.getToken(tokenRequest);
@@ -177,8 +178,8 @@ public class OAuthService {
 
         String clientID, clientSecret;
         try {
-            clientID = secureCredentialStore.getClientId();
-            clientSecret = secureCredentialStore.getClientSecret();
+            clientID = secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage"));
+            clientSecret = secureCredentialStore.getClientSecret().orElseThrow(() -> new Exception("Client secret could not be found in secure storage"));
         } catch (Exception e) {
             listener.onFailure(e);
             return;
@@ -217,24 +218,20 @@ public class OAuthService {
      *  - A signed JWT
      *
      * @param deviceName Name of the enrolling device
-     * @param credential Credential string to authenticate that this device is alled to enroll
+     * @param credential Credential string to authenticate that this device is allowed to enroll
+     * @param clientID ClientID to use for OAuth token generation
+     * @param clientSecret Client secret to use for OAuth token generation
      * @param listener Listener that the results will be passed back to
      */
     public void register(
             String deviceName,
             String credential,
+            String clientID,
+            String clientSecret,
             EnrollDeviceListener listener ) {
         ManagedChannel managedChannel = getManagedChannel();
+        SDKInitConfig config = Config.getSharedConfig();
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
-
-        String clientID, clientSecret;
-        try {
-            clientID = secureCredentialStore.getClientId();
-            clientSecret = secureCredentialStore.getClientSecret();
-        } catch (Exception e) {
-            listener.onFailure(e);
-            return;
-        }
 
         GenericClient genericClient = GenericClient.newBuilder()
                 .setClientId(clientID)
@@ -242,8 +239,8 @@ public class OAuthService {
                 .build();
         EnrollDeviceRequest enrollDeviceRequest = EnrollDeviceRequest.newBuilder()
                 .setName(deviceName)
-                .setDeviceId(config.deviceConfig.deviceId)
-                .setTenantId(config.tenantConfig.tenantId)
+                .setDeviceId(config.deviceID)
+                .setTenantId(config.tenantID)
                 .setClient(genericClient)
                 .setCredential(credential)
                 .build();
@@ -323,20 +320,21 @@ public class OAuthService {
      */
     public void renewDeviceCredential(String credential, EnrollDeviceListener listener) {
         ManagedChannel managedChannel = getManagedChannel();
+        SDKInitConfig config = Config.getSharedConfig();
         DeviceServiceGrpc.DeviceServiceStub deviceServiceStub = DeviceServiceGrpc.newStub(managedChannel);
 
         String clientId;
         try {
-            clientId = secureCredentialStore.getClientId();
+            clientId = secureCredentialStore.getClientId().orElseThrow(() -> new Exception("ClientID could not be found in secure storage"));
         } catch (Exception e) {
             listener.onFailure(e);
             return;
         }
 
         RenewDeviceCredentialRequest request = RenewDeviceCredentialRequest.newBuilder()
-                .setDeviceId(config.deviceConfig.deviceId)
+                .setDeviceId(config.deviceID)
                 .setClientId(clientId)
-                .setTenantId(config.tenantConfig.tenantId)
+                .setTenantId(config.tenantID)
                 .setCredential(credential)
                 .build();
 
@@ -374,7 +372,12 @@ public class OAuthService {
     private ManagedChannel getManagedChannel() {
         ManagedChannel managedChannel = unitTestingManagedChannel;
         if (managedChannel == null) {
-            managedChannel = ManagedChannelBuilder.forTarget(config.cloudConfig.host).useTransportSecurity().build();
+            SDKInitConfig config = Config.getSharedConfig();
+            if (config.isSecure) {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).useTransportSecurity().build();
+            } else {
+                managedChannel = ManagedChannelBuilder.forTarget(config.fullyQualifiedDomainName).usePlaintext().build();
+            }
         }
         return managedChannel;
     }
