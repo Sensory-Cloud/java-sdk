@@ -74,6 +74,16 @@ public final class SensoryApiCommonProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sensory_api_common_EnrollmentToken_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sensory_api_common_CreateKeyRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sensory_api_common_CreateKeyRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sensory_api_common_KeyResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sensory_api_common_KeyResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -119,37 +129,45 @@ public final class SensoryApiCommonProto {
       "alCount\030\004 \001(\003\022\020\n\010pageSize\030\005 \001(\005\022\025\n\rprevP" +
       "ageIndex\030\006 \001(\005\022\030\n\020currentPageIndex\030\007 \001(\005" +
       "\022\025\n\rnextPageIndex\030\010 \001(\005\"4\n\017EnrollmentTok" +
-      "en\022\r\n\005token\030\001 \001(\014\022\022\n\nexpiration\030\002 \001(\003*\026\n" +
-      "\004Void\022\016\n\nVOID_VALUE\020\000*Q\n\007KeyType\022\016\n\nPUBL" +
-      "IC_KEY\020\000\022\026\n\022PUBLIC_KEY_ED25519\020\001\022\021\n\rSHAR" +
-      "ED_SECRET\020\003\022\013\n\007AES_256\020\004*4\n\013FeatureFlag\022" +
-      "\014\n\010TSSV_ALL\020\000\022\n\n\006TS_ALL\020\001\022\013\n\007TNL_ALL\020\002*\244" +
-      "\004\n\tModelType\022\013\n\007UNKNOWN\020\000\022$\n VOICE_BIOME" +
-      "TRIC_TEXT_INDEPENDENT\020\001\022\034\n\030VOICE_BIOMETR" +
-      "IC_WAKEWORD\020\002\022\030\n\024VOICE_EVENT_WAKEWORD\020\003\022" +
-      "\034\n\030VOICE_TRANSCRIBE_GRAMMAR\020\004\022\'\n#VOICE_T" +
-      "RANSCRIBE_COMMAND_AND_SEARCH\020\005\022(\n$VOICE_" +
-      "RECOGNITION_ACTIVITY_DETECTION\020\006\022\033\n\027VOIC" +
-      "E_FEATURE_EXTRACTOR\020\007\022\"\n\036VOICE_BIOMETRIC" +
-      "_LIVENESS_DIGIT\020\010\022\"\n\036VOICE_BIOMETRIC_TEX" +
-      "T_DEPENDENT\020\t\022\023\n\017VOICE_SYNTHESIS\020\n\022\032\n\026SO" +
-      "UND_EVENT_ENROLLABLE\020d\022\034\n\030SOUND_EVENT_RE" +
-      "VALIDATION\020e\022\025\n\021SOUND_EVENT_FIXED\020f\022\025\n\021S" +
-      "OUND_SCENE_FIXED\020g\022\023\n\016FACE_BIOMETRIC\020\311\001\022" +
-      "\025\n\020FACE_RECOGNITION\020\312\001\022\027\n\022OBJECT_RECOGNI" +
-      "TION\020\313\001\022\024\n\017IMAGE_TRANSFORM\020\314\001*J\n\016Technol" +
-      "ogyType\022\013\n\007NOT_SET\020\000\022\010\n\004TSSV\020\001\022\006\n\002TS\020\002\022\007" +
-      "\n\003TNL\020\003\022\007\n\003STT\020\004\022\007\n\003TTS\020\005*&\n\017Compression" +
-      "Type\022\023\n\017IMAGE_GRAYSCALE\020\000*[\n\nClientType\022" +
-      "\010\n\004ROOT\020\000\022\n\n\006DEVICE\020\001\022\013\n\007CLUSTER\020\002\022\010\n\004US" +
-      "ER\020\003\022\016\n\nSUPER_USER\020\004\022\020\n\014BILLING_USER\020\005*g" +
-      "\n\016UsageEventType\022\022\n\016AUTHENTICATION\020\000\022\017\n\013" +
-      "RECOGNITION\020\001\022\016\n\nENROLLMENT\020\002\022\r\n\tSYNTHES" +
-      "IS\020\003\022\021\n\rTRANSCRIPTION\020\004*\037\n\nServerType\022\t\n" +
-      "\005TITAN\020\000\022\006\n\002IO\020\001Bo\n\032ai.sensorycloud.api." +
-      "commonB\025SensoryApiCommonProtoP\001Z8gitlab." +
-      "com/sensory-cloud/server/titan.git/pkg/a" +
-      "pi/commonb\006proto3"
+      "en\022\r\n\005token\030\001 \001(\014\022\022\n\nexpiration\030\002 \001(\003\"\206\001" +
+      "\n\020CreateKeyRequest\022\027\n\004name\030\001 \001(\tB\t\372B\006r\004\020" +
+      "\001\030\177\0226\n\007keyType\030\002 \001(\0162\033.sensory.api.commo" +
+      "n.KeyTypeB\010\372B\005\202\001\002\020\001\022\r\n\005value\030\003 \001(\t\022\022\n\nex" +
+      "piration\030\004 \001(\003\"\215\001\n\013KeyResponse\022\n\n\002id\030\001 \001" +
+      "(\t\022\014\n\004name\030\002 \001(\t\022,\n\007keyType\030\003 \001(\0162\033.sens" +
+      "ory.api.common.KeyType\022\022\n\nexpiration\030\004 \001" +
+      "(\003\022\020\n\010tenantId\030\005 \001(\t\022\020\n\010disabled\030\006 \001(\010*\026" +
+      "\n\004Void\022\016\n\nVOID_VALUE\020\000*Q\n\007KeyType\022\016\n\nPUB" +
+      "LIC_KEY\020\000\022\026\n\022PUBLIC_KEY_ED25519\020\001\022\021\n\rSHA" +
+      "RED_SECRET\020\003\022\013\n\007AES_256\020\004*4\n\013FeatureFlag" +
+      "\022\014\n\010TSSV_ALL\020\000\022\n\n\006TS_ALL\020\001\022\013\n\007TNL_ALL\020\002*" +
+      "\244\004\n\tModelType\022\013\n\007UNKNOWN\020\000\022$\n VOICE_BIOM" +
+      "ETRIC_TEXT_INDEPENDENT\020\001\022\034\n\030VOICE_BIOMET" +
+      "RIC_WAKEWORD\020\002\022\030\n\024VOICE_EVENT_WAKEWORD\020\003" +
+      "\022\034\n\030VOICE_TRANSCRIBE_GRAMMAR\020\004\022\'\n#VOICE_" +
+      "TRANSCRIBE_COMMAND_AND_SEARCH\020\005\022(\n$VOICE" +
+      "_RECOGNITION_ACTIVITY_DETECTION\020\006\022\033\n\027VOI" +
+      "CE_FEATURE_EXTRACTOR\020\007\022\"\n\036VOICE_BIOMETRI" +
+      "C_LIVENESS_DIGIT\020\010\022\"\n\036VOICE_BIOMETRIC_TE" +
+      "XT_DEPENDENT\020\t\022\023\n\017VOICE_SYNTHESIS\020\n\022\032\n\026S" +
+      "OUND_EVENT_ENROLLABLE\020d\022\034\n\030SOUND_EVENT_R" +
+      "EVALIDATION\020e\022\025\n\021SOUND_EVENT_FIXED\020f\022\025\n\021" +
+      "SOUND_SCENE_FIXED\020g\022\023\n\016FACE_BIOMETRIC\020\311\001" +
+      "\022\025\n\020FACE_RECOGNITION\020\312\001\022\027\n\022OBJECT_RECOGN" +
+      "ITION\020\313\001\022\024\n\017IMAGE_TRANSFORM\020\314\001*J\n\016Techno" +
+      "logyType\022\013\n\007NOT_SET\020\000\022\010\n\004TSSV\020\001\022\006\n\002TS\020\002\022" +
+      "\007\n\003TNL\020\003\022\007\n\003STT\020\004\022\007\n\003TTS\020\005*&\n\017Compressio" +
+      "nType\022\023\n\017IMAGE_GRAYSCALE\020\000*|\n\nClientType" +
+      "\022\013\n\007INVALID\020\000\022\n\n\006DEVICE\020\001\022\013\n\007CLUSTER\020\002\022\010" +
+      "\n\004USER\020\003\022\016\n\nSUPER_USER\020\004\022\020\n\014BILLING_USER" +
+      "\020\005\022\022\n\016READ_ONLY_USER\020\006\022\010\n\004ROOT\020d*g\n\016Usag" +
+      "eEventType\022\022\n\016AUTHENTICATION\020\000\022\017\n\013RECOGN" +
+      "ITION\020\001\022\016\n\nENROLLMENT\020\002\022\r\n\tSYNTHESIS\020\003\022\021" +
+      "\n\rTRANSCRIPTION\020\004*\037\n\nServerType\022\t\n\005TITAN" +
+      "\020\000\022\006\n\002IO\020\001Bo\n\032ai.sensorycloud.api.common" +
+      "B\025SensoryApiCommonProtoP\001Z8gitlab.com/se" +
+      "nsory-cloud/server/titan.git/pkg/api/com" +
+      "monb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -229,6 +247,18 @@ public final class SensoryApiCommonProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_common_EnrollmentToken_descriptor,
         new java.lang.String[] { "Token", "Expiration", });
+    internal_static_sensory_api_common_CreateKeyRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_sensory_api_common_CreateKeyRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sensory_api_common_CreateKeyRequest_descriptor,
+        new java.lang.String[] { "Name", "KeyType", "Value", "Expiration", });
+    internal_static_sensory_api_common_KeyResponse_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_sensory_api_common_KeyResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sensory_api_common_KeyResponse_descriptor,
+        new java.lang.String[] { "Id", "Name", "KeyType", "Expiration", "TenantId", "Disabled", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(io.envoyproxy.pgv.validate.Validate.rules);

@@ -141,6 +141,7 @@ public class AudioServiceTest extends TestCase {
                     .setAudio(mockAudioConfig)
                     .setModelName("Transcription Model")
                     .setUserId("Some User")
+                    .setEnablePunctuationCapitalization(true)
             ).build();
 
     final TranscribeResponse expectedTranscriptionResponse = TranscribeResponse.newBuilder()
@@ -514,6 +515,7 @@ public class AudioServiceTest extends TestCase {
                 expectedTranscriptionRequest.getConfig().getModelName(),
                 expectedTranscriptionRequest.getConfig().getUserId(),
                 "",
+                true,
                 new StreamObserver<TranscribeResponse>() {
                     @Override
                     public void onNext(TranscribeResponse value) {

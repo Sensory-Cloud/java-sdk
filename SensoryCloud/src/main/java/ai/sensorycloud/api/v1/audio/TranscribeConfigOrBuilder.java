@@ -78,4 +78,14 @@ public interface TranscribeConfigOrBuilder extends
    */
   com.google.protobuf.ByteString
       getUserIdBytes();
+
+  /**
+   * <pre>
+   *A flag indicating if the transcription session should use punctuation and capitalization support
+   * </pre>
+   *
+   * <code>bool enablePunctuationCapitalization = 4;</code>
+   * @return The enablePunctuationCapitalization.
+   */
+  boolean getEnablePunctuationCapitalization();
 }

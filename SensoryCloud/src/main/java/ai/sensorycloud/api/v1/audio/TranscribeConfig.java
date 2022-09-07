@@ -79,6 +79,11 @@ private static final long serialVersionUID = 0L;
             userId_ = s;
             break;
           }
+          case 32: {
+
+            enablePunctuationCapitalization_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -248,6 +253,21 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int ENABLEPUNCTUATIONCAPITALIZATION_FIELD_NUMBER = 4;
+  private boolean enablePunctuationCapitalization_;
+  /**
+   * <pre>
+   *A flag indicating if the transcription session should use punctuation and capitalization support
+   * </pre>
+   *
+   * <code>bool enablePunctuationCapitalization = 4;</code>
+   * @return The enablePunctuationCapitalization.
+   */
+  @java.lang.Override
+  public boolean getEnablePunctuationCapitalization() {
+    return enablePunctuationCapitalization_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -271,6 +291,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(userId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, userId_);
     }
+    if (enablePunctuationCapitalization_ != false) {
+      output.writeBool(4, enablePunctuationCapitalization_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -289,6 +312,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(userId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, userId_);
+    }
+    if (enablePunctuationCapitalization_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, enablePunctuationCapitalization_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -314,6 +341,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getModelName())) return false;
     if (!getUserId()
         .equals(other.getUserId())) return false;
+    if (getEnablePunctuationCapitalization()
+        != other.getEnablePunctuationCapitalization()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -333,6 +362,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getModelName().hashCode();
     hash = (37 * hash) + USERID_FIELD_NUMBER;
     hash = (53 * hash) + getUserId().hashCode();
+    hash = (37 * hash) + ENABLEPUNCTUATIONCAPITALIZATION_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getEnablePunctuationCapitalization());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -480,6 +512,8 @@ private static final long serialVersionUID = 0L;
 
       userId_ = "";
 
+      enablePunctuationCapitalization_ = false;
+
       return this;
     }
 
@@ -513,6 +547,7 @@ private static final long serialVersionUID = 0L;
       }
       result.modelName_ = modelName_;
       result.userId_ = userId_;
+      result.enablePunctuationCapitalization_ = enablePunctuationCapitalization_;
       onBuilt();
       return result;
     }
@@ -571,6 +606,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getUserId().isEmpty()) {
         userId_ = other.userId_;
         onChanged();
+      }
+      if (other.getEnablePunctuationCapitalization() != false) {
+        setEnablePunctuationCapitalization(other.getEnablePunctuationCapitalization());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -958,6 +996,49 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       userId_ = value;
+      onChanged();
+      return this;
+    }
+
+    private boolean enablePunctuationCapitalization_ ;
+    /**
+     * <pre>
+     *A flag indicating if the transcription session should use punctuation and capitalization support
+     * </pre>
+     *
+     * <code>bool enablePunctuationCapitalization = 4;</code>
+     * @return The enablePunctuationCapitalization.
+     */
+    @java.lang.Override
+    public boolean getEnablePunctuationCapitalization() {
+      return enablePunctuationCapitalization_;
+    }
+    /**
+     * <pre>
+     *A flag indicating if the transcription session should use punctuation and capitalization support
+     * </pre>
+     *
+     * <code>bool enablePunctuationCapitalization = 4;</code>
+     * @param value The enablePunctuationCapitalization to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnablePunctuationCapitalization(boolean value) {
+      
+      enablePunctuationCapitalization_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *A flag indicating if the transcription session should use punctuation and capitalization support
+     * </pre>
+     *
+     * <code>bool enablePunctuationCapitalization = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnablePunctuationCapitalization() {
+      
+      enablePunctuationCapitalization_ = false;
       onChanged();
       return this;
     }

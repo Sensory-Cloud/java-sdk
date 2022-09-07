@@ -370,6 +370,7 @@ public class AudioService {
      * @param modelName Name of model to validate
      * @param userID Unique user identifier
      * @param languageCode Preferred language code for the user, pass in an empty string to use the value from Config
+     * @param enablePunctuationCapitalization If true, server responses will include punctuation and capitalization
      * @param responseObserver Observer that will be populated with the stream responses
      * @return Observer that can be used to send requests to the server, may be null if an OAuth error occurs
      */
@@ -377,6 +378,7 @@ public class AudioService {
             String modelName,
             String userID,
             String languageCode,
+            boolean enablePunctuationCapitalization,
             StreamObserver<TranscribeResponse> responseObserver) {
         ManagedChannel managedChannel = getManagedChannel();
         AudioTranscriptionsGrpc.AudioTranscriptionsStub audioClient = AudioTranscriptionsGrpc.newStub(managedChannel);
@@ -396,6 +398,7 @@ public class AudioService {
                 .setAudio(audioConfig)
                 .setModelName(modelName)
                 .setUserId(userID)
+                .setEnablePunctuationCapitalization(enablePunctuationCapitalization)
                 .build();
         TranscribeRequest request = TranscribeRequest.newBuilder().setConfig(transcribeConfig).build();
         requestObserver.onNext(request);
