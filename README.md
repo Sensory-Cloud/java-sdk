@@ -31,7 +31,7 @@ Now that the repository has been added, just add the dependency to `build.gradle
 dependencies {
     implementation "io.grpc:grpc-protobuf:1.47.0"
     implementation "io.grpc:grpc-stub:1.47.0"
-    implementation 'com.github.Sensory-Cloud:java-sdk:v0.15.0'
+    implementation 'com.github.Sensory-Cloud:java-sdk:v0.16.0'
 }
 ```
 
