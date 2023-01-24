@@ -19,38 +19,6 @@ public interface TranscribeResponseOrBuilder extends
 
   /**
    * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @return The transcript.
-   */
-  java.lang.String getTranscript();
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @return The bytes for transcript.
-   */
-  com.google.protobuf.ByteString
-      getTranscriptBytes();
-
-  /**
-   * <pre>
-   * Indicates if the returned transcript is an intermediate result
-   * </pre>
-   *
-   * <code>bool isPartialResult = 3 [deprecated = true];</code>
-   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=402
-   * @return The isPartialResult.
-   */
-  @java.lang.Deprecated boolean getIsPartialResult();
-
-  /**
-   * <pre>
    * A response including word metadata
    * </pre>
    *
@@ -75,6 +43,16 @@ public interface TranscribeResponseOrBuilder extends
    * <code>.sensory.api.v1.audio.TranscribeWordResponse wordList = 4;</code>
    */
   ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder getWordListOrBuilder();
+
+  /**
+   * <pre>
+   * Tells if any voice activity was detected for the most recently proccessed audio segment
+   * </pre>
+   *
+   * <code>bool hasVoiceActivity = 5;</code>
+   * @return The hasVoiceActivity.
+   */
+  boolean getHasVoiceActivity();
 
   /**
    * <pre>

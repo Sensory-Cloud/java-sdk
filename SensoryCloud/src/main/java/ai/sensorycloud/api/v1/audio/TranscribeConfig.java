@@ -22,6 +22,9 @@ private static final long serialVersionUID = 0L;
   private TranscribeConfig() {
     modelName_ = "";
     userId_ = "";
+    vadSensitivity_ = 0;
+    customVocabRewardThreshold_ = 0;
+    customVocabularyId_ = "";
   }
 
   @java.lang.Override
@@ -82,6 +85,47 @@ private static final long serialVersionUID = 0L;
           case 32: {
 
             enablePunctuationCapitalization_ = input.readBool();
+            break;
+          }
+          case 40: {
+
+            doSingleUtterance_ = input.readBool();
+            break;
+          }
+          case 48: {
+            int rawValue = input.readEnum();
+
+            vadSensitivity_ = rawValue;
+            break;
+          }
+          case 61: {
+
+            vadDuration_ = input.readFloat();
+            break;
+          }
+          case 64: {
+            int rawValue = input.readEnum();
+
+            customVocabRewardThreshold_ = rawValue;
+            break;
+          }
+          case 74: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            customVocabularyId_ = s;
+            break;
+          }
+          case 82: {
+            ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder subBuilder = null;
+            if (customWordList_ != null) {
+              subBuilder = customWordList_.toBuilder();
+            }
+            customWordList_ = input.readMessage(ai.sensorycloud.api.v1.audio.CustomVocabularyWords.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(customWordList_);
+              customWordList_ = subBuilder.buildPartial();
+            }
+
             break;
           }
           default: {
@@ -257,7 +301,7 @@ private static final long serialVersionUID = 0L;
   private boolean enablePunctuationCapitalization_;
   /**
    * <pre>
-   *A flag indicating if the transcription session should use punctuation and capitalization support
+   * A flag indicating if the transcription session should use punctuation and capitalization support
    * </pre>
    *
    * <code>bool enablePunctuationCapitalization = 4;</code>
@@ -266,6 +310,177 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean getEnablePunctuationCapitalization() {
     return enablePunctuationCapitalization_;
+  }
+
+  public static final int DOSINGLEUTTERANCE_FIELD_NUMBER = 5;
+  private boolean doSingleUtterance_;
+  /**
+   * <pre>
+   * If enabled, the server will automatically close the stream once the user has stopped speaking
+   * </pre>
+   *
+   * <code>bool doSingleUtterance = 5;</code>
+   * @return The doSingleUtterance.
+   */
+  @java.lang.Override
+  public boolean getDoSingleUtterance() {
+    return doSingleUtterance_;
+  }
+
+  public static final int VADSENSITIVITY_FIELD_NUMBER = 6;
+  private int vadSensitivity_;
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @return The enum numeric value on the wire for vadSensitivity.
+   */
+  @java.lang.Override public int getVadSensitivityValue() {
+    return vadSensitivity_;
+  }
+  /**
+   * <pre>
+   * How sensitive the voice activiy detector should be when single utterance mode is enabled
+   * LOW is the recommended sensitivity to use
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+   * @return The vadSensitivity.
+   */
+  @java.lang.Override public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getVadSensitivity() {
+    @SuppressWarnings("deprecation")
+    ai.sensorycloud.api.v1.audio.ThresholdSensitivity result = ai.sensorycloud.api.v1.audio.ThresholdSensitivity.valueOf(vadSensitivity_);
+    return result == null ? ai.sensorycloud.api.v1.audio.ThresholdSensitivity.UNRECOGNIZED : result;
+  }
+
+  public static final int VADDURATION_FIELD_NUMBER = 7;
+  private float vadDuration_;
+  /**
+   * <pre>
+   * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+   * If not specified, 1 second is used by default
+   * </pre>
+   *
+   * <code>float vadDuration = 7;</code>
+   * @return The vadDuration.
+   */
+  @java.lang.Override
+  public float getVadDuration() {
+    return vadDuration_;
+  }
+
+  public static final int CUSTOMVOCABREWARDTHRESHOLD_FIELD_NUMBER = 8;
+  private int customVocabRewardThreshold_;
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @return The enum numeric value on the wire for customVocabRewardThreshold.
+   */
+  @java.lang.Override public int getCustomVocabRewardThresholdValue() {
+    return customVocabRewardThreshold_;
+  }
+  /**
+   * <pre>
+   * Custom vocabulary reward threshold
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+   * @return The customVocabRewardThreshold.
+   */
+  @java.lang.Override public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getCustomVocabRewardThreshold() {
+    @SuppressWarnings("deprecation")
+    ai.sensorycloud.api.v1.audio.ThresholdSensitivity result = ai.sensorycloud.api.v1.audio.ThresholdSensitivity.valueOf(customVocabRewardThreshold_);
+    return result == null ? ai.sensorycloud.api.v1.audio.ThresholdSensitivity.UNRECOGNIZED : result;
+  }
+
+  public static final int CUSTOMVOCABULARYID_FIELD_NUMBER = 9;
+  private volatile java.lang.Object customVocabularyId_;
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @return The customVocabularyId.
+   */
+  @java.lang.Override
+  public java.lang.String getCustomVocabularyId() {
+    java.lang.Object ref = customVocabularyId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      customVocabularyId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * the name of a custom vocabulary list stored on the server to use for this session
+   * </pre>
+   *
+   * <code>string customVocabularyId = 9;</code>
+   * @return The bytes for customVocabularyId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getCustomVocabularyIdBytes() {
+    java.lang.Object ref = customVocabularyId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      customVocabularyId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int CUSTOMWORDLIST_FIELD_NUMBER = 10;
+  private ai.sensorycloud.api.v1.audio.CustomVocabularyWords customWordList_;
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   * @return Whether the customWordList field is set.
+   */
+  @java.lang.Override
+  public boolean hasCustomWordList() {
+    return customWordList_ != null;
+  }
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   * @return The customWordList.
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.CustomVocabularyWords getCustomWordList() {
+    return customWordList_ == null ? ai.sensorycloud.api.v1.audio.CustomVocabularyWords.getDefaultInstance() : customWordList_;
+  }
+  /**
+   * <pre>
+   * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+   * </pre>
+   *
+   * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.CustomVocabularyWordsOrBuilder getCustomWordListOrBuilder() {
+    return getCustomWordList();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -294,6 +509,24 @@ private static final long serialVersionUID = 0L;
     if (enablePunctuationCapitalization_ != false) {
       output.writeBool(4, enablePunctuationCapitalization_);
     }
+    if (doSingleUtterance_ != false) {
+      output.writeBool(5, doSingleUtterance_);
+    }
+    if (vadSensitivity_ != ai.sensorycloud.api.v1.audio.ThresholdSensitivity.LOWEST.getNumber()) {
+      output.writeEnum(6, vadSensitivity_);
+    }
+    if (java.lang.Float.floatToRawIntBits(vadDuration_) != 0) {
+      output.writeFloat(7, vadDuration_);
+    }
+    if (customVocabRewardThreshold_ != ai.sensorycloud.api.v1.audio.ThresholdSensitivity.LOWEST.getNumber()) {
+      output.writeEnum(8, customVocabRewardThreshold_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(customVocabularyId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 9, customVocabularyId_);
+    }
+    if (customWordList_ != null) {
+      output.writeMessage(10, getCustomWordList());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -316,6 +549,29 @@ private static final long serialVersionUID = 0L;
     if (enablePunctuationCapitalization_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(4, enablePunctuationCapitalization_);
+    }
+    if (doSingleUtterance_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, doSingleUtterance_);
+    }
+    if (vadSensitivity_ != ai.sensorycloud.api.v1.audio.ThresholdSensitivity.LOWEST.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(6, vadSensitivity_);
+    }
+    if (java.lang.Float.floatToRawIntBits(vadDuration_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(7, vadDuration_);
+    }
+    if (customVocabRewardThreshold_ != ai.sensorycloud.api.v1.audio.ThresholdSensitivity.LOWEST.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(8, customVocabRewardThreshold_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(customVocabularyId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, customVocabularyId_);
+    }
+    if (customWordList_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(10, getCustomWordList());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -343,6 +599,20 @@ private static final long serialVersionUID = 0L;
         .equals(other.getUserId())) return false;
     if (getEnablePunctuationCapitalization()
         != other.getEnablePunctuationCapitalization()) return false;
+    if (getDoSingleUtterance()
+        != other.getDoSingleUtterance()) return false;
+    if (vadSensitivity_ != other.vadSensitivity_) return false;
+    if (java.lang.Float.floatToIntBits(getVadDuration())
+        != java.lang.Float.floatToIntBits(
+            other.getVadDuration())) return false;
+    if (customVocabRewardThreshold_ != other.customVocabRewardThreshold_) return false;
+    if (!getCustomVocabularyId()
+        .equals(other.getCustomVocabularyId())) return false;
+    if (hasCustomWordList() != other.hasCustomWordList()) return false;
+    if (hasCustomWordList()) {
+      if (!getCustomWordList()
+          .equals(other.getCustomWordList())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -365,6 +635,22 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ENABLEPUNCTUATIONCAPITALIZATION_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getEnablePunctuationCapitalization());
+    hash = (37 * hash) + DOSINGLEUTTERANCE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getDoSingleUtterance());
+    hash = (37 * hash) + VADSENSITIVITY_FIELD_NUMBER;
+    hash = (53 * hash) + vadSensitivity_;
+    hash = (37 * hash) + VADDURATION_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getVadDuration());
+    hash = (37 * hash) + CUSTOMVOCABREWARDTHRESHOLD_FIELD_NUMBER;
+    hash = (53 * hash) + customVocabRewardThreshold_;
+    hash = (37 * hash) + CUSTOMVOCABULARYID_FIELD_NUMBER;
+    hash = (53 * hash) + getCustomVocabularyId().hashCode();
+    if (hasCustomWordList()) {
+      hash = (37 * hash) + CUSTOMWORDLIST_FIELD_NUMBER;
+      hash = (53 * hash) + getCustomWordList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -514,6 +800,22 @@ private static final long serialVersionUID = 0L;
 
       enablePunctuationCapitalization_ = false;
 
+      doSingleUtterance_ = false;
+
+      vadSensitivity_ = 0;
+
+      vadDuration_ = 0F;
+
+      customVocabRewardThreshold_ = 0;
+
+      customVocabularyId_ = "";
+
+      if (customWordListBuilder_ == null) {
+        customWordList_ = null;
+      } else {
+        customWordList_ = null;
+        customWordListBuilder_ = null;
+      }
       return this;
     }
 
@@ -548,6 +850,16 @@ private static final long serialVersionUID = 0L;
       result.modelName_ = modelName_;
       result.userId_ = userId_;
       result.enablePunctuationCapitalization_ = enablePunctuationCapitalization_;
+      result.doSingleUtterance_ = doSingleUtterance_;
+      result.vadSensitivity_ = vadSensitivity_;
+      result.vadDuration_ = vadDuration_;
+      result.customVocabRewardThreshold_ = customVocabRewardThreshold_;
+      result.customVocabularyId_ = customVocabularyId_;
+      if (customWordListBuilder_ == null) {
+        result.customWordList_ = customWordList_;
+      } else {
+        result.customWordList_ = customWordListBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -609,6 +921,25 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getEnablePunctuationCapitalization() != false) {
         setEnablePunctuationCapitalization(other.getEnablePunctuationCapitalization());
+      }
+      if (other.getDoSingleUtterance() != false) {
+        setDoSingleUtterance(other.getDoSingleUtterance());
+      }
+      if (other.vadSensitivity_ != 0) {
+        setVadSensitivityValue(other.getVadSensitivityValue());
+      }
+      if (other.getVadDuration() != 0F) {
+        setVadDuration(other.getVadDuration());
+      }
+      if (other.customVocabRewardThreshold_ != 0) {
+        setCustomVocabRewardThresholdValue(other.getCustomVocabRewardThresholdValue());
+      }
+      if (!other.getCustomVocabularyId().isEmpty()) {
+        customVocabularyId_ = other.customVocabularyId_;
+        onChanged();
+      }
+      if (other.hasCustomWordList()) {
+        mergeCustomWordList(other.getCustomWordList());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1003,7 +1334,7 @@ private static final long serialVersionUID = 0L;
     private boolean enablePunctuationCapitalization_ ;
     /**
      * <pre>
-     *A flag indicating if the transcription session should use punctuation and capitalization support
+     * A flag indicating if the transcription session should use punctuation and capitalization support
      * </pre>
      *
      * <code>bool enablePunctuationCapitalization = 4;</code>
@@ -1015,7 +1346,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *A flag indicating if the transcription session should use punctuation and capitalization support
+     * A flag indicating if the transcription session should use punctuation and capitalization support
      * </pre>
      *
      * <code>bool enablePunctuationCapitalization = 4;</code>
@@ -1030,7 +1361,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *A flag indicating if the transcription session should use punctuation and capitalization support
+     * A flag indicating if the transcription session should use punctuation and capitalization support
      * </pre>
      *
      * <code>bool enablePunctuationCapitalization = 4;</code>
@@ -1041,6 +1372,499 @@ private static final long serialVersionUID = 0L;
       enablePunctuationCapitalization_ = false;
       onChanged();
       return this;
+    }
+
+    private boolean doSingleUtterance_ ;
+    /**
+     * <pre>
+     * If enabled, the server will automatically close the stream once the user has stopped speaking
+     * </pre>
+     *
+     * <code>bool doSingleUtterance = 5;</code>
+     * @return The doSingleUtterance.
+     */
+    @java.lang.Override
+    public boolean getDoSingleUtterance() {
+      return doSingleUtterance_;
+    }
+    /**
+     * <pre>
+     * If enabled, the server will automatically close the stream once the user has stopped speaking
+     * </pre>
+     *
+     * <code>bool doSingleUtterance = 5;</code>
+     * @param value The doSingleUtterance to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDoSingleUtterance(boolean value) {
+      
+      doSingleUtterance_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * If enabled, the server will automatically close the stream once the user has stopped speaking
+     * </pre>
+     *
+     * <code>bool doSingleUtterance = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDoSingleUtterance() {
+      
+      doSingleUtterance_ = false;
+      onChanged();
+      return this;
+    }
+
+    private int vadSensitivity_ = 0;
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @return The enum numeric value on the wire for vadSensitivity.
+     */
+    @java.lang.Override public int getVadSensitivityValue() {
+      return vadSensitivity_;
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @param value The enum numeric value on the wire for vadSensitivity to set.
+     * @return This builder for chaining.
+     */
+    public Builder setVadSensitivityValue(int value) {
+      
+      vadSensitivity_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @return The vadSensitivity.
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getVadSensitivity() {
+      @SuppressWarnings("deprecation")
+      ai.sensorycloud.api.v1.audio.ThresholdSensitivity result = ai.sensorycloud.api.v1.audio.ThresholdSensitivity.valueOf(vadSensitivity_);
+      return result == null ? ai.sensorycloud.api.v1.audio.ThresholdSensitivity.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @param value The vadSensitivity to set.
+     * @return This builder for chaining.
+     */
+    public Builder setVadSensitivity(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      vadSensitivity_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * How sensitive the voice activiy detector should be when single utterance mode is enabled
+     * LOW is the recommended sensitivity to use
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity vadSensitivity = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearVadSensitivity() {
+      
+      vadSensitivity_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private float vadDuration_ ;
+    /**
+     * <pre>
+     * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+     * If not specified, 1 second is used by default
+     * </pre>
+     *
+     * <code>float vadDuration = 7;</code>
+     * @return The vadDuration.
+     */
+    @java.lang.Override
+    public float getVadDuration() {
+      return vadDuration_;
+    }
+    /**
+     * <pre>
+     * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+     * If not specified, 1 second is used by default
+     * </pre>
+     *
+     * <code>float vadDuration = 7;</code>
+     * @param value The vadDuration to set.
+     * @return This builder for chaining.
+     */
+    public Builder setVadDuration(float value) {
+      
+      vadDuration_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The number of seconds of silence to detect before automatically ending the stream when single utterance mode is enabled
+     * If not specified, 1 second is used by default
+     * </pre>
+     *
+     * <code>float vadDuration = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearVadDuration() {
+      
+      vadDuration_ = 0F;
+      onChanged();
+      return this;
+    }
+
+    private int customVocabRewardThreshold_ = 0;
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @return The enum numeric value on the wire for customVocabRewardThreshold.
+     */
+    @java.lang.Override public int getCustomVocabRewardThresholdValue() {
+      return customVocabRewardThreshold_;
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @param value The enum numeric value on the wire for customVocabRewardThreshold to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabRewardThresholdValue(int value) {
+      
+      customVocabRewardThreshold_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @return The customVocabRewardThreshold.
+     */
+    @java.lang.Override
+    public ai.sensorycloud.api.v1.audio.ThresholdSensitivity getCustomVocabRewardThreshold() {
+      @SuppressWarnings("deprecation")
+      ai.sensorycloud.api.v1.audio.ThresholdSensitivity result = ai.sensorycloud.api.v1.audio.ThresholdSensitivity.valueOf(customVocabRewardThreshold_);
+      return result == null ? ai.sensorycloud.api.v1.audio.ThresholdSensitivity.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @param value The customVocabRewardThreshold to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabRewardThreshold(ai.sensorycloud.api.v1.audio.ThresholdSensitivity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      customVocabRewardThreshold_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom vocabulary reward threshold
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.ThresholdSensitivity customVocabRewardThreshold = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCustomVocabRewardThreshold() {
+      
+      customVocabRewardThreshold_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object customVocabularyId_ = "";
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @return The customVocabularyId.
+     */
+    public java.lang.String getCustomVocabularyId() {
+      java.lang.Object ref = customVocabularyId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        customVocabularyId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @return The bytes for customVocabularyId.
+     */
+    public com.google.protobuf.ByteString
+        getCustomVocabularyIdBytes() {
+      java.lang.Object ref = customVocabularyId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        customVocabularyId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @param value The customVocabularyId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabularyId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      customVocabularyId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCustomVocabularyId() {
+      
+      customVocabularyId_ = getDefaultInstance().getCustomVocabularyId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * the name of a custom vocabulary list stored on the server to use for this session
+     * </pre>
+     *
+     * <code>string customVocabularyId = 9;</code>
+     * @param value The bytes for customVocabularyId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCustomVocabularyIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      customVocabularyId_ = value;
+      onChanged();
+      return this;
+    }
+
+    private ai.sensorycloud.api.v1.audio.CustomVocabularyWords customWordList_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ai.sensorycloud.api.v1.audio.CustomVocabularyWords, ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder, ai.sensorycloud.api.v1.audio.CustomVocabularyWordsOrBuilder> customWordListBuilder_;
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     * @return Whether the customWordList field is set.
+     */
+    public boolean hasCustomWordList() {
+      return customWordListBuilder_ != null || customWordList_ != null;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     * @return The customWordList.
+     */
+    public ai.sensorycloud.api.v1.audio.CustomVocabularyWords getCustomWordList() {
+      if (customWordListBuilder_ == null) {
+        return customWordList_ == null ? ai.sensorycloud.api.v1.audio.CustomVocabularyWords.getDefaultInstance() : customWordList_;
+      } else {
+        return customWordListBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder setCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
+      if (customWordListBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        customWordList_ = value;
+        onChanged();
+      } else {
+        customWordListBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder setCustomWordList(
+        ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder builderForValue) {
+      if (customWordListBuilder_ == null) {
+        customWordList_ = builderForValue.build();
+        onChanged();
+      } else {
+        customWordListBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder mergeCustomWordList(ai.sensorycloud.api.v1.audio.CustomVocabularyWords value) {
+      if (customWordListBuilder_ == null) {
+        if (customWordList_ != null) {
+          customWordList_ =
+            ai.sensorycloud.api.v1.audio.CustomVocabularyWords.newBuilder(customWordList_).mergeFrom(value).buildPartial();
+        } else {
+          customWordList_ = value;
+        }
+        onChanged();
+      } else {
+        customWordListBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public Builder clearCustomWordList() {
+      if (customWordListBuilder_ == null) {
+        customWordList_ = null;
+        onChanged();
+      } else {
+        customWordList_ = null;
+        customWordListBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder getCustomWordListBuilder() {
+      
+      onChanged();
+      return getCustomWordListFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.CustomVocabularyWordsOrBuilder getCustomWordListOrBuilder() {
+      if (customWordListBuilder_ != null) {
+        return customWordListBuilder_.getMessageOrBuilder();
+      } else {
+        return customWordList_ == null ?
+            ai.sensorycloud.api.v1.audio.CustomVocabularyWords.getDefaultInstance() : customWordList_;
+      }
+    }
+    /**
+     * <pre>
+     * A list of up to 100 custom vocabulary words in the form &lt;word&gt;, &lt;pronunciation alternative 0&gt;, &lt;alternative 1&gt; etc...
+     * </pre>
+     *
+     * <code>.sensory.api.v1.audio.CustomVocabularyWords customWordList = 10;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ai.sensorycloud.api.v1.audio.CustomVocabularyWords, ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder, ai.sensorycloud.api.v1.audio.CustomVocabularyWordsOrBuilder> 
+        getCustomWordListFieldBuilder() {
+      if (customWordListBuilder_ == null) {
+        customWordListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            ai.sensorycloud.api.v1.audio.CustomVocabularyWords, ai.sensorycloud.api.v1.audio.CustomVocabularyWords.Builder, ai.sensorycloud.api.v1.audio.CustomVocabularyWordsOrBuilder>(
+                getCustomWordList(),
+                getParentForChildren(),
+                isClean());
+        customWordList_ = null;
+      }
+      return customWordListBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

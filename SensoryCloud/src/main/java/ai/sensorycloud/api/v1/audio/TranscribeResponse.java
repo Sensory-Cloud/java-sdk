@@ -20,7 +20,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TranscribeResponse() {
-    transcript_ = "";
   }
 
   @java.lang.Override
@@ -58,17 +57,6 @@ private static final long serialVersionUID = 0L;
             audioEnergy_ = input.readFloat();
             break;
           }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            transcript_ = s;
-            break;
-          }
-          case 24: {
-
-            isPartialResult_ = input.readBool();
-            break;
-          }
           case 34: {
             ai.sensorycloud.api.v1.audio.TranscribeWordResponse.Builder subBuilder = null;
             if (wordList_ != null) {
@@ -80,6 +68,11 @@ private static final long serialVersionUID = 0L;
               wordList_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 40: {
+
+            hasVoiceActivity_ = input.readBool();
             break;
           }
           case 82: {
@@ -144,69 +137,6 @@ private static final long serialVersionUID = 0L;
     return audioEnergy_;
   }
 
-  public static final int TRANSCRIPT_FIELD_NUMBER = 2;
-  private volatile java.lang.Object transcript_;
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @return The transcript.
-   */
-  @java.lang.Override
-  public java.lang.String getTranscript() {
-    java.lang.Object ref = transcript_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      transcript_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * Text of the current transcript, sliding window on ~7 seconds
-   * </pre>
-   *
-   * <code>string transcript = 2;</code>
-   * @return The bytes for transcript.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getTranscriptBytes() {
-    java.lang.Object ref = transcript_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      transcript_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int ISPARTIALRESULT_FIELD_NUMBER = 3;
-  private boolean isPartialResult_;
-  /**
-   * <pre>
-   * Indicates if the returned transcript is an intermediate result
-   * </pre>
-   *
-   * <code>bool isPartialResult = 3 [deprecated = true];</code>
-   * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-   *     See v1/audio/audio.proto;l=402
-   * @return The isPartialResult.
-   */
-  @java.lang.Override
-  @java.lang.Deprecated public boolean getIsPartialResult() {
-    return isPartialResult_;
-  }
-
   public static final int WORDLIST_FIELD_NUMBER = 4;
   private ai.sensorycloud.api.v1.audio.TranscribeWordResponse wordList_;
   /**
@@ -243,6 +173,21 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public ai.sensorycloud.api.v1.audio.TranscribeWordResponseOrBuilder getWordListOrBuilder() {
     return getWordList();
+  }
+
+  public static final int HASVOICEACTIVITY_FIELD_NUMBER = 5;
+  private boolean hasVoiceActivity_;
+  /**
+   * <pre>
+   * Tells if any voice activity was detected for the most recently proccessed audio segment
+   * </pre>
+   *
+   * <code>bool hasVoiceActivity = 5;</code>
+   * @return The hasVoiceActivity.
+   */
+  @java.lang.Override
+  public boolean getHasVoiceActivity() {
+    return hasVoiceActivity_;
   }
 
   public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
@@ -303,14 +248,11 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToRawIntBits(audioEnergy_) != 0) {
       output.writeFloat(1, audioEnergy_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transcript_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, transcript_);
-    }
-    if (isPartialResult_ != false) {
-      output.writeBool(3, isPartialResult_);
-    }
     if (wordList_ != null) {
       output.writeMessage(4, getWordList());
+    }
+    if (hasVoiceActivity_ != false) {
+      output.writeBool(5, hasVoiceActivity_);
     }
     if (postProcessingAction_ != null) {
       output.writeMessage(10, getPostProcessingAction());
@@ -328,16 +270,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(1, audioEnergy_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transcript_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, transcript_);
-    }
-    if (isPartialResult_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(3, isPartialResult_);
-    }
     if (wordList_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getWordList());
+    }
+    if (hasVoiceActivity_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, hasVoiceActivity_);
     }
     if (postProcessingAction_ != null) {
       size += com.google.protobuf.CodedOutputStream
@@ -361,15 +300,13 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToIntBits(getAudioEnergy())
         != java.lang.Float.floatToIntBits(
             other.getAudioEnergy())) return false;
-    if (!getTranscript()
-        .equals(other.getTranscript())) return false;
-    if (getIsPartialResult()
-        != other.getIsPartialResult()) return false;
     if (hasWordList() != other.hasWordList()) return false;
     if (hasWordList()) {
       if (!getWordList()
           .equals(other.getWordList())) return false;
     }
+    if (getHasVoiceActivity()
+        != other.getHasVoiceActivity()) return false;
     if (hasPostProcessingAction() != other.hasPostProcessingAction()) return false;
     if (hasPostProcessingAction()) {
       if (!getPostProcessingAction()
@@ -389,15 +326,13 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + AUDIOENERGY_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getAudioEnergy());
-    hash = (37 * hash) + TRANSCRIPT_FIELD_NUMBER;
-    hash = (53 * hash) + getTranscript().hashCode();
-    hash = (37 * hash) + ISPARTIALRESULT_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getIsPartialResult());
     if (hasWordList()) {
       hash = (37 * hash) + WORDLIST_FIELD_NUMBER;
       hash = (53 * hash) + getWordList().hashCode();
     }
+    hash = (37 * hash) + HASVOICEACTIVITY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getHasVoiceActivity());
     if (hasPostProcessingAction()) {
       hash = (37 * hash) + POSTPROCESSINGACTION_FIELD_NUMBER;
       hash = (53 * hash) + getPostProcessingAction().hashCode();
@@ -541,16 +476,14 @@ private static final long serialVersionUID = 0L;
       super.clear();
       audioEnergy_ = 0F;
 
-      transcript_ = "";
-
-      isPartialResult_ = false;
-
       if (wordListBuilder_ == null) {
         wordList_ = null;
       } else {
         wordList_ = null;
         wordListBuilder_ = null;
       }
+      hasVoiceActivity_ = false;
+
       if (postProcessingActionBuilder_ == null) {
         postProcessingAction_ = null;
       } else {
@@ -584,13 +517,12 @@ private static final long serialVersionUID = 0L;
     public ai.sensorycloud.api.v1.audio.TranscribeResponse buildPartial() {
       ai.sensorycloud.api.v1.audio.TranscribeResponse result = new ai.sensorycloud.api.v1.audio.TranscribeResponse(this);
       result.audioEnergy_ = audioEnergy_;
-      result.transcript_ = transcript_;
-      result.isPartialResult_ = isPartialResult_;
       if (wordListBuilder_ == null) {
         result.wordList_ = wordList_;
       } else {
         result.wordList_ = wordListBuilder_.build();
       }
+      result.hasVoiceActivity_ = hasVoiceActivity_;
       if (postProcessingActionBuilder_ == null) {
         result.postProcessingAction_ = postProcessingAction_;
       } else {
@@ -647,15 +579,11 @@ private static final long serialVersionUID = 0L;
       if (other.getAudioEnergy() != 0F) {
         setAudioEnergy(other.getAudioEnergy());
       }
-      if (!other.getTranscript().isEmpty()) {
-        transcript_ = other.transcript_;
-        onChanged();
-      }
-      if (other.getIsPartialResult() != false) {
-        setIsPartialResult(other.getIsPartialResult());
-      }
       if (other.hasWordList()) {
         mergeWordList(other.getWordList());
+      }
+      if (other.getHasVoiceActivity() != false) {
+        setHasVoiceActivity(other.getHasVoiceActivity());
       }
       if (other.hasPostProcessingAction()) {
         mergePostProcessingAction(other.getPostProcessingAction());
@@ -728,151 +656,6 @@ private static final long serialVersionUID = 0L;
     public Builder clearAudioEnergy() {
       
       audioEnergy_ = 0F;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object transcript_ = "";
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @return The transcript.
-     */
-    public java.lang.String getTranscript() {
-      java.lang.Object ref = transcript_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        transcript_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @return The bytes for transcript.
-     */
-    public com.google.protobuf.ByteString
-        getTranscriptBytes() {
-      java.lang.Object ref = transcript_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        transcript_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @param value The transcript to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTranscript(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      transcript_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearTranscript() {
-      
-      transcript_ = getDefaultInstance().getTranscript();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Text of the current transcript, sliding window on ~7 seconds
-     * </pre>
-     *
-     * <code>string transcript = 2;</code>
-     * @param value The bytes for transcript to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTranscriptBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      transcript_ = value;
-      onChanged();
-      return this;
-    }
-
-    private boolean isPartialResult_ ;
-    /**
-     * <pre>
-     * Indicates if the returned transcript is an intermediate result
-     * </pre>
-     *
-     * <code>bool isPartialResult = 3 [deprecated = true];</code>
-     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=402
-     * @return The isPartialResult.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated public boolean getIsPartialResult() {
-      return isPartialResult_;
-    }
-    /**
-     * <pre>
-     * Indicates if the returned transcript is an intermediate result
-     * </pre>
-     *
-     * <code>bool isPartialResult = 3 [deprecated = true];</code>
-     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=402
-     * @param value The isPartialResult to set.
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder setIsPartialResult(boolean value) {
-      
-      isPartialResult_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Indicates if the returned transcript is an intermediate result
-     * </pre>
-     *
-     * <code>bool isPartialResult = 3 [deprecated = true];</code>
-     * @deprecated sensory.api.v1.audio.TranscribeResponse.isPartialResult is deprecated.
-     *     See v1/audio/audio.proto;l=402
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder clearIsPartialResult() {
-      
-      isPartialResult_ = false;
       onChanged();
       return this;
     }
@@ -1030,6 +813,49 @@ private static final long serialVersionUID = 0L;
         wordList_ = null;
       }
       return wordListBuilder_;
+    }
+
+    private boolean hasVoiceActivity_ ;
+    /**
+     * <pre>
+     * Tells if any voice activity was detected for the most recently proccessed audio segment
+     * </pre>
+     *
+     * <code>bool hasVoiceActivity = 5;</code>
+     * @return The hasVoiceActivity.
+     */
+    @java.lang.Override
+    public boolean getHasVoiceActivity() {
+      return hasVoiceActivity_;
+    }
+    /**
+     * <pre>
+     * Tells if any voice activity was detected for the most recently proccessed audio segment
+     * </pre>
+     *
+     * <code>bool hasVoiceActivity = 5;</code>
+     * @param value The hasVoiceActivity to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHasVoiceActivity(boolean value) {
+      
+      hasVoiceActivity_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Tells if any voice activity was detected for the most recently proccessed audio segment
+     * </pre>
+     *
+     * <code>bool hasVoiceActivity = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearHasVoiceActivity() {
+      
+      hasVoiceActivity_ = false;
+      onChanged();
+      return this;
     }
 
     private ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction_;
