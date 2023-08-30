@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.google.guava:guava:30.1.1-jre'
     implementation "io.envoyproxy.protoc-gen-validate:pgv-java-stub:${pgvVersion}"
 
-    def grpc_version = "1.47.0"
+    def grpc_version = "1.57.2"
     runtimeOnly "io.grpc:grpc-netty-shaded:$grpc_version"
     implementation "io.grpc:grpc-protobuf:$grpc_version"
     implementation "io.grpc:grpc-stub:$grpc_version"
@@ -49,11 +49,11 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.19.2"
+        artifact = "com.google.protobuf:protoc:3.24.2"
     }
     plugins {
         grpc {
-            artifact = 'io.grpc:protoc-gen-grpc-java:0.4.1'
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.57.2'
         }
     }
     generateProtoTasks {
