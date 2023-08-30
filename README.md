@@ -766,6 +766,5 @@ Ensure you have gradle installed and you are compiling with JDK8
 brew install gradle
 ```
 
-You will also need to build grpc-java from scratch and ensure it is in your $PATH
-
-https://github.com/grpc/grpc-java/tree/master/compiler
+You will also need to download `protoc` from:  https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.57.2/
+Then move it to `/usr/local/bin/` or a directory that is in your system's PATH
