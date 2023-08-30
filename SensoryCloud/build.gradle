@@ -14,7 +14,7 @@ plugins {
 }
 
 group = 'ai.sensorycloud'
-version = 'v1.0.0'
+version = 'v1.1.0'
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8
 
