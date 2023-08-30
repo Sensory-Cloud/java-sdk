@@ -32,10 +32,10 @@ public final class SensoryApiHealthProto {
       "h\032\023common/common.proto\"\017\n\rHealthRequest2" +
       "k\n\rHealthService\022Z\n\tGetHealth\022!.sensory." +
       "api.health.HealthRequest\032(.sensory.api.c" +
-      "ommon.ServerHealthResponse\"\000Bo\n\032ai.senso" +
+      "ommon.ServerHealthResponse\"\000Bv\n\032ai.senso" +
       "rycloud.api.healthB\025SensoryApiHealthProt" +
       "oP\001Z8gitlab.com/sensory-cloud/server/tit" +
-      "an.git/pkg/api/healthb\006proto3"
+      "an.git/pkg/api/health\242\002\004SENGb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

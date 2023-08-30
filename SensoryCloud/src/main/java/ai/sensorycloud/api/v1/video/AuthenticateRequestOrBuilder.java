@@ -59,5 +59,5 @@ public interface AuthenticateRequestOrBuilder extends
    */
   com.google.protobuf.ByteString getImageContent();
 
-  public ai.sensorycloud.api.v1.video.AuthenticateRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.video.AuthenticateRequest.StreamingRequestCase getStreamingRequestCase();
 }

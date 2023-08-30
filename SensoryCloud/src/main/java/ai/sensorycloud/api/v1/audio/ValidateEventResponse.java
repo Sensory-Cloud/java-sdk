@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private ValidateEventResponse() {
     resultId_ = "";
+    topNResponse_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -30,84 +31,6 @@ private static final long serialVersionUID = 0L;
     return new ValidateEventResponse();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private ValidateEventResponse(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 13: {
-
-            audioEnergy_ = input.readFloat();
-            break;
-          }
-          case 16: {
-
-            success_ = input.readBool();
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            resultId_ = s;
-            break;
-          }
-          case 37: {
-
-            score_ = input.readFloat();
-            break;
-          }
-          case 82: {
-            ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.Builder subBuilder = null;
-            if (postProcessingAction_ != null) {
-              subBuilder = postProcessingAction_.toBuilder();
-            }
-            postProcessingAction_ = input.readMessage(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(postProcessingAction_);
-              postProcessingAction_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.audio.SensoryApiV1AudioProto.internal_static_sensory_api_v1_audio_ValidateEventResponse_descriptor;
@@ -122,7 +45,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int AUDIOENERGY_FIELD_NUMBER = 1;
-  private float audioEnergy_;
+  private float audioEnergy_ = 0F;
   /**
    * <pre>
    * Relative energy of the processed audio as a value between 0 and 1
@@ -137,7 +60,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SUCCESS_FIELD_NUMBER = 2;
-  private boolean success_;
+  private boolean success_ = false;
   /**
    * <pre>
    * Success / Failure bit
@@ -152,7 +75,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int RESULTID_FIELD_NUMBER = 3;
-  private volatile java.lang.Object resultId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object resultId_ = "";
   /**
    * <pre>
    * Indicates the id of the particular sound that was recognized.
@@ -200,7 +124,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SCORE_FIELD_NUMBER = 4;
-  private float score_;
+  private float score_ = 0F;
   /**
    * <pre>
    * The score of the event between -100 to +100. Smaller values typically indicate an invalid sound while larger values would generally indicate a detected sound.
@@ -214,14 +138,97 @@ private static final long serialVersionUID = 0L;
     return score_;
   }
 
-  public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
-  private ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction_;
+  public static final int TOPNRESPONSE_FIELD_NUMBER = 5;
+  @SuppressWarnings("serial")
+  private java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> topNResponse_;
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> getTopNResponseList() {
+    return topNResponse_;
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder> 
+      getTopNResponseOrBuilderList() {
+    return topNResponse_;
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public int getTopNResponseCount() {
+    return topNResponse_.size();
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse getTopNResponse(int index) {
+    return topNResponse_.get(index);
+  }
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  @java.lang.Override
+  public ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder getTopNResponseOrBuilder(
+      int index) {
+    return topNResponse_.get(index);
+  }
+
+  public static final int RESULTSTARTTIME_FIELD_NUMBER = 6;
+  private float resultStartTime_ = 0F;
   /**
    * <pre>
    * If a post processing audio action was requested, this will be populated with the specific
    * action that was completed along with the actionId optionally set by the client.
    * </pre>
    *
+   * <code>float ResultStartTime = 6;</code>
+   * @return The resultStartTime.
+   */
+  @java.lang.Override
+  public float getResultStartTime() {
+    return resultStartTime_;
+  }
+
+  public static final int RESULTENDTIME_FIELD_NUMBER = 7;
+  private float resultEndTime_ = 0F;
+  /**
+   * <code>float ResultEndTime = 7;</code>
+   * @return The resultEndTime.
+   */
+  @java.lang.Override
+  public float getResultEndTime() {
+    return resultEndTime_;
+  }
+
+  public static final int POSTPROCESSINGACTION_FIELD_NUMBER = 10;
+  private ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction_;
+  /**
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    * @return Whether the postProcessingAction field is set.
    */
@@ -230,11 +237,6 @@ private static final long serialVersionUID = 0L;
     return postProcessingAction_ != null;
   }
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    * @return The postProcessingAction.
    */
@@ -243,16 +245,11 @@ private static final long serialVersionUID = 0L;
     return postProcessingAction_ == null ? ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.getDefaultInstance() : postProcessingAction_;
   }
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   @java.lang.Override
   public ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingActionOrBuilder getPostProcessingActionOrBuilder() {
-    return getPostProcessingAction();
+    return postProcessingAction_ == null ? ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.getDefaultInstance() : postProcessingAction_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -281,10 +278,19 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToRawIntBits(score_) != 0) {
       output.writeFloat(4, score_);
     }
+    for (int i = 0; i < topNResponse_.size(); i++) {
+      output.writeMessage(5, topNResponse_.get(i));
+    }
+    if (java.lang.Float.floatToRawIntBits(resultStartTime_) != 0) {
+      output.writeFloat(6, resultStartTime_);
+    }
+    if (java.lang.Float.floatToRawIntBits(resultEndTime_) != 0) {
+      output.writeFloat(7, resultEndTime_);
+    }
     if (postProcessingAction_ != null) {
       output.writeMessage(10, getPostProcessingAction());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -308,11 +314,23 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(4, score_);
     }
+    for (int i = 0; i < topNResponse_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, topNResponse_.get(i));
+    }
+    if (java.lang.Float.floatToRawIntBits(resultStartTime_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(6, resultStartTime_);
+    }
+    if (java.lang.Float.floatToRawIntBits(resultEndTime_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(7, resultEndTime_);
+    }
     if (postProcessingAction_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(10, getPostProcessingAction());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -337,12 +355,20 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToIntBits(getScore())
         != java.lang.Float.floatToIntBits(
             other.getScore())) return false;
+    if (!getTopNResponseList()
+        .equals(other.getTopNResponseList())) return false;
+    if (java.lang.Float.floatToIntBits(getResultStartTime())
+        != java.lang.Float.floatToIntBits(
+            other.getResultStartTime())) return false;
+    if (java.lang.Float.floatToIntBits(getResultEndTime())
+        != java.lang.Float.floatToIntBits(
+            other.getResultEndTime())) return false;
     if (hasPostProcessingAction() != other.hasPostProcessingAction()) return false;
     if (hasPostProcessingAction()) {
       if (!getPostProcessingAction()
           .equals(other.getPostProcessingAction())) return false;
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -364,11 +390,21 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + SCORE_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getScore());
+    if (getTopNResponseCount() > 0) {
+      hash = (37 * hash) + TOPNRESPONSE_FIELD_NUMBER;
+      hash = (53 * hash) + getTopNResponseList().hashCode();
+    }
+    hash = (37 * hash) + RESULTSTARTTIME_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getResultStartTime());
+    hash = (37 * hash) + RESULTENDTIME_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getResultEndTime());
     if (hasPostProcessingAction()) {
       hash = (37 * hash) + POSTPROCESSINGACTION_FIELD_NUMBER;
       hash = (53 * hash) + getPostProcessingAction().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -417,11 +453,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.ValidateEventResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -489,34 +527,34 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.audio.ValidateEventResponse.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       audioEnergy_ = 0F;
-
       success_ = false;
-
       resultId_ = "";
-
       score_ = 0F;
-
-      if (postProcessingActionBuilder_ == null) {
-        postProcessingAction_ = null;
+      if (topNResponseBuilder_ == null) {
+        topNResponse_ = java.util.Collections.emptyList();
       } else {
-        postProcessingAction_ = null;
+        topNResponse_ = null;
+        topNResponseBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000010);
+      resultStartTime_ = 0F;
+      resultEndTime_ = 0F;
+      postProcessingAction_ = null;
+      if (postProcessingActionBuilder_ != null) {
+        postProcessingActionBuilder_.dispose();
         postProcessingActionBuilder_ = null;
       }
       return this;
@@ -545,17 +583,49 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.audio.ValidateEventResponse buildPartial() {
       ai.sensorycloud.api.v1.audio.ValidateEventResponse result = new ai.sensorycloud.api.v1.audio.ValidateEventResponse(this);
-      result.audioEnergy_ = audioEnergy_;
-      result.success_ = success_;
-      result.resultId_ = resultId_;
-      result.score_ = score_;
-      if (postProcessingActionBuilder_ == null) {
-        result.postProcessingAction_ = postProcessingAction_;
-      } else {
-        result.postProcessingAction_ = postProcessingActionBuilder_.build();
-      }
+      buildPartialRepeatedFields(result);
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartialRepeatedFields(ai.sensorycloud.api.v1.audio.ValidateEventResponse result) {
+      if (topNResponseBuilder_ == null) {
+        if (((bitField0_ & 0x00000010) != 0)) {
+          topNResponse_ = java.util.Collections.unmodifiableList(topNResponse_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.topNResponse_ = topNResponse_;
+      } else {
+        result.topNResponse_ = topNResponseBuilder_.build();
+      }
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.audio.ValidateEventResponse result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.audioEnergy_ = audioEnergy_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.success_ = success_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.resultId_ = resultId_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.score_ = score_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.resultStartTime_ = resultStartTime_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.resultEndTime_ = resultEndTime_;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        result.postProcessingAction_ = postProcessingActionBuilder_ == null
+            ? postProcessingAction_
+            : postProcessingActionBuilder_.build();
+      }
     }
 
     @java.lang.Override
@@ -610,15 +680,48 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getResultId().isEmpty()) {
         resultId_ = other.resultId_;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
       if (other.getScore() != 0F) {
         setScore(other.getScore());
       }
+      if (topNResponseBuilder_ == null) {
+        if (!other.topNResponse_.isEmpty()) {
+          if (topNResponse_.isEmpty()) {
+            topNResponse_ = other.topNResponse_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureTopNResponseIsMutable();
+            topNResponse_.addAll(other.topNResponse_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.topNResponse_.isEmpty()) {
+          if (topNResponseBuilder_.isEmpty()) {
+            topNResponseBuilder_.dispose();
+            topNResponseBuilder_ = null;
+            topNResponse_ = other.topNResponse_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+            topNResponseBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getTopNResponseFieldBuilder() : null;
+          } else {
+            topNResponseBuilder_.addAllMessages(other.topNResponse_);
+          }
+        }
+      }
+      if (other.getResultStartTime() != 0F) {
+        setResultStartTime(other.getResultStartTime());
+      }
+      if (other.getResultEndTime() != 0F) {
+        setResultEndTime(other.getResultEndTime());
+      }
       if (other.hasPostProcessingAction()) {
         mergePostProcessingAction(other.getPostProcessingAction());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -633,19 +736,83 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.audio.ValidateEventResponse parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 13: {
+              audioEnergy_ = input.readFloat();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 13
+            case 16: {
+              success_ = input.readBool();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
+            case 26: {
+              resultId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
+            case 37: {
+              score_ = input.readFloat();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 37
+            case 42: {
+              ai.sensorycloud.api.v1.audio.SoundIdTopNResponse m =
+                  input.readMessage(
+                      ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.parser(),
+                      extensionRegistry);
+              if (topNResponseBuilder_ == null) {
+                ensureTopNResponseIsMutable();
+                topNResponse_.add(m);
+              } else {
+                topNResponseBuilder_.addMessage(m);
+              }
+              break;
+            } // case 42
+            case 53: {
+              resultStartTime_ = input.readFloat();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 53
+            case 61: {
+              resultEndTime_ = input.readFloat();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 61
+            case 82: {
+              input.readMessage(
+                  getPostProcessingActionFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000080;
+              break;
+            } // case 82
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.audio.ValidateEventResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private float audioEnergy_ ;
     /**
@@ -670,8 +837,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setAudioEnergy(float value) {
-      
+
       audioEnergy_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -684,7 +852,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearAudioEnergy() {
-      
+      bitField0_ = (bitField0_ & ~0x00000001);
       audioEnergy_ = 0F;
       onChanged();
       return this;
@@ -713,8 +881,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setSuccess(boolean value) {
-      
+
       success_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -727,7 +896,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearSuccess() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       success_ = false;
       onChanged();
       return this;
@@ -789,11 +958,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setResultId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       resultId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -807,8 +974,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearResultId() {
-      
       resultId_ = getDefaultInstance().getResultId();
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
@@ -824,12 +991,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setResultIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       resultId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -857,8 +1022,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setScore(float value) {
-      
+
       score_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -871,8 +1037,399 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearScore() {
-      
+      bitField0_ = (bitField0_ & ~0x00000008);
       score_ = 0F;
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> topNResponse_ =
+      java.util.Collections.emptyList();
+    private void ensureTopNResponseIsMutable() {
+      if (!((bitField0_ & 0x00000010) != 0)) {
+        topNResponse_ = new java.util.ArrayList<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse>(topNResponse_);
+        bitField0_ |= 0x00000010;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        ai.sensorycloud.api.v1.audio.SoundIdTopNResponse, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder, ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder> topNResponseBuilder_;
+
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> getTopNResponseList() {
+      if (topNResponseBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(topNResponse_);
+      } else {
+        return topNResponseBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public int getTopNResponseCount() {
+      if (topNResponseBuilder_ == null) {
+        return topNResponse_.size();
+      } else {
+        return topNResponseBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse getTopNResponse(int index) {
+      if (topNResponseBuilder_ == null) {
+        return topNResponse_.get(index);
+      } else {
+        return topNResponseBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder setTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+      if (topNResponseBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureTopNResponseIsMutable();
+        topNResponse_.set(index, value);
+        onChanged();
+      } else {
+        topNResponseBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder setTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder builderForValue) {
+      if (topNResponseBuilder_ == null) {
+        ensureTopNResponseIsMutable();
+        topNResponse_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        topNResponseBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+      if (topNResponseBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureTopNResponseIsMutable();
+        topNResponse_.add(value);
+        onChanged();
+      } else {
+        topNResponseBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse value) {
+      if (topNResponseBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureTopNResponseIsMutable();
+        topNResponse_.add(index, value);
+        onChanged();
+      } else {
+        topNResponseBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(
+        ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder builderForValue) {
+      if (topNResponseBuilder_ == null) {
+        ensureTopNResponseIsMutable();
+        topNResponse_.add(builderForValue.build());
+        onChanged();
+      } else {
+        topNResponseBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addTopNResponse(
+        int index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder builderForValue) {
+      if (topNResponseBuilder_ == null) {
+        ensureTopNResponseIsMutable();
+        topNResponse_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        topNResponseBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder addAllTopNResponse(
+        java.lang.Iterable<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> values) {
+      if (topNResponseBuilder_ == null) {
+        ensureTopNResponseIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, topNResponse_);
+        onChanged();
+      } else {
+        topNResponseBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder clearTopNResponse() {
+      if (topNResponseBuilder_ == null) {
+        topNResponse_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+      } else {
+        topNResponseBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public Builder removeTopNResponse(int index) {
+      if (topNResponseBuilder_ == null) {
+        ensureTopNResponseIsMutable();
+        topNResponse_.remove(index);
+        onChanged();
+      } else {
+        topNResponseBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder getTopNResponseBuilder(
+        int index) {
+      return getTopNResponseFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder getTopNResponseOrBuilder(
+        int index) {
+      if (topNResponseBuilder_ == null) {
+        return topNResponse_.get(index);  } else {
+        return topNResponseBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public java.util.List<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder> 
+         getTopNResponseOrBuilderList() {
+      if (topNResponseBuilder_ != null) {
+        return topNResponseBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(topNResponse_);
+      }
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder addTopNResponseBuilder() {
+      return getTopNResponseFieldBuilder().addBuilder(
+          ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder addTopNResponseBuilder(
+        int index) {
+      return getTopNResponseFieldBuilder().addBuilder(
+          index, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Array of the top N most likely results
+     * </pre>
+     *
+     * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+     */
+    public java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder> 
+         getTopNResponseBuilderList() {
+      return getTopNResponseFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        ai.sensorycloud.api.v1.audio.SoundIdTopNResponse, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder, ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder> 
+        getTopNResponseFieldBuilder() {
+      if (topNResponseBuilder_ == null) {
+        topNResponseBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            ai.sensorycloud.api.v1.audio.SoundIdTopNResponse, ai.sensorycloud.api.v1.audio.SoundIdTopNResponse.Builder, ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder>(
+                topNResponse_,
+                ((bitField0_ & 0x00000010) != 0),
+                getParentForChildren(),
+                isClean());
+        topNResponse_ = null;
+      }
+      return topNResponseBuilder_;
+    }
+
+    private float resultStartTime_ ;
+    /**
+     * <pre>
+     * If a post processing audio action was requested, this will be populated with the specific
+     * action that was completed along with the actionId optionally set by the client.
+     * </pre>
+     *
+     * <code>float ResultStartTime = 6;</code>
+     * @return The resultStartTime.
+     */
+    @java.lang.Override
+    public float getResultStartTime() {
+      return resultStartTime_;
+    }
+    /**
+     * <pre>
+     * If a post processing audio action was requested, this will be populated with the specific
+     * action that was completed along with the actionId optionally set by the client.
+     * </pre>
+     *
+     * <code>float ResultStartTime = 6;</code>
+     * @param value The resultStartTime to set.
+     * @return This builder for chaining.
+     */
+    public Builder setResultStartTime(float value) {
+
+      resultStartTime_ = value;
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * If a post processing audio action was requested, this will be populated with the specific
+     * action that was completed along with the actionId optionally set by the client.
+     * </pre>
+     *
+     * <code>float ResultStartTime = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearResultStartTime() {
+      bitField0_ = (bitField0_ & ~0x00000020);
+      resultStartTime_ = 0F;
+      onChanged();
+      return this;
+    }
+
+    private float resultEndTime_ ;
+    /**
+     * <code>float ResultEndTime = 7;</code>
+     * @return The resultEndTime.
+     */
+    @java.lang.Override
+    public float getResultEndTime() {
+      return resultEndTime_;
+    }
+    /**
+     * <code>float ResultEndTime = 7;</code>
+     * @param value The resultEndTime to set.
+     * @return This builder for chaining.
+     */
+    public Builder setResultEndTime(float value) {
+
+      resultEndTime_ = value;
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>float ResultEndTime = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearResultEndTime() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      resultEndTime_ = 0F;
       onChanged();
       return this;
     }
@@ -881,23 +1438,13 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction, ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.Builder, ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingActionOrBuilder> postProcessingActionBuilder_;
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      * @return Whether the postProcessingAction field is set.
      */
     public boolean hasPostProcessingAction() {
-      return postProcessingActionBuilder_ != null || postProcessingAction_ != null;
+      return ((bitField0_ & 0x00000080) != 0);
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      * @return The postProcessingAction.
      */
@@ -909,11 +1456,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder setPostProcessingAction(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction value) {
@@ -922,93 +1464,68 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         postProcessingAction_ = value;
-        onChanged();
       } else {
         postProcessingActionBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000080;
+      onChanged();
       return this;
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder setPostProcessingAction(
         ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.Builder builderForValue) {
       if (postProcessingActionBuilder_ == null) {
         postProcessingAction_ = builderForValue.build();
-        onChanged();
       } else {
         postProcessingActionBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000080;
+      onChanged();
       return this;
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder mergePostProcessingAction(ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction value) {
       if (postProcessingActionBuilder_ == null) {
-        if (postProcessingAction_ != null) {
-          postProcessingAction_ =
-            ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.newBuilder(postProcessingAction_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000080) != 0) &&
+          postProcessingAction_ != null &&
+          postProcessingAction_ != ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.getDefaultInstance()) {
+          getPostProcessingActionBuilder().mergeFrom(value);
         } else {
           postProcessingAction_ = value;
         }
-        onChanged();
       } else {
         postProcessingActionBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000080;
+      onChanged();
       return this;
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public Builder clearPostProcessingAction() {
-      if (postProcessingActionBuilder_ == null) {
-        postProcessingAction_ = null;
-        onChanged();
-      } else {
-        postProcessingAction_ = null;
+      bitField0_ = (bitField0_ & ~0x00000080);
+      postProcessingAction_ = null;
+      if (postProcessingActionBuilder_ != null) {
+        postProcessingActionBuilder_.dispose();
         postProcessingActionBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction.Builder getPostProcessingActionBuilder() {
-      
+      bitField0_ |= 0x00000080;
       onChanged();
       return getPostProcessingActionFieldBuilder().getBuilder();
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     public ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingActionOrBuilder getPostProcessingActionOrBuilder() {
@@ -1020,11 +1537,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * If a post processing audio action was requested, this will be populated with the specific
-     * action that was completed along with the actionId optionally set by the client.
-     * </pre>
-     *
      * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -1073,7 +1585,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ValidateEventResponse(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

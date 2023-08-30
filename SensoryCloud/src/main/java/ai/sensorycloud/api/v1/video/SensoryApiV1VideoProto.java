@@ -103,59 +103,64 @@ public final class SensoryApiV1VideoProto {
       "\"\220\001\n\032ValidateRecognitionRequest\022A\n\006confi" +
       "g\030\001 \001(\0132/.sensory.api.v1.video.ValidateR" +
       "ecognitionConfigH\000\022\026\n\014imageContent\030\002 \001(\014" +
-      "H\000B\027\n\020streamingRequest\022\003\370B\001\"\320\001\n\030CreateEn" +
+      "H\000B\027\n\020streamingRequest\022\003\370B\001\"\223\002\n\030CreateEn" +
       "rollmentResponse\022\027\n\017percentComplete\030\001 \001(" +
       "\003\022\017\n\007isAlive\030\002 \001(\010\022\024\n\014enrollmentId\030\003 \001(\t" +
       "\022\021\n\tmodelName\030\004 \001(\t\022\024\n\014modelVersion\030\005 \001(" +
       "\t\022\r\n\005score\030\006 \001(\002\022<\n\017enrollmentToken\030\007 \001(" +
-      "\0132#.sensory.api.common.EnrollmentToken\"\237" +
-      "\001\n\024AuthenticateResponse\022\017\n\007success\030\001 \001(\010" +
-      "\022\r\n\005score\030\002 \001(\002\022\017\n\007isAlive\030\003 \001(\010\0220\n\005toke" +
-      "n\030\004 \001(\0132!.sensory.api.common.TokenRespon" +
-      "se\022\016\n\006userId\030\005 \001(\t\022\024\n\014enrollmentId\030\006 \001(\t" +
-      "\"=\n\033LivenessRecognitionResponse\022\017\n\007isAli" +
-      "ve\030\001 \001(\010\022\r\n\005score\030\002 \001(\002\"\256\003\n\026CreateEnroll" +
-      "mentConfig\022\031\n\006userId\030\001 \001(\tB\t\372B\006r\004\020\001\030\177\022\033\n" +
-      "\010deviceId\030\002 \001(\tB\t\372B\006r\004\020\001\030\177\022\035\n\tmodelName\030" +
-      "\003 \001(\tB\n\372B\007r\005\020\001\030\377\001\022\035\n\013description\030\004 \001(\tB\010" +
-      "\372B\005r\003\030\377\007\022\031\n\021isLivenessEnabled\030\005 \001(\010\022O\n\021l" +
-      "ivenessThreshold\030\006 \001(\0162*.sensory.api.v1." +
-      "video.RecognitionThresholdB\010\372B\005\202\001\002\020\001\022A\n\013" +
-      "compression\030\007 \001(\0132,.sensory.api.common.C" +
-      "ompressionConfiguration\022\034\n\013referenceId\030\010" +
-      " \001(\tB\007\372B\004r\002\030\177\022!\n\031numLivenessFramesRequir" +
-      "ed\030\t \001(\005\022.\n&disableServerEnrollmentTempl" +
-      "ateStorage\030\n \001(\010\"\302\002\n\022AuthenticateConfig\022" +
-      " \n\014enrollmentId\030\001 \001(\tB\010\372B\005r\003\260\001\001H\000\022\033\n\021enr" +
-      "ollmentGroupId\030\002 \001(\tH\000\022\031\n\021isLivenessEnab" +
-      "led\030\003 \001(\010\022O\n\021livenessThreshold\030\004 \001(\0162*.s" +
-      "ensory.api.v1.video.RecognitionThreshold" +
-      "B\010\372B\005\202\001\002\020\001\022A\n\013compression\030\005 \001(\0132,.sensor" +
-      "y.api.common.CompressionConfiguration\022\026\n" +
-      "\016doIncludeToken\030\006 \001(\010\022\027\n\017enrollmentToken" +
-      "\030\007 \001(\014B\r\n\006authId\022\003\370B\001\"\236\001\n\031ValidateRecogn" +
-      "itionConfig\022\035\n\tmodelName\030\001 \001(\tB\n\372B\007r\005\020\001\030" +
-      "\377\001\022\031\n\006userId\030\002 \001(\tB\t\372B\006r\004\020\001\030\177\022G\n\tthresho" +
-      "ld\030\003 \001(\0162*.sensory.api.v1.video.Recognit" +
-      "ionThresholdB\010\372B\005\202\001\002\020\001*B\n\024RecognitionThr" +
-      "eshold\022\007\n\003LOW\020\000\022\n\n\006MEDIUM\020\001\022\010\n\004HIGH\020\002\022\013\n" +
-      "\007HIGHEST\020\0032m\n\013VideoModels\022^\n\tGetModels\022&" +
-      ".sensory.api.v1.video.GetModelsRequest\032\'" +
-      ".sensory.api.v1.video.GetModelsResponse\"" +
-      "\0002\367\001\n\017VideoBiometrics\022w\n\020CreateEnrollmen" +
-      "t\022-.sensory.api.v1.video.CreateEnrollmen" +
-      "tRequest\032..sensory.api.v1.video.CreateEn" +
-      "rollmentResponse\"\000(\0010\001\022k\n\014Authenticate\022)" +
-      ".sensory.api.v1.video.AuthenticateReques" +
-      "t\032*.sensory.api.v1.video.AuthenticateRes" +
-      "ponse\"\000(\0010\0012\221\001\n\020VideoRecognition\022}\n\020Vali" +
-      "dateLiveness\0220.sensory.api.v1.video.Vali" +
-      "dateRecognitionRequest\0321.sensory.api.v1." +
-      "video.LivenessRecognitionResponse\"\000(\0010\001B" +
-      "t\n\034ai.sensorycloud.api.v1.videoB\026Sensory" +
-      "ApiV1VideoProtoP\001Z:gitlab.com/sensory-cl" +
-      "oud/server/titan.git/pkg/api/v1/videob\006p" +
-      "roto3"
+      "\0132#.sensory.api.common.EnrollmentToken\022\023" +
+      "\n\013didFindFace\030\010 \001(\010\022\023\n\013boundingBox\030\t \003(\003" +
+      "\022\027\n\017probabilityFace\030\n \001(\002\"\342\001\n\024Authentica" +
+      "teResponse\022\017\n\007success\030\001 \001(\010\022\r\n\005score\030\002 \001" +
+      "(\002\022\017\n\007isAlive\030\003 \001(\010\0220\n\005token\030\004 \001(\0132!.sen" +
+      "sory.api.common.TokenResponse\022\016\n\006userId\030" +
+      "\005 \001(\t\022\024\n\014enrollmentId\030\006 \001(\t\022\023\n\013didFindFa" +
+      "ce\030\007 \001(\010\022\023\n\013boundingBox\030\010 \003(\003\022\027\n\017probabi" +
+      "lityFace\030\t \001(\002\"\200\001\n\033LivenessRecognitionRe" +
+      "sponse\022\017\n\007isAlive\030\001 \001(\010\022\r\n\005score\030\002 \001(\002\022\023" +
+      "\n\013didFindFace\030\003 \001(\010\022\023\n\013boundingBox\030\004 \003(\003" +
+      "\022\027\n\017probabilityFace\030\005 \001(\002\"\256\003\n\026CreateEnro" +
+      "llmentConfig\022\031\n\006userId\030\001 \001(\tB\t\372B\006r\004\020\001\030\177\022" +
+      "\033\n\010deviceId\030\002 \001(\tB\t\372B\006r\004\020\001\030\177\022\035\n\tmodelNam" +
+      "e\030\003 \001(\tB\n\372B\007r\005\020\001\030\377\001\022\035\n\013description\030\004 \001(\t" +
+      "B\010\372B\005r\003\030\377\007\022\031\n\021isLivenessEnabled\030\005 \001(\010\022O\n" +
+      "\021livenessThreshold\030\006 \001(\0162*.sensory.api.v" +
+      "1.video.RecognitionThresholdB\010\372B\005\202\001\002\020\001\022A" +
+      "\n\013compression\030\007 \001(\0132,.sensory.api.common" +
+      ".CompressionConfiguration\022\034\n\013referenceId" +
+      "\030\010 \001(\tB\007\372B\004r\002\030\177\022!\n\031numLivenessFramesRequ" +
+      "ired\030\t \001(\005\022.\n&disableServerEnrollmentTem" +
+      "plateStorage\030\n \001(\010\"\302\002\n\022AuthenticateConfi" +
+      "g\022 \n\014enrollmentId\030\001 \001(\tB\010\372B\005r\003\260\001\001H\000\022\033\n\021e" +
+      "nrollmentGroupId\030\002 \001(\tH\000\022\031\n\021isLivenessEn" +
+      "abled\030\003 \001(\010\022O\n\021livenessThreshold\030\004 \001(\0162*" +
+      ".sensory.api.v1.video.RecognitionThresho" +
+      "ldB\010\372B\005\202\001\002\020\001\022A\n\013compression\030\005 \001(\0132,.sens" +
+      "ory.api.common.CompressionConfiguration\022" +
+      "\026\n\016doIncludeToken\030\006 \001(\010\022\027\n\017enrollmentTok" +
+      "en\030\007 \001(\014B\r\n\006authId\022\003\370B\001\"\236\001\n\031ValidateReco" +
+      "gnitionConfig\022\035\n\tmodelName\030\001 \001(\tB\n\372B\007r\005\020" +
+      "\001\030\377\001\022\031\n\006userId\030\002 \001(\tB\t\372B\006r\004\020\001\030\177\022G\n\tthres" +
+      "hold\030\003 \001(\0162*.sensory.api.v1.video.Recogn" +
+      "itionThresholdB\010\372B\005\202\001\002\020\001*B\n\024RecognitionT" +
+      "hreshold\022\007\n\003LOW\020\000\022\n\n\006MEDIUM\020\001\022\010\n\004HIGH\020\002\022" +
+      "\013\n\007HIGHEST\020\0032m\n\013VideoModels\022^\n\tGetModels" +
+      "\022&.sensory.api.v1.video.GetModelsRequest" +
+      "\032\'.sensory.api.v1.video.GetModelsRespons" +
+      "e\"\0002\367\001\n\017VideoBiometrics\022w\n\020CreateEnrollm" +
+      "ent\022-.sensory.api.v1.video.CreateEnrollm" +
+      "entRequest\032..sensory.api.v1.video.Create" +
+      "EnrollmentResponse\"\000(\0010\001\022k\n\014Authenticate" +
+      "\022).sensory.api.v1.video.AuthenticateRequ" +
+      "est\032*.sensory.api.v1.video.AuthenticateR" +
+      "esponse\"\000(\0010\0012\221\001\n\020VideoRecognition\022}\n\020Va" +
+      "lidateLiveness\0220.sensory.api.v1.video.Va" +
+      "lidateRecognitionRequest\0321.sensory.api.v" +
+      "1.video.LivenessRecognitionResponse\"\000(\0010" +
+      "\001B|\n\034ai.sensorycloud.api.v1.videoB\026Senso" +
+      "ryApiV1VideoProtoP\001Z:gitlab.com/sensory-" +
+      "cloud/server/titan.git/pkg/api/v1/video\242" +
+      "\002\005SENGVb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -204,19 +209,19 @@ public final class SensoryApiV1VideoProto {
     internal_static_sensory_api_v1_video_CreateEnrollmentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_video_CreateEnrollmentResponse_descriptor,
-        new java.lang.String[] { "PercentComplete", "IsAlive", "EnrollmentId", "ModelName", "ModelVersion", "Score", "EnrollmentToken", });
+        new java.lang.String[] { "PercentComplete", "IsAlive", "EnrollmentId", "ModelName", "ModelVersion", "Score", "EnrollmentToken", "DidFindFace", "BoundingBox", "ProbabilityFace", });
     internal_static_sensory_api_v1_video_AuthenticateResponse_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_sensory_api_v1_video_AuthenticateResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_video_AuthenticateResponse_descriptor,
-        new java.lang.String[] { "Success", "Score", "IsAlive", "Token", "UserId", "EnrollmentId", });
+        new java.lang.String[] { "Success", "Score", "IsAlive", "Token", "UserId", "EnrollmentId", "DidFindFace", "BoundingBox", "ProbabilityFace", });
     internal_static_sensory_api_v1_video_LivenessRecognitionResponse_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_sensory_api_v1_video_LivenessRecognitionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_video_LivenessRecognitionResponse_descriptor,
-        new java.lang.String[] { "IsAlive", "Score", });
+        new java.lang.String[] { "IsAlive", "Score", "DidFindFace", "BoundingBox", "ProbabilityFace", });
     internal_static_sensory_api_v1_video_CreateEnrollmentConfig_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_sensory_api_v1_video_CreateEnrollmentConfig_fieldAccessorTable = new

@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/audio/audio.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AudioEventsGrpc {
 
   private AudioEventsGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.audio.AudioEvents";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.audio.AudioEvents";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.audio.ValidateEventRequest,
@@ -160,7 +160,7 @@ public final class AudioEventsGrpc {
    * Handles all audio event processing
    * </pre>
    */
-  public static abstract class AudioEventsImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -169,7 +169,7 @@ public final class AudioEventsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.ValidateEventRequest> validateEvent(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.ValidateEventRequest> validateEvent(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.ValidateEventResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getValidateEventMethod(), responseObserver);
     }
@@ -181,7 +181,7 @@ public final class AudioEventsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.CreateEnrolledEventRequest> createEnrolledEvent(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.CreateEnrolledEventRequest> createEnrolledEvent(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getCreateEnrolledEventMethod(), responseObserver);
     }
@@ -193,44 +193,34 @@ public final class AudioEventsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest> validateEnrolledEvent(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest> validateEnrolledEvent(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getValidateEnrolledEventMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getValidateEventMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.ValidateEventRequest,
-                ai.sensorycloud.api.v1.audio.ValidateEventResponse>(
-                  this, METHODID_VALIDATE_EVENT)))
-          .addMethod(
-            getCreateEnrolledEventMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.CreateEnrolledEventRequest,
-                ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse>(
-                  this, METHODID_CREATE_ENROLLED_EVENT)))
-          .addMethod(
-            getValidateEnrolledEventMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest,
-                ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse>(
-                  this, METHODID_VALIDATE_ENROLLED_EVENT)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service AudioEvents.
    * <pre>
    * Handles all audio event processing
    * </pre>
    */
-  public static final class AudioEventsStub extends io.grpc.stub.AbstractAsyncStub<AudioEventsStub> {
+  public static abstract class AudioEventsImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return AudioEventsGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service AudioEvents.
+   * <pre>
+   * Handles all audio event processing
+   * </pre>
+   */
+  public static final class AudioEventsStub
+      extends io.grpc.stub.AbstractAsyncStub<AudioEventsStub> {
     private AudioEventsStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -283,11 +273,13 @@ public final class AudioEventsGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service AudioEvents.
    * <pre>
    * Handles all audio event processing
    * </pre>
    */
-  public static final class AudioEventsBlockingStub extends io.grpc.stub.AbstractBlockingStub<AudioEventsBlockingStub> {
+  public static final class AudioEventsBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<AudioEventsBlockingStub> {
     private AudioEventsBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -301,11 +293,13 @@ public final class AudioEventsGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service AudioEvents.
    * <pre>
    * Handles all audio event processing
    * </pre>
    */
-  public static final class AudioEventsFutureStub extends io.grpc.stub.AbstractFutureStub<AudioEventsFutureStub> {
+  public static final class AudioEventsFutureStub
+      extends io.grpc.stub.AbstractFutureStub<AudioEventsFutureStub> {
     private AudioEventsFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -327,10 +321,10 @@ public final class AudioEventsGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final AudioEventsImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(AudioEventsImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -364,6 +358,32 @@ public final class AudioEventsGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getValidateEventMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.ValidateEventRequest,
+              ai.sensorycloud.api.v1.audio.ValidateEventResponse>(
+                service, METHODID_VALIDATE_EVENT)))
+        .addMethod(
+          getCreateEnrolledEventMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.CreateEnrolledEventRequest,
+              ai.sensorycloud.api.v1.audio.CreateEnrollmentResponse>(
+                service, METHODID_CREATE_ENROLLED_EVENT)))
+        .addMethod(
+          getValidateEnrolledEventMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest,
+              ai.sensorycloud.api.v1.audio.ValidateEnrolledEventResponse>(
+                service, METHODID_VALIDATE_ENROLLED_EVENT)))
+        .build();
+  }
+
   private static abstract class AudioEventsBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     AudioEventsBaseDescriptorSupplier() {}
@@ -387,9 +407,9 @@ public final class AudioEventsGrpc {
   private static final class AudioEventsMethodDescriptorSupplier
       extends AudioEventsBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    AudioEventsMethodDescriptorSupplier(String methodName) {
+    AudioEventsMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 

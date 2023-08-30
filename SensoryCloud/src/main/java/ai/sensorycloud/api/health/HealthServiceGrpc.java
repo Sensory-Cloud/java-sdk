@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: health/health.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class HealthServiceGrpc {
 
   private HealthServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.health.HealthService";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.health.HealthService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.health.HealthRequest,
@@ -98,37 +98,41 @@ public final class HealthServiceGrpc {
    * Service for Health function
    * </pre>
    */
-  public static abstract class HealthServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Obtain an Health and Server status information
      * </pre>
      */
-    public void getHealth(ai.sensorycloud.api.health.HealthRequest request,
+    default void getHealth(ai.sensorycloud.api.health.HealthRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.common.ServerHealthResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetHealthMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetHealthMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.health.HealthRequest,
-                ai.sensorycloud.api.common.ServerHealthResponse>(
-                  this, METHODID_GET_HEALTH)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service HealthService.
    * <pre>
    * Service for Health function
    * </pre>
    */
-  public static final class HealthServiceStub extends io.grpc.stub.AbstractAsyncStub<HealthServiceStub> {
+  public static abstract class HealthServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return HealthServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service HealthService.
+   * <pre>
+   * Service for Health function
+   * </pre>
+   */
+  public static final class HealthServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<HealthServiceStub> {
     private HealthServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -153,11 +157,13 @@ public final class HealthServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service HealthService.
    * <pre>
    * Service for Health function
    * </pre>
    */
-  public static final class HealthServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<HealthServiceBlockingStub> {
+  public static final class HealthServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<HealthServiceBlockingStub> {
     private HealthServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -181,11 +187,13 @@ public final class HealthServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service HealthService.
    * <pre>
    * Service for Health function
    * </pre>
    */
-  public static final class HealthServiceFutureStub extends io.grpc.stub.AbstractFutureStub<HealthServiceFutureStub> {
+  public static final class HealthServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<HealthServiceFutureStub> {
     private HealthServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -216,10 +224,10 @@ public final class HealthServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final HealthServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(HealthServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -248,6 +256,18 @@ public final class HealthServiceGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetHealthMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.health.HealthRequest,
+              ai.sensorycloud.api.common.ServerHealthResponse>(
+                service, METHODID_GET_HEALTH)))
+        .build();
+  }
+
   private static abstract class HealthServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     HealthServiceBaseDescriptorSupplier() {}
@@ -271,9 +291,9 @@ public final class HealthServiceGrpc {
   private static final class HealthServiceMethodDescriptorSupplier
       extends HealthServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    HealthServiceMethodDescriptorSupplier(String methodName) {
+    HealthServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 

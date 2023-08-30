@@ -96,5 +96,5 @@ public interface ValidateEventRequestOrBuilder extends
    */
   ai.sensorycloud.api.v1.audio.AudioRequestPostProcessingActionOrBuilder getPostProcessingActionOrBuilder();
 
-  public ai.sensorycloud.api.v1.audio.ValidateEventRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.audio.ValidateEventRequest.StreamingRequestCase getStreamingRequestCase();
 }

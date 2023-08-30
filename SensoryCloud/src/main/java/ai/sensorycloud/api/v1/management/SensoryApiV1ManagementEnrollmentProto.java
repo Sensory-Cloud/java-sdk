@@ -159,10 +159,11 @@ public final class SensoryApiV1ManagementEnrollmentProto {
       "lmentsFromGroup\0223.sensory.api.v1.managem" +
       "ent.RemoveEnrollmentsRequest\0322.sensory.a" +
       "pi.v1.management.EnrollmentGroupResponse" +
-      "\"\000B\215\001\n!ai.sensorycloud.api.v1.management" +
+      "\"\000B\224\001\n!ai.sensorycloud.api.v1.management" +
       "B%SensoryApiV1ManagementEnrollmentProtoP" +
       "\001Z?gitlab.com/sensory-cloud/server/titan" +
-      ".git/pkg/api/v1/managementb\006proto3"
+      ".git/pkg/api/v1/management\242\002\004SENGb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -29,100 +29,6 @@ private static final long serialVersionUID = 0L;
     return new CpuSummary();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private CpuSummary(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-
-            user_ = input.readUInt64();
-            break;
-          }
-          case 16: {
-
-            nice_ = input.readUInt64();
-            break;
-          }
-          case 24: {
-
-            system_ = input.readUInt64();
-            break;
-          }
-          case 32: {
-
-            idle_ = input.readUInt64();
-            break;
-          }
-          case 40: {
-
-            ioWait_ = input.readUInt64();
-            break;
-          }
-          case 48: {
-
-            irq_ = input.readUInt64();
-            break;
-          }
-          case 56: {
-
-            softIrq_ = input.readUInt64();
-            break;
-          }
-          case 64: {
-
-            steal_ = input.readUInt64();
-            break;
-          }
-          case 72: {
-
-            guest_ = input.readUInt64();
-            break;
-          }
-          case 80: {
-
-            guestNice_ = input.readUInt64();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.common.SensoryApiCommonProto.internal_static_sensory_api_common_CpuSummary_descriptor;
@@ -137,7 +43,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int USER_FIELD_NUMBER = 1;
-  private long user_;
+  private long user_ = 0L;
   /**
    * <pre>
    * normal processes executing in user mode
@@ -152,7 +58,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NICE_FIELD_NUMBER = 2;
-  private long nice_;
+  private long nice_ = 0L;
   /**
    * <pre>
    * niced processes executing in user mode
@@ -167,7 +73,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SYSTEM_FIELD_NUMBER = 3;
-  private long system_;
+  private long system_ = 0L;
   /**
    * <pre>
    * processes executing in kernel mode
@@ -182,7 +88,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int IDLE_FIELD_NUMBER = 4;
-  private long idle_;
+  private long idle_ = 0L;
   /**
    * <pre>
    * idle cpu
@@ -197,7 +103,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int IOWAIT_FIELD_NUMBER = 5;
-  private long ioWait_;
+  private long ioWait_ = 0L;
   /**
    * <pre>
    * waiting for I/O to complete
@@ -212,7 +118,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int IRQ_FIELD_NUMBER = 6;
-  private long irq_;
+  private long irq_ = 0L;
   /**
    * <pre>
    * servicing interrupts
@@ -227,7 +133,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SOFTIRQ_FIELD_NUMBER = 7;
-  private long softIrq_;
+  private long softIrq_ = 0L;
   /**
    * <pre>
    * servicing softirqs
@@ -242,7 +148,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int STEAL_FIELD_NUMBER = 8;
-  private long steal_;
+  private long steal_ = 0L;
   /**
    * <pre>
    * counts the ticks spent executing other virtual hosts
@@ -257,7 +163,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int GUEST_FIELD_NUMBER = 9;
-  private long guest_;
+  private long guest_ = 0L;
   /**
    * <pre>
    * counts the time spent running a virtual CPU for guest operating systems under the control of the Linux kernel
@@ -272,7 +178,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int GUESTNICE_FIELD_NUMBER = 10;
-  private long guestNice_;
+  private long guestNice_ = 0L;
   /**
    * <pre>
    * time spent running a niced guest
@@ -330,7 +236,7 @@ private static final long serialVersionUID = 0L;
     if (guestNice_ != 0L) {
       output.writeUInt64(10, guestNice_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -379,7 +285,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeUInt64Size(10, guestNice_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -414,7 +320,7 @@ private static final long serialVersionUID = 0L;
         != other.getGuest()) return false;
     if (getGuestNice()
         != other.getGuestNice()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -455,7 +361,7 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + GUESTNICE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getGuestNice());
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -504,11 +410,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.CpuSummary parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.common.CpuSummary parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -576,42 +484,28 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.common.CpuSummary.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       user_ = 0L;
-
       nice_ = 0L;
-
       system_ = 0L;
-
       idle_ = 0L;
-
       ioWait_ = 0L;
-
       irq_ = 0L;
-
       softIrq_ = 0L;
-
       steal_ = 0L;
-
       guest_ = 0L;
-
       guestNice_ = 0L;
-
       return this;
     }
 
@@ -638,18 +532,43 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.common.CpuSummary buildPartial() {
       ai.sensorycloud.api.common.CpuSummary result = new ai.sensorycloud.api.common.CpuSummary(this);
-      result.user_ = user_;
-      result.nice_ = nice_;
-      result.system_ = system_;
-      result.idle_ = idle_;
-      result.ioWait_ = ioWait_;
-      result.irq_ = irq_;
-      result.softIrq_ = softIrq_;
-      result.steal_ = steal_;
-      result.guest_ = guest_;
-      result.guestNice_ = guestNice_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.common.CpuSummary result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.user_ = user_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.nice_ = nice_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.system_ = system_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.idle_ = idle_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.ioWait_ = ioWait_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.irq_ = irq_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.softIrq_ = softIrq_;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        result.steal_ = steal_;
+      }
+      if (((from_bitField0_ & 0x00000100) != 0)) {
+        result.guest_ = guest_;
+      }
+      if (((from_bitField0_ & 0x00000200) != 0)) {
+        result.guestNice_ = guestNice_;
+      }
     }
 
     @java.lang.Override
@@ -726,7 +645,7 @@ private static final long serialVersionUID = 0L;
       if (other.getGuestNice() != 0L) {
         setGuestNice(other.getGuestNice());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -741,19 +660,83 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.common.CpuSummary parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              user_ = input.readUInt64();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 8
+            case 16: {
+              nice_ = input.readUInt64();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
+            case 24: {
+              system_ = input.readUInt64();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 24
+            case 32: {
+              idle_ = input.readUInt64();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 32
+            case 40: {
+              ioWait_ = input.readUInt64();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 40
+            case 48: {
+              irq_ = input.readUInt64();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 48
+            case 56: {
+              softIrq_ = input.readUInt64();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 56
+            case 64: {
+              steal_ = input.readUInt64();
+              bitField0_ |= 0x00000080;
+              break;
+            } // case 64
+            case 72: {
+              guest_ = input.readUInt64();
+              bitField0_ |= 0x00000100;
+              break;
+            } // case 72
+            case 80: {
+              guestNice_ = input.readUInt64();
+              bitField0_ |= 0x00000200;
+              break;
+            } // case 80
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.common.CpuSummary) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private long user_ ;
     /**
@@ -778,8 +761,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setUser(long value) {
-      
+
       user_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -792,7 +776,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearUser() {
-      
+      bitField0_ = (bitField0_ & ~0x00000001);
       user_ = 0L;
       onChanged();
       return this;
@@ -821,8 +805,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setNice(long value) {
-      
+
       nice_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -835,7 +820,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearNice() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       nice_ = 0L;
       onChanged();
       return this;
@@ -864,8 +849,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setSystem(long value) {
-      
+
       system_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -878,7 +864,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearSystem() {
-      
+      bitField0_ = (bitField0_ & ~0x00000004);
       system_ = 0L;
       onChanged();
       return this;
@@ -907,8 +893,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setIdle(long value) {
-      
+
       idle_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -921,7 +908,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIdle() {
-      
+      bitField0_ = (bitField0_ & ~0x00000008);
       idle_ = 0L;
       onChanged();
       return this;
@@ -950,8 +937,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setIoWait(long value) {
-      
+
       ioWait_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -964,7 +952,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIoWait() {
-      
+      bitField0_ = (bitField0_ & ~0x00000010);
       ioWait_ = 0L;
       onChanged();
       return this;
@@ -993,8 +981,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setIrq(long value) {
-      
+
       irq_ = value;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1007,7 +996,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIrq() {
-      
+      bitField0_ = (bitField0_ & ~0x00000020);
       irq_ = 0L;
       onChanged();
       return this;
@@ -1036,8 +1025,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setSoftIrq(long value) {
-      
+
       softIrq_ = value;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
@@ -1050,7 +1040,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearSoftIrq() {
-      
+      bitField0_ = (bitField0_ & ~0x00000040);
       softIrq_ = 0L;
       onChanged();
       return this;
@@ -1079,8 +1069,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setSteal(long value) {
-      
+
       steal_ = value;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
@@ -1093,7 +1084,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearSteal() {
-      
+      bitField0_ = (bitField0_ & ~0x00000080);
       steal_ = 0L;
       onChanged();
       return this;
@@ -1122,8 +1113,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setGuest(long value) {
-      
+
       guest_ = value;
+      bitField0_ |= 0x00000100;
       onChanged();
       return this;
     }
@@ -1136,7 +1128,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearGuest() {
-      
+      bitField0_ = (bitField0_ & ~0x00000100);
       guest_ = 0L;
       onChanged();
       return this;
@@ -1165,8 +1157,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setGuestNice(long value) {
-      
+
       guestNice_ = value;
+      bitField0_ |= 0x00000200;
       onChanged();
       return this;
     }
@@ -1179,7 +1172,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearGuestNice() {
-      
+      bitField0_ = (bitField0_ & ~0x00000200);
       guestNice_ = 0L;
       onChanged();
       return this;
@@ -1217,7 +1210,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new CpuSummary(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

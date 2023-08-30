@@ -207,5 +207,5 @@ public interface CreateEnrollmentConfigOrBuilder extends
    */
   boolean getDisableServerEnrollmentTemplateStorage();
 
-  public ai.sensorycloud.api.v1.audio.CreateEnrollmentConfig.EnrollLengthCase getEnrollLengthCase();
+  ai.sensorycloud.api.v1.audio.CreateEnrollmentConfig.EnrollLengthCase getEnrollLengthCase();
 }

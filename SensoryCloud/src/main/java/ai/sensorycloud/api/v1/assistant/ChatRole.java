@@ -4,45 +4,37 @@
 package ai.sensorycloud.api.v1.assistant;
 
 /**
- * Protobuf enum {@code sensory.api.v1.assistant.AssistantPostProcessingAction}
+ * Protobuf enum {@code sensory.api.v1.assistant.ChatRole}
  */
-public enum AssistantPostProcessingAction
+public enum ChatRole
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
-   * <pre>
-   * Default value to perform no action
-   * </pre>
-   *
-   * <code>NOT_SET = 0;</code>
+   * <code>SYSTEM = 0;</code>
    */
-  NOT_SET(0),
+  SYSTEM(0),
   /**
-   * <pre>
-   * Indicates the final message has been sent. The server will wrap up and close the stream.
-   * </pre>
-   *
-   * <code>FINAL = 1;</code>
+   * <code>USER = 1;</code>
    */
-  FINAL(1),
+  USER(1),
+  /**
+   * <code>ASSISTANT = 2;</code>
+   */
+  ASSISTANT(2),
   UNRECOGNIZED(-1),
   ;
 
   /**
-   * <pre>
-   * Default value to perform no action
-   * </pre>
-   *
-   * <code>NOT_SET = 0;</code>
+   * <code>SYSTEM = 0;</code>
    */
-  public static final int NOT_SET_VALUE = 0;
+  public static final int SYSTEM_VALUE = 0;
   /**
-   * <pre>
-   * Indicates the final message has been sent. The server will wrap up and close the stream.
-   * </pre>
-   *
-   * <code>FINAL = 1;</code>
+   * <code>USER = 1;</code>
    */
-  public static final int FINAL_VALUE = 1;
+  public static final int USER_VALUE = 1;
+  /**
+   * <code>ASSISTANT = 2;</code>
+   */
+  public static final int ASSISTANT_VALUE = 2;
 
 
   public final int getNumber() {
@@ -59,7 +51,7 @@ public enum AssistantPostProcessingAction
    * @deprecated Use {@link #forNumber(int)} instead.
    */
   @java.lang.Deprecated
-  public static AssistantPostProcessingAction valueOf(int value) {
+  public static ChatRole valueOf(int value) {
     return forNumber(value);
   }
 
@@ -67,23 +59,24 @@ public enum AssistantPostProcessingAction
    * @param value The numeric wire value of the corresponding enum entry.
    * @return The enum associated with the given numeric wire value.
    */
-  public static AssistantPostProcessingAction forNumber(int value) {
+  public static ChatRole forNumber(int value) {
     switch (value) {
-      case 0: return NOT_SET;
-      case 1: return FINAL;
+      case 0: return SYSTEM;
+      case 1: return USER;
+      case 2: return ASSISTANT;
       default: return null;
     }
   }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<AssistantPostProcessingAction>
+  public static com.google.protobuf.Internal.EnumLiteMap<ChatRole>
       internalGetValueMap() {
     return internalValueMap;
   }
   private static final com.google.protobuf.Internal.EnumLiteMap<
-      AssistantPostProcessingAction> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<AssistantPostProcessingAction>() {
-          public AssistantPostProcessingAction findValueByNumber(int number) {
-            return AssistantPostProcessingAction.forNumber(number);
+      ChatRole> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<ChatRole>() {
+          public ChatRole findValueByNumber(int number) {
+            return ChatRole.forNumber(number);
           }
         };
 
@@ -101,12 +94,12 @@ public enum AssistantPostProcessingAction
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return ai.sensorycloud.api.v1.assistant.SensoryApiV1AssistantProto.getDescriptor().getEnumTypes().get(0);
+    return ai.sensorycloud.api.v1.assistant.SensoryApiV1ManagementServerProto.getDescriptor().getEnumTypes().get(0);
   }
 
-  private static final AssistantPostProcessingAction[] VALUES = values();
+  private static final ChatRole[] VALUES = values();
 
-  public static AssistantPostProcessingAction valueOf(
+  public static ChatRole valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
@@ -120,10 +113,10 @@ public enum AssistantPostProcessingAction
 
   private final int value;
 
-  private AssistantPostProcessingAction(int value) {
+  private ChatRole(int value) {
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:sensory.api.v1.assistant.AssistantPostProcessingAction)
+  // @@protoc_insertion_point(enum_scope:sensory.api.v1.assistant.ChatRole)
 }
 

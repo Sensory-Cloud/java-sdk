@@ -69,5 +69,5 @@ public interface ValidateEnrolledEventRequestOrBuilder extends
    */
   com.google.protobuf.ByteString getAudioContent();
 
-  public ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.audio.ValidateEnrolledEventRequest.StreamingRequestCase getStreamingRequestCase();
 }

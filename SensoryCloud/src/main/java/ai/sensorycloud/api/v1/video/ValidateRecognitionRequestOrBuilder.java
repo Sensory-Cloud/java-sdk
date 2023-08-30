@@ -59,5 +59,5 @@ public interface ValidateRecognitionRequestOrBuilder extends
    */
   com.google.protobuf.ByteString getImageContent();
 
-  public ai.sensorycloud.api.v1.video.ValidateRecognitionRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.video.ValidateRecognitionRequest.StreamingRequestCase getStreamingRequestCase();
 }

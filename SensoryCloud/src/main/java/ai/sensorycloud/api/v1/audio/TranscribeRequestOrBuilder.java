@@ -96,5 +96,5 @@ public interface TranscribeRequestOrBuilder extends
    */
   ai.sensorycloud.api.v1.audio.AudioRequestPostProcessingActionOrBuilder getPostProcessingActionOrBuilder();
 
-  public ai.sensorycloud.api.v1.audio.TranscribeRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.audio.TranscribeRequest.StreamingRequestCase getStreamingRequestCase();
 }

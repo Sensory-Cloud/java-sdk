@@ -71,5 +71,5 @@ public interface FileResponseOrBuilder extends
    */
   boolean getComplete();
 
-  public ai.sensorycloud.api.v1.file.FileResponse.StreamingResponseCase getStreamingResponseCase();
+  ai.sensorycloud.api.v1.file.FileResponse.StreamingResponseCase getStreamingResponseCase();
 }

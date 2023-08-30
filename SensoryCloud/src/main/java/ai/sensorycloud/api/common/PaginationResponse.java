@@ -21,7 +21,8 @@ private static final long serialVersionUID = 0L;
   }
   private PaginationResponse() {
     ordering_ = "";
-    possibleOrderings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    possibleOrderings_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   @java.lang.Override
@@ -31,99 +32,6 @@ private static final long serialVersionUID = 0L;
     return new PaginationResponse();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private PaginationResponse(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            ordering_ = s;
-            break;
-          }
-          case 16: {
-
-            decending_ = input.readBool();
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              possibleOrderings_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            possibleOrderings_.add(s);
-            break;
-          }
-          case 32: {
-
-            totalCount_ = input.readInt64();
-            break;
-          }
-          case 40: {
-
-            pageSize_ = input.readInt32();
-            break;
-          }
-          case 48: {
-
-            prevPageIndex_ = input.readInt32();
-            break;
-          }
-          case 56: {
-
-            currentPageIndex_ = input.readInt32();
-            break;
-          }
-          case 64: {
-
-            nextPageIndex_ = input.readInt32();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        possibleOrderings_ = possibleOrderings_.getUnmodifiableView();
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.common.SensoryApiCommonProto.internal_static_sensory_api_common_PaginationResponse_descriptor;
@@ -138,7 +46,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ORDERING_FIELD_NUMBER = 1;
-  private volatile java.lang.Object ordering_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object ordering_ = "";
   /**
    * <pre>
    * The parameter by which the data has been ordered by
@@ -184,7 +93,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int DECENDING_FIELD_NUMBER = 2;
-  private boolean decending_;
+  private boolean decending_ = false;
   /**
    * <pre>
    * "True" if the data has been sorted in decending order
@@ -199,7 +108,9 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int POSSIBLEORDERINGS_FIELD_NUMBER = 3;
-  private com.google.protobuf.LazyStringList possibleOrderings_;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.LazyStringArrayList possibleOrderings_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
   /**
    * <pre>
    * A list of all possible parameters that the data can be ordered by
@@ -250,7 +161,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TOTALCOUNT_FIELD_NUMBER = 4;
-  private long totalCount_;
+  private long totalCount_ = 0L;
   /**
    * <pre>
    * The total count of data objects
@@ -265,7 +176,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PAGESIZE_FIELD_NUMBER = 5;
-  private int pageSize_;
+  private int pageSize_ = 0;
   /**
    * <pre>
    * The page size of the data
@@ -280,7 +191,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PREVPAGEINDEX_FIELD_NUMBER = 6;
-  private int prevPageIndex_;
+  private int prevPageIndex_ = 0;
   /**
    * <pre>
    * The page index for the previous page. If negative there is no previous page
@@ -295,7 +206,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int CURRENTPAGEINDEX_FIELD_NUMBER = 7;
-  private int currentPageIndex_;
+  private int currentPageIndex_ = 0;
   /**
    * <pre>
    * The page index for the current page.
@@ -310,7 +221,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NEXTPAGEINDEX_FIELD_NUMBER = 8;
-  private int nextPageIndex_;
+  private int nextPageIndex_ = 0;
   /**
    * <pre>
    * The page index for the next page. If negative there is no next page
@@ -362,7 +273,7 @@ private static final long serialVersionUID = 0L;
     if (nextPageIndex_ != 0) {
       output.writeInt32(8, nextPageIndex_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -406,7 +317,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(8, nextPageIndex_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -437,7 +348,7 @@ private static final long serialVersionUID = 0L;
         != other.getCurrentPageIndex()) return false;
     if (getNextPageIndex()
         != other.getNextPageIndex()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -468,7 +379,7 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getCurrentPageIndex();
     hash = (37 * hash) + NEXTPAGEINDEX_FIELD_NUMBER;
     hash = (53 * hash) + getNextPageIndex();
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -517,11 +428,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.PaginationResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.common.PaginationResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -589,38 +502,27 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.common.PaginationResponse.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       ordering_ = "";
-
       decending_ = false;
-
-      possibleOrderings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
+      possibleOrderings_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       totalCount_ = 0L;
-
       pageSize_ = 0;
-
       prevPageIndex_ = 0;
-
       currentPageIndex_ = 0;
-
       nextPageIndex_ = 0;
-
       return this;
     }
 
@@ -647,21 +549,38 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.common.PaginationResponse buildPartial() {
       ai.sensorycloud.api.common.PaginationResponse result = new ai.sensorycloud.api.common.PaginationResponse(this);
-      int from_bitField0_ = bitField0_;
-      result.ordering_ = ordering_;
-      result.decending_ = decending_;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        possibleOrderings_ = possibleOrderings_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      }
-      result.possibleOrderings_ = possibleOrderings_;
-      result.totalCount_ = totalCount_;
-      result.pageSize_ = pageSize_;
-      result.prevPageIndex_ = prevPageIndex_;
-      result.currentPageIndex_ = currentPageIndex_;
-      result.nextPageIndex_ = nextPageIndex_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.common.PaginationResponse result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.ordering_ = ordering_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.decending_ = decending_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        possibleOrderings_.makeImmutable();
+        result.possibleOrderings_ = possibleOrderings_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.totalCount_ = totalCount_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.pageSize_ = pageSize_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.prevPageIndex_ = prevPageIndex_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.currentPageIndex_ = currentPageIndex_;
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        result.nextPageIndex_ = nextPageIndex_;
+      }
     }
 
     @java.lang.Override
@@ -710,6 +629,7 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.common.PaginationResponse.getDefaultInstance()) return this;
       if (!other.getOrdering().isEmpty()) {
         ordering_ = other.ordering_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (other.getDecending() != false) {
@@ -718,7 +638,7 @@ private static final long serialVersionUID = 0L;
       if (!other.possibleOrderings_.isEmpty()) {
         if (possibleOrderings_.isEmpty()) {
           possibleOrderings_ = other.possibleOrderings_;
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ |= 0x00000004;
         } else {
           ensurePossibleOrderingsIsMutable();
           possibleOrderings_.addAll(other.possibleOrderings_);
@@ -740,7 +660,7 @@ private static final long serialVersionUID = 0L;
       if (other.getNextPageIndex() != 0) {
         setNextPageIndex(other.getNextPageIndex());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -755,17 +675,71 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.common.PaginationResponse parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              ordering_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 16: {
+              decending_ = input.readBool();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+              ensurePossibleOrderingsIsMutable();
+              possibleOrderings_.add(s);
+              break;
+            } // case 26
+            case 32: {
+              totalCount_ = input.readInt64();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 32
+            case 40: {
+              pageSize_ = input.readInt32();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 40
+            case 48: {
+              prevPageIndex_ = input.readInt32();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 48
+            case 56: {
+              currentPageIndex_ = input.readInt32();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 56
+            case 64: {
+              nextPageIndex_ = input.readInt32();
+              bitField0_ |= 0x00000080;
+              break;
+            } // case 64
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.common.PaginationResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
     private int bitField0_;
@@ -823,11 +797,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setOrdering(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       ordering_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -840,8 +812,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearOrdering() {
-      
       ordering_ = getDefaultInstance().getOrdering();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -856,12 +828,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setOrderingBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       ordering_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -889,8 +859,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setDecending(boolean value) {
-      
+
       decending_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -903,18 +874,19 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearDecending() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       decending_ = false;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.LazyStringList possibleOrderings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.LazyStringArrayList possibleOrderings_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensurePossibleOrderingsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
+      if (!possibleOrderings_.isModifiable()) {
         possibleOrderings_ = new com.google.protobuf.LazyStringArrayList(possibleOrderings_);
-        bitField0_ |= 0x00000001;
-       }
+      }
+      bitField0_ |= 0x00000004;
     }
     /**
      * <pre>
@@ -926,7 +898,8 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ProtocolStringList
         getPossibleOrderingsList() {
-      return possibleOrderings_.getUnmodifiableView();
+      possibleOrderings_.makeImmutable();
+      return possibleOrderings_;
     }
     /**
      * <pre>
@@ -976,11 +949,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setPossibleOrderings(
         int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensurePossibleOrderingsIsMutable();
+      if (value == null) { throw new NullPointerException(); }
+      ensurePossibleOrderingsIsMutable();
       possibleOrderings_.set(index, value);
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -995,11 +967,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder addPossibleOrderings(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensurePossibleOrderingsIsMutable();
+      if (value == null) { throw new NullPointerException(); }
+      ensurePossibleOrderingsIsMutable();
       possibleOrderings_.add(value);
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1017,6 +988,7 @@ private static final long serialVersionUID = 0L;
       ensurePossibleOrderingsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, possibleOrderings_);
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1029,8 +1001,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPossibleOrderings() {
-      possibleOrderings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
+      possibleOrderings_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000004);;
       onChanged();
       return this;
     }
@@ -1045,12 +1018,11 @@ private static final long serialVersionUID = 0L;
      */
     public Builder addPossibleOrderingsBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       ensurePossibleOrderingsIsMutable();
       possibleOrderings_.add(value);
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1078,8 +1050,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setTotalCount(long value) {
-      
+
       totalCount_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1092,7 +1065,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearTotalCount() {
-      
+      bitField0_ = (bitField0_ & ~0x00000008);
       totalCount_ = 0L;
       onChanged();
       return this;
@@ -1121,8 +1094,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setPageSize(int value) {
-      
+
       pageSize_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1135,7 +1109,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPageSize() {
-      
+      bitField0_ = (bitField0_ & ~0x00000010);
       pageSize_ = 0;
       onChanged();
       return this;
@@ -1164,8 +1138,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setPrevPageIndex(int value) {
-      
+
       prevPageIndex_ = value;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1178,7 +1153,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPrevPageIndex() {
-      
+      bitField0_ = (bitField0_ & ~0x00000020);
       prevPageIndex_ = 0;
       onChanged();
       return this;
@@ -1207,8 +1182,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setCurrentPageIndex(int value) {
-      
+
       currentPageIndex_ = value;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
@@ -1221,7 +1197,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearCurrentPageIndex() {
-      
+      bitField0_ = (bitField0_ & ~0x00000040);
       currentPageIndex_ = 0;
       onChanged();
       return this;
@@ -1250,8 +1226,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setNextPageIndex(int value) {
-      
+
       nextPageIndex_ = value;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
@@ -1264,7 +1241,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearNextPageIndex() {
-      
+      bitField0_ = (bitField0_ & ~0x00000080);
       nextPageIndex_ = 0;
       onChanged();
       return this;
@@ -1302,7 +1279,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new PaginationResponse(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

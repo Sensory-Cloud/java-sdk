@@ -165,5 +165,5 @@ public interface CreateEnrollmentEventConfigOrBuilder extends
   com.google.protobuf.ByteString
       getReferenceIdBytes();
 
-  public ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig.EnrollLengthCase getEnrollLengthCase();
+  ai.sensorycloud.api.v1.audio.CreateEnrollmentEventConfig.EnrollLengthCase getEnrollLengthCase();
 }

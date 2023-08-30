@@ -62,5 +62,5 @@ public interface SynthesizeSpeechResponseOrBuilder extends
    */
   com.google.protobuf.ByteString getAudioContent();
 
-  public ai.sensorycloud.api.v1.audio.SynthesizeSpeechResponse.StreamingResponseCase getStreamingResponseCase();
+  ai.sensorycloud.api.v1.audio.SynthesizeSpeechResponse.StreamingResponseCase getStreamingResponseCase();
 }
