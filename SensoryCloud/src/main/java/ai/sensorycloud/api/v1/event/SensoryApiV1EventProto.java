@@ -40,6 +40,11 @@ public final class SensoryApiV1EventProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sensory_api_v1_event_UsageEventListResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sensory_api_v1_event_GlobalEventSummaryRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sensory_api_v1_event_GlobalEventSummaryRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_sensory_api_v1_event_UsageEventSummary_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -68,7 +73,7 @@ public final class SensoryApiV1EventProto {
       "alidate/validate.proto\032\023common/common.pr" +
       "oto\"M\n\031PublishUsageEventsRequest\0220\n\006even" +
       "ts\030\001 \003(\0132 .sensory.api.v1.event.UsageEve" +
-      "nt\"\261\003\n\nUsageEvent\0227\n\ttimestamp\030\001 \001(\0132\032.g" +
+      "nt\"\305\003\n\nUsageEvent\0227\n\ttimestamp\030\001 \001(\0132\032.g" +
       "oogle.protobuf.TimestampB\010\372B\005\262\001\002\010\001\022\031\n\010du" +
       "ration\030\002 \001(\003B\007\372B\004\"\002(\000\022\024\n\002id\030\003 \001(\tB\010\372B\005r\003" +
       "\260\001\001\022\033\n\010clientId\030\004 \001(\tB\t\372B\006r\004\020\001\030\177\022:\n\004type" +
@@ -78,48 +83,56 @@ public final class SensoryApiV1EventProto {
       "on.TechnologyType\022\016\n\006models\030\010 \003(\t\022\027\n\017aud" +
       "ioDurationMs\030\t \001(\003\022\027\n\017videoFrameCount\030\n " +
       "\001(\003\022\020\n\010tenantId\030\013 \001(\t\0227\n\020billableFunctio" +
-      "n\030\014 \001(\0162\035.sensory.api.common.ModelType\"\306" +
-      "\003\n\022UsageEventResponse\0227\n\ttimestamp\030\001 \001(\013" +
-      "2\032.google.protobuf.TimestampB\010\372B\005\262\001\002\010\001\022\031" +
-      "\n\010duration\030\002 \001(\003B\007\372B\004\"\002(\000\022\024\n\002id\030\003 \001(\tB\010\372" +
-      "B\005r\003\260\001\001\022\033\n\010clientId\030\004 \001(\tB\t\372B\006r\004\020\001\030\177\022:\n\004" +
-      "type\030\005 \001(\0162\".sensory.api.common.UsageEve" +
-      "ntTypeB\010\372B\005\202\001\002\020\001\022\031\n\005route\030\006 \001(\tB\n\372B\007r\005\020\001" +
-      "\030\377\003\0228\n\014technologies\030\007 \003(\0162\".sensory.api." +
-      "common.TechnologyType\022\016\n\006models\030\010 \003(\t\022\025\n" +
-      "\rbillableValue\030\t \001(\003\022\025\n\rbillableUnits\030\n " +
-      "\001(\t\022\020\n\010tenantId\030\013 \001(\t\0227\n\020billableFunctio" +
-      "n\030\014 \001(\0162\035.sensory.api.common.ModelType\022\017" +
-      "\n\007credits\030\r \001(\001\"\365\001\n\025UsageEventListReques" +
-      "t\022\020\n\010tenantId\030\001 \001(\t\0229\n\npagination\030\002 \001(\0132" +
-      "%.sensory.api.common.PaginationOptions\022)" +
-      "\n\005after\030\003 \001(\0132\032.google.protobuf.Timestam" +
-      "p\022*\n\006before\030\004 \001(\0132\032.google.protobuf.Time" +
-      "stamp\0228\n\021billableFunctions\030\005 \003(\0162\035.senso" +
-      "ry.api.common.ModelType\"\216\001\n\026UsageEventLi" +
-      "stResponse\0228\n\006events\030\001 \003(\0132(.sensory.api" +
-      ".v1.event.UsageEventResponse\022:\n\npaginati" +
-      "on\030\002 \001(\0132&.sensory.api.common.Pagination" +
-      "Response\"T\n\021UsageEventSummary\022?\n\tsummari" +
-      "es\030\001 \003(\0132,.sensory.api.v1.event.UsageEve" +
-      "ntModelSummary\"\217\001\n\026UsageEventModelSummar" +
-      "y\0227\n\020billableFunction\030\001 \001(\0162\035.sensory.ap" +
-      "i.common.ModelType\022\r\n\005units\030\002 \001(\t\022\r\n\005val" +
-      "ue\030\003 \001(\003\022\r\n\005count\030\004 \001(\003\022\017\n\007credits\030\005 \001(\001" +
-      "\"\034\n\032PublishUsageEventsResponse2\353\002\n\014Event" +
-      "Service\022y\n\022PublishUsageEvents\022/.sensory." +
-      "api.v1.event.PublishUsageEventsRequest\0320" +
-      ".sensory.api.v1.event.PublishUsageEvents" +
-      "Response\"\000\022p\n\021GetUsageEventList\022+.sensor" +
-      "y.api.v1.event.UsageEventListRequest\032,.s" +
-      "ensory.api.v1.event.UsageEventListRespon" +
-      "se\"\000\022n\n\024GetUsageEventSummary\022+.sensory.a" +
-      "pi.v1.event.UsageEventListRequest\032\'.sens" +
-      "ory.api.v1.event.UsageEventSummary\"\000Bt\n\034" +
-      "ai.sensorycloud.api.v1.eventB\026SensoryApi" +
-      "V1EventProtoP\001Z:gitlab.com/sensory-cloud" +
-      "/server/titan.git/pkg/api/v1/eventb\006prot" +
-      "o3"
+      "n\030\014 \001(\0162\035.sensory.api.common.ModelType\022\022" +
+      "\n\ntokenCount\030\r \001(\003\"\306\003\n\022UsageEventRespons" +
+      "e\0227\n\ttimestamp\030\001 \001(\0132\032.google.protobuf.T" +
+      "imestampB\010\372B\005\262\001\002\010\001\022\031\n\010duration\030\002 \001(\003B\007\372B" +
+      "\004\"\002(\000\022\024\n\002id\030\003 \001(\tB\010\372B\005r\003\260\001\001\022\033\n\010clientId\030" +
+      "\004 \001(\tB\t\372B\006r\004\020\001\030\177\022:\n\004type\030\005 \001(\0162\".sensory" +
+      ".api.common.UsageEventTypeB\010\372B\005\202\001\002\020\001\022\031\n\005" +
+      "route\030\006 \001(\tB\n\372B\007r\005\020\001\030\377\003\0228\n\014technologies\030" +
+      "\007 \003(\0162\".sensory.api.common.TechnologyTyp" +
+      "e\022\016\n\006models\030\010 \003(\t\022\025\n\rbillableValue\030\t \001(\003" +
+      "\022\025\n\rbillableUnits\030\n \001(\t\022\020\n\010tenantId\030\013 \001(" +
+      "\t\0227\n\020billableFunction\030\014 \001(\0162\035.sensory.ap" +
+      "i.common.ModelType\022\017\n\007credits\030\r \001(\001\"\365\001\n\025" +
+      "UsageEventListRequest\022\020\n\010tenantId\030\001 \001(\t\022" +
+      "9\n\npagination\030\002 \001(\0132%.sensory.api.common" +
+      ".PaginationOptions\022)\n\005after\030\003 \001(\0132\032.goog" +
+      "le.protobuf.Timestamp\022*\n\006before\030\004 \001(\0132\032." +
+      "google.protobuf.Timestamp\0228\n\021billableFun" +
+      "ctions\030\005 \003(\0162\035.sensory.api.common.ModelT" +
+      "ype\"\216\001\n\026UsageEventListResponse\0228\n\006events" +
+      "\030\001 \003(\0132(.sensory.api.v1.event.UsageEvent" +
+      "Response\022:\n\npagination\030\002 \001(\0132&.sensory.a" +
+      "pi.common.PaginationResponse\"\275\001\n\031GlobalE" +
+      "ventSummaryRequest\022\017\n\007tenants\030\001 \003(\t\022)\n\005a" +
+      "fter\030\002 \001(\0132\032.google.protobuf.Timestamp\022*" +
+      "\n\006before\030\003 \001(\0132\032.google.protobuf.Timesta" +
+      "mp\0228\n\021billableFunctions\030\005 \003(\0162\035.sensory." +
+      "api.common.ModelType\"T\n\021UsageEventSummar" +
+      "y\022?\n\tsummaries\030\001 \003(\0132,.sensory.api.v1.ev" +
+      "ent.UsageEventModelSummary\"\241\001\n\026UsageEven" +
+      "tModelSummary\0227\n\020billableFunction\030\001 \001(\0162" +
+      "\035.sensory.api.common.ModelType\022\r\n\005units\030" +
+      "\002 \001(\t\022\r\n\005value\030\003 \001(\003\022\r\n\005count\030\004 \001(\003\022\017\n\007c" +
+      "redits\030\005 \001(\001\022\020\n\010tenantId\030\006 \001(\t\"\034\n\032Publis" +
+      "hUsageEventsResponse2\340\003\n\014EventService\022y\n" +
+      "\022PublishUsageEvents\022/.sensory.api.v1.eve" +
+      "nt.PublishUsageEventsRequest\0320.sensory.a" +
+      "pi.v1.event.PublishUsageEventsResponse\"\000" +
+      "\022p\n\021GetUsageEventList\022+.sensory.api.v1.e" +
+      "vent.UsageEventListRequest\032,.sensory.api" +
+      ".v1.event.UsageEventListResponse\"\000\022n\n\024Ge" +
+      "tUsageEventSummary\022+.sensory.api.v1.even" +
+      "t.UsageEventListRequest\032\'.sensory.api.v1" +
+      ".event.UsageEventSummary\"\000\022s\n\025GetGlobalU" +
+      "sageSummary\022/.sensory.api.v1.event.Globa" +
+      "lEventSummaryRequest\032\'.sensory.api.v1.ev" +
+      "ent.UsageEventSummary\"\000B{\n\034ai.sensoryclo" +
+      "ud.api.v1.eventB\026SensoryApiV1EventProtoP" +
+      "\001Z:gitlab.com/sensory-cloud/server/titan" +
+      ".git/pkg/api/v1/event\242\002\004SENGb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -139,7 +152,7 @@ public final class SensoryApiV1EventProto {
     internal_static_sensory_api_v1_event_UsageEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_event_UsageEvent_descriptor,
-        new java.lang.String[] { "Timestamp", "Duration", "Id", "ClientId", "Type", "Route", "Technologies", "Models", "AudioDurationMs", "VideoFrameCount", "TenantId", "BillableFunction", });
+        new java.lang.String[] { "Timestamp", "Duration", "Id", "ClientId", "Type", "Route", "Technologies", "Models", "AudioDurationMs", "VideoFrameCount", "TenantId", "BillableFunction", "TokenCount", });
     internal_static_sensory_api_v1_event_UsageEventResponse_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_sensory_api_v1_event_UsageEventResponse_fieldAccessorTable = new
@@ -158,20 +171,26 @@ public final class SensoryApiV1EventProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_event_UsageEventListResponse_descriptor,
         new java.lang.String[] { "Events", "Pagination", });
-    internal_static_sensory_api_v1_event_UsageEventSummary_descriptor =
+    internal_static_sensory_api_v1_event_GlobalEventSummaryRequest_descriptor =
       getDescriptor().getMessageTypes().get(5);
+    internal_static_sensory_api_v1_event_GlobalEventSummaryRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sensory_api_v1_event_GlobalEventSummaryRequest_descriptor,
+        new java.lang.String[] { "Tenants", "After", "Before", "BillableFunctions", });
+    internal_static_sensory_api_v1_event_UsageEventSummary_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_sensory_api_v1_event_UsageEventSummary_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_event_UsageEventSummary_descriptor,
         new java.lang.String[] { "Summaries", });
     internal_static_sensory_api_v1_event_UsageEventModelSummary_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_sensory_api_v1_event_UsageEventModelSummary_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_event_UsageEventModelSummary_descriptor,
-        new java.lang.String[] { "BillableFunction", "Units", "Value", "Count", "Credits", });
+        new java.lang.String[] { "BillableFunction", "Units", "Value", "Count", "Credits", "TenantId", });
     internal_static_sensory_api_v1_event_PublishUsageEventsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_sensory_api_v1_event_PublishUsageEventsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_event_PublishUsageEventsResponse_descriptor,

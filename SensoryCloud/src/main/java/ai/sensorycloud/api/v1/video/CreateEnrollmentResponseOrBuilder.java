@@ -126,4 +126,53 @@ public interface CreateEnrollmentResponseOrBuilder extends
    * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
    */
   ai.sensorycloud.api.common.EnrollmentTokenOrBuilder getEnrollmentTokenOrBuilder();
+
+  /**
+   * <pre>
+   * Indicates if a face was found in the uploaded image
+   * </pre>
+   *
+   * <code>bool didFindFace = 8;</code>
+   * @return The didFindFace.
+   */
+  boolean getDidFindFace();
+
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 9;</code>
+   * @return A list containing the boundingBox.
+   */
+  java.util.List<java.lang.Long> getBoundingBoxList();
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 9;</code>
+   * @return The count of boundingBox.
+   */
+  int getBoundingBoxCount();
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 9;</code>
+   * @param index The index of the element to return.
+   * @return The boundingBox at the given index.
+   */
+  long getBoundingBox(int index);
+
+  /**
+   * <pre>
+   * The model's confidence in its face detection
+   * </pre>
+   *
+   * <code>float probabilityFace = 10;</code>
+   * @return The probabilityFace.
+   */
+  float getProbabilityFace();
 }

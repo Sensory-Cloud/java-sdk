@@ -27,75 +27,6 @@ private static final long serialVersionUID = 0L;
     return new GetDevicesRequest();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private GetDevicesRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            tenantId_ = s;
-            break;
-          }
-          case 18: {
-            ai.sensorycloud.api.common.PaginationOptions.Builder subBuilder = null;
-            if (pagination_ != null) {
-              subBuilder = pagination_.toBuilder();
-            }
-            pagination_ = input.readMessage(ai.sensorycloud.api.common.PaginationOptions.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(pagination_);
-              pagination_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            userId_ = s;
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.management.SensoryApiV1ManagementDeviceProto.internal_static_sensory_api_v1_management_GetDevicesRequest_descriptor;
@@ -110,7 +41,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TENANTID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object tenantId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object tenantId_ = "";
   /**
    * <pre>
    * TenantID to filter on. TenantId validation is handled within the tenant_filter_middleware.
@@ -190,11 +122,12 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.PaginationOptionsOrBuilder getPaginationOrBuilder() {
-    return getPagination();
+    return pagination_ == null ? ai.sensorycloud.api.common.PaginationOptions.getDefaultInstance() : pagination_;
   }
 
   public static final int USERID_FIELD_NUMBER = 3;
-  private volatile java.lang.Object userId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object userId_ = "";
   /**
    * <pre>
    * Optional user id to filter devices by
@@ -262,7 +195,7 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(userId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, userId_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -281,7 +214,7 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(userId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, userId_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -305,7 +238,7 @@ private static final long serialVersionUID = 0L;
     }
     if (!getUserId()
         .equals(other.getUserId())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -324,7 +257,7 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + USERID_FIELD_NUMBER;
     hash = (53 * hash) + getUserId().hashCode();
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -373,11 +306,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.GetDevicesRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.management.GetDevicesRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -441,32 +376,25 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.management.GetDevicesRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       tenantId_ = "";
-
-      if (paginationBuilder_ == null) {
-        pagination_ = null;
-      } else {
-        pagination_ = null;
+      pagination_ = null;
+      if (paginationBuilder_ != null) {
+        paginationBuilder_.dispose();
         paginationBuilder_ = null;
       }
       userId_ = "";
-
       return this;
     }
 
@@ -493,15 +421,24 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.management.GetDevicesRequest buildPartial() {
       ai.sensorycloud.api.v1.management.GetDevicesRequest result = new ai.sensorycloud.api.v1.management.GetDevicesRequest(this);
-      result.tenantId_ = tenantId_;
-      if (paginationBuilder_ == null) {
-        result.pagination_ = pagination_;
-      } else {
-        result.pagination_ = paginationBuilder_.build();
-      }
-      result.userId_ = userId_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.management.GetDevicesRequest result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.tenantId_ = tenantId_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.pagination_ = paginationBuilder_ == null
+            ? pagination_
+            : paginationBuilder_.build();
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.userId_ = userId_;
+      }
     }
 
     @java.lang.Override
@@ -550,6 +487,7 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.v1.management.GetDevicesRequest.getDefaultInstance()) return this;
       if (!other.getTenantId().isEmpty()) {
         tenantId_ = other.tenantId_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (other.hasPagination()) {
@@ -557,9 +495,10 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getUserId().isEmpty()) {
         userId_ = other.userId_;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -574,19 +513,50 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.management.GetDevicesRequest parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              tenantId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              input.readMessage(
+                  getPaginationFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            case 26: {
+              userId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.management.GetDevicesRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object tenantId_ = "";
     /**
@@ -641,11 +611,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setTenantId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       tenantId_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -658,8 +626,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearTenantId() {
-      
       tenantId_ = getDefaultInstance().getTenantId();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -674,12 +642,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setTenantIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       tenantId_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -696,7 +662,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the pagination field is set.
      */
     public boolean hasPagination() {
-      return paginationBuilder_ != null || pagination_ != null;
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <pre>
@@ -726,11 +692,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         pagination_ = value;
-        onChanged();
       } else {
         paginationBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -744,11 +710,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.common.PaginationOptions.Builder builderForValue) {
       if (paginationBuilder_ == null) {
         pagination_ = builderForValue.build();
-        onChanged();
       } else {
         paginationBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -760,17 +726,18 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergePagination(ai.sensorycloud.api.common.PaginationOptions value) {
       if (paginationBuilder_ == null) {
-        if (pagination_ != null) {
-          pagination_ =
-            ai.sensorycloud.api.common.PaginationOptions.newBuilder(pagination_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000002) != 0) &&
+          pagination_ != null &&
+          pagination_ != ai.sensorycloud.api.common.PaginationOptions.getDefaultInstance()) {
+          getPaginationBuilder().mergeFrom(value);
         } else {
           pagination_ = value;
         }
-        onChanged();
       } else {
         paginationBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -781,14 +748,13 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.common.PaginationOptions pagination = 2;</code>
      */
     public Builder clearPagination() {
-      if (paginationBuilder_ == null) {
-        pagination_ = null;
-        onChanged();
-      } else {
-        pagination_ = null;
+      bitField0_ = (bitField0_ & ~0x00000002);
+      pagination_ = null;
+      if (paginationBuilder_ != null) {
+        paginationBuilder_.dispose();
         paginationBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
@@ -799,7 +765,7 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.common.PaginationOptions pagination = 2;</code>
      */
     public ai.sensorycloud.api.common.PaginationOptions.Builder getPaginationBuilder() {
-      
+      bitField0_ |= 0x00000002;
       onChanged();
       return getPaginationFieldBuilder().getBuilder();
     }
@@ -892,11 +858,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setUserId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       userId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -909,8 +873,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearUserId() {
-      
       userId_ = getDefaultInstance().getUserId();
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
@@ -925,12 +889,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setUserIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       userId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -967,7 +929,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new GetDevicesRequest(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

@@ -29,76 +29,6 @@ private static final long serialVersionUID = 0L;
     return new SystemSummary();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private SystemSummary(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            ai.sensorycloud.api.common.CpuSummary.Builder subBuilder = null;
-            if (cpu_ != null) {
-              subBuilder = cpu_.toBuilder();
-            }
-            cpu_ = input.readMessage(ai.sensorycloud.api.common.CpuSummary.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(cpu_);
-              cpu_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 18: {
-            ai.sensorycloud.api.common.MemorySummary.Builder subBuilder = null;
-            if (memory_ != null) {
-              subBuilder = memory_.toBuilder();
-            }
-            memory_ = input.readMessage(ai.sensorycloud.api.common.MemorySummary.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(memory_);
-              memory_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.common.SensoryApiCommonProto.internal_static_sensory_api_common_SystemSummary_descriptor;
@@ -135,7 +65,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.CpuSummaryOrBuilder getCpuOrBuilder() {
-    return getCpu();
+    return cpu_ == null ? ai.sensorycloud.api.common.CpuSummary.getDefaultInstance() : cpu_;
   }
 
   public static final int MEMORY_FIELD_NUMBER = 2;
@@ -161,7 +91,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.MemorySummaryOrBuilder getMemoryOrBuilder() {
-    return getMemory();
+    return memory_ == null ? ai.sensorycloud.api.common.MemorySummary.getDefaultInstance() : memory_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -184,7 +114,7 @@ private static final long serialVersionUID = 0L;
     if (memory_ != null) {
       output.writeMessage(2, getMemory());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -201,7 +131,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getMemory());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -226,7 +156,7 @@ private static final long serialVersionUID = 0L;
       if (!getMemory()
           .equals(other.getMemory())) return false;
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -245,7 +175,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + MEMORY_FIELD_NUMBER;
       hash = (53 * hash) + getMemory().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -294,11 +224,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.SystemSummary parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.common.SystemSummary parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -366,32 +298,26 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.common.SystemSummary.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (cpuBuilder_ == null) {
-        cpu_ = null;
-      } else {
-        cpu_ = null;
+      bitField0_ = 0;
+      cpu_ = null;
+      if (cpuBuilder_ != null) {
+        cpuBuilder_.dispose();
         cpuBuilder_ = null;
       }
-      if (memoryBuilder_ == null) {
-        memory_ = null;
-      } else {
-        memory_ = null;
+      memory_ = null;
+      if (memoryBuilder_ != null) {
+        memoryBuilder_.dispose();
         memoryBuilder_ = null;
       }
       return this;
@@ -420,18 +346,23 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.common.SystemSummary buildPartial() {
       ai.sensorycloud.api.common.SystemSummary result = new ai.sensorycloud.api.common.SystemSummary(this);
-      if (cpuBuilder_ == null) {
-        result.cpu_ = cpu_;
-      } else {
-        result.cpu_ = cpuBuilder_.build();
-      }
-      if (memoryBuilder_ == null) {
-        result.memory_ = memory_;
-      } else {
-        result.memory_ = memoryBuilder_.build();
-      }
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.common.SystemSummary result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.cpu_ = cpuBuilder_ == null
+            ? cpu_
+            : cpuBuilder_.build();
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.memory_ = memoryBuilder_ == null
+            ? memory_
+            : memoryBuilder_.build();
+      }
     }
 
     @java.lang.Override
@@ -484,7 +415,7 @@ private static final long serialVersionUID = 0L;
       if (other.hasMemory()) {
         mergeMemory(other.getMemory());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -499,19 +430,47 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.common.SystemSummary parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              input.readMessage(
+                  getCpuFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              input.readMessage(
+                  getMemoryFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.common.SystemSummary) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private ai.sensorycloud.api.common.CpuSummary cpu_;
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -521,7 +480,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the cpu field is set.
      */
     public boolean hasCpu() {
-      return cpuBuilder_ != null || cpu_ != null;
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>.sensory.api.common.CpuSummary cpu = 1 [(.validate.rules) = { ... }</code>
@@ -543,11 +502,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         cpu_ = value;
-        onChanged();
       } else {
         cpuBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
     }
     /**
@@ -557,11 +516,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.common.CpuSummary.Builder builderForValue) {
       if (cpuBuilder_ == null) {
         cpu_ = builderForValue.build();
-        onChanged();
       } else {
         cpuBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
     }
     /**
@@ -569,38 +528,38 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeCpu(ai.sensorycloud.api.common.CpuSummary value) {
       if (cpuBuilder_ == null) {
-        if (cpu_ != null) {
-          cpu_ =
-            ai.sensorycloud.api.common.CpuSummary.newBuilder(cpu_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000001) != 0) &&
+          cpu_ != null &&
+          cpu_ != ai.sensorycloud.api.common.CpuSummary.getDefaultInstance()) {
+          getCpuBuilder().mergeFrom(value);
         } else {
           cpu_ = value;
         }
-        onChanged();
       } else {
         cpuBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000001;
+      onChanged();
       return this;
     }
     /**
      * <code>.sensory.api.common.CpuSummary cpu = 1 [(.validate.rules) = { ... }</code>
      */
     public Builder clearCpu() {
-      if (cpuBuilder_ == null) {
-        cpu_ = null;
-        onChanged();
-      } else {
-        cpu_ = null;
+      bitField0_ = (bitField0_ & ~0x00000001);
+      cpu_ = null;
+      if (cpuBuilder_ != null) {
+        cpuBuilder_.dispose();
         cpuBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
      * <code>.sensory.api.common.CpuSummary cpu = 1 [(.validate.rules) = { ... }</code>
      */
     public ai.sensorycloud.api.common.CpuSummary.Builder getCpuBuilder() {
-      
+      bitField0_ |= 0x00000001;
       onChanged();
       return getCpuFieldBuilder().getBuilder();
     }
@@ -640,7 +599,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the memory field is set.
      */
     public boolean hasMemory() {
-      return memoryBuilder_ != null || memory_ != null;
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>.sensory.api.common.MemorySummary memory = 2 [(.validate.rules) = { ... }</code>
@@ -662,11 +621,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         memory_ = value;
-        onChanged();
       } else {
         memoryBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -676,11 +635,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.common.MemorySummary.Builder builderForValue) {
       if (memoryBuilder_ == null) {
         memory_ = builderForValue.build();
-        onChanged();
       } else {
         memoryBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -688,38 +647,38 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeMemory(ai.sensorycloud.api.common.MemorySummary value) {
       if (memoryBuilder_ == null) {
-        if (memory_ != null) {
-          memory_ =
-            ai.sensorycloud.api.common.MemorySummary.newBuilder(memory_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000002) != 0) &&
+          memory_ != null &&
+          memory_ != ai.sensorycloud.api.common.MemorySummary.getDefaultInstance()) {
+          getMemoryBuilder().mergeFrom(value);
         } else {
           memory_ = value;
         }
-        onChanged();
       } else {
         memoryBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
      * <code>.sensory.api.common.MemorySummary memory = 2 [(.validate.rules) = { ... }</code>
      */
     public Builder clearMemory() {
-      if (memoryBuilder_ == null) {
-        memory_ = null;
-        onChanged();
-      } else {
-        memory_ = null;
+      bitField0_ = (bitField0_ & ~0x00000002);
+      memory_ = null;
+      if (memoryBuilder_ != null) {
+        memoryBuilder_.dispose();
         memoryBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
      * <code>.sensory.api.common.MemorySummary memory = 2 [(.validate.rules) = { ... }</code>
      */
     public ai.sensorycloud.api.common.MemorySummary.Builder getMemoryBuilder() {
-      
+      bitField0_ |= 0x00000002;
       onChanged();
       return getMemoryFieldBuilder().getBuilder();
     }
@@ -783,7 +742,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new SystemSummary(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

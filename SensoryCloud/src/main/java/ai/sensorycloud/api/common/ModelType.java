@@ -165,6 +165,22 @@ public enum ModelType
    * <code>IMAGE_TRANSFORM = 204;</code>
    */
   IMAGE_TRANSFORM(204),
+  /**
+   * <pre>
+   * Face Embedding
+   * </pre>
+   *
+   * <code>FACE_EMBEDDING = 205;</code>
+   */
+  FACE_EMBEDDING(205),
+  /**
+   * <pre>
+   * Large Language Model
+   * </pre>
+   *
+   * <code>LLM_GPT_3_5 = 301;</code>
+   */
+  LLM_GPT_3_5(301),
   UNRECOGNIZED(-1),
   ;
 
@@ -320,6 +336,22 @@ public enum ModelType
    * <code>IMAGE_TRANSFORM = 204;</code>
    */
   public static final int IMAGE_TRANSFORM_VALUE = 204;
+  /**
+   * <pre>
+   * Face Embedding
+   * </pre>
+   *
+   * <code>FACE_EMBEDDING = 205;</code>
+   */
+  public static final int FACE_EMBEDDING_VALUE = 205;
+  /**
+   * <pre>
+   * Large Language Model
+   * </pre>
+   *
+   * <code>LLM_GPT_3_5 = 301;</code>
+   */
+  public static final int LLM_GPT_3_5_VALUE = 301;
 
 
   public final int getNumber() {
@@ -365,6 +397,8 @@ public enum ModelType
       case 202: return FACE_RECOGNITION;
       case 203: return OBJECT_RECOGNITION;
       case 204: return IMAGE_TRANSFORM;
+      case 205: return FACE_EMBEDDING;
+      case 301: return LLM_GPT_3_5;
       default: return null;
     }
   }

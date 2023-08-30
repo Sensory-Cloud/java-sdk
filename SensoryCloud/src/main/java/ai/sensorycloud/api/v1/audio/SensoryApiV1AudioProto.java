@@ -85,6 +85,11 @@ public final class SensoryApiV1AudioProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sensory_api_v1_audio_AuthenticateResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sensory_api_v1_audio_SoundIdTopNResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sensory_api_v1_audio_SoundIdTopNResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_sensory_api_v1_audio_ValidateEventResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -144,6 +149,11 @@ public final class SensoryApiV1AudioProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sensory_api_v1_audio_CustomVocabularyWords_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sensory_api_v1_audio_TranscribeEventConfig_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sensory_api_v1_audio_TranscribeEventConfig_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_sensory_api_v1_audio_TranscribeConfig_descriptor;
   static final 
@@ -224,9 +234,14 @@ public final class SensoryApiV1AudioProto {
       "oken\030\003 \001(\0132!.sensory.api.common.TokenRes" +
       "ponse\022\016\n\006userId\030\004 \001(\t\022\024\n\014enrollmentId\030\005 " +
       "\001(\t\022\023\n\013modelPrompt\030\006 \001(\t\022\036\n\026percentSegme" +
-      "ntComplete\030\007 \001(\003\"\265\001\n\025ValidateEventRespon" +
-      "se\022\023\n\013audioEnergy\030\001 \001(\002\022\017\n\007success\030\002 \001(\010" +
-      "\022\020\n\010resultId\030\003 \001(\t\022\r\n\005score\030\004 \001(\002\022U\n\024pos" +
+      "ntComplete\030\007 \001(\003\"U\n\023SoundIdTopNResponse\022" +
+      "\020\n\010resultId\030\001 \001(\t\022\022\n\nlogitScore\030\002 \001(\002\022\030\n" +
+      "\020probabilityScore\030\003 \001(\002\"\246\002\n\025ValidateEven" +
+      "tResponse\022\023\n\013audioEnergy\030\001 \001(\002\022\017\n\007succes" +
+      "s\030\002 \001(\010\022\020\n\010resultId\030\003 \001(\t\022\r\n\005score\030\004 \001(\002" +
+      "\022?\n\014topNResponse\030\005 \003(\0132).sensory.api.v1." +
+      "audio.SoundIdTopNResponse\022\027\n\017ResultStart" +
+      "Time\030\006 \001(\002\022\025\n\rResultEndTime\030\007 \001(\002\022U\n\024pos" +
       "tProcessingAction\030\n \001(\01327.sensory.api.v1" +
       ".audio.AudioResponsePostProcessingAction" +
       "\"\200\001\n\035ValidateEnrolledEventResponse\022\023\n\013au" +
@@ -269,83 +284,89 @@ public final class SensoryApiV1AudioProto {
       "ticateConfig.ThresholdSecurityB\010\372B\005\202\001\002\020\001" +
       "\022\031\n\021isLivenessEnabled\030\007 \001(\010\022\027\n\017enrollmen" +
       "tToken\030\010 \001(\014\"&\n\021ThresholdSecurity\022\010\n\004HIG" +
-      "H\020\000\022\007\n\003LOW\020\001B\r\n\006authId\022\003\370B\001\"\326\001\n\023Validate" +
+      "H\020\000\022\007\n\003LOW\020\001B\r\n\006authId\022\003\370B\001\"\344\001\n\023Validate" +
       "EventConfig\022:\n\005audio\030\001 \001(\0132!.sensory.api" +
       ".v1.audio.AudioConfigB\010\372B\005\212\001\002\020\001\022\035\n\tmodel" +
       "Name\030\002 \001(\tB\n\372B\007r\005\020\001\030\377\001\022\031\n\006userId\030\003 \001(\tB\t" +
       "\372B\006r\004\020\001\030\177\022I\n\013sensitivity\030\004 \001(\0162*.sensory" +
       ".api.v1.audio.ThresholdSensitivityB\010\372B\005\202" +
-      "\001\002\020\001\"\275\002\n\033CreateEnrollmentEventConfig\022:\n\005" +
-      "audio\030\001 \001(\0132!.sensory.api.v1.audio.Audio" +
-      "ConfigB\010\372B\005\212\001\002\020\001\022\031\n\006userId\030\002 \001(\tB\t\372B\006r\004\020" +
-      "\001\030\177\022\035\n\tmodelName\030\003 \001(\tB\n\372B\007r\005\020\001\030\377\001\022\035\n\013de" +
-      "scription\030\004 \001(\tB\010\372B\005r\003\030\377\007\022,\n\027enrollmentN" +
-      "umUtterances\030\005 \001(\rB\t\372B\006*\004\030\n(\000H\000\022-\n\022enrol" +
-      "lmentDuration\030\006 \001(\002B\017\372B\014\n\n\035\000\000pA-\000\000\000\000H\000\022\034" +
-      "\n\013referenceId\030\007 \001(\tB\007\372B\004r\002\030\177B\016\n\014enrollLe" +
-      "ngth\"\213\002\n\033ValidateEnrolledEventConfig\022:\n\005" +
-      "audio\030\001 \001(\0132!.sensory.api.v1.audio.Audio" +
-      "ConfigB\010\372B\005\212\001\002\020\001\022 \n\014enrollmentId\030\002 \001(\tB\010" +
-      "\372B\005r\003\260\001\001H\000\022\033\n\021enrollmentGroupId\030\003 \001(\tH\000\022" +
-      "I\n\013sensitivity\030\004 \001(\0162*.sensory.api.v1.au" +
-      "dio.ThresholdSensitivityB\010\372B\005\202\001\002\020\001\022\027\n\017en" +
-      "rollmentToken\030\005 \001(\014B\r\n\006authId\022\003\370B\001\"2\n\025Cu" +
-      "stomVocabularyWords\022\031\n\005words\030\001 \003(\tB\n\372B\007\222" +
-      "\001\004\010\001\020d\"\326\003\n\020TranscribeConfig\022:\n\005audio\030\001 \001" +
-      "(\0132!.sensory.api.v1.audio.AudioConfigB\010\372" +
-      "B\005\212\001\002\020\001\022\035\n\tmodelName\030\002 \001(\tB\n\372B\007r\005\020\001\030\377\001\022\031" +
-      "\n\006userId\030\003 \001(\tB\t\372B\006r\004\020\001\030\177\022\'\n\037enablePunct" +
-      "uationCapitalization\030\004 \001(\010\022\031\n\021doSingleUt" +
-      "terance\030\005 \001(\010\022B\n\016vadSensitivity\030\006 \001(\0162*." +
-      "sensory.api.v1.audio.ThresholdSensitivit" +
-      "y\022\023\n\013vadDuration\030\007 \001(\002\022N\n\032customVocabRew" +
-      "ardThreshold\030\010 \001(\0162*.sensory.api.v1.audi" +
-      "o.ThresholdSensitivity\022\032\n\022customVocabula" +
-      "ryId\030\t \001(\t\022C\n\016customWordList\030\n \001(\0132+.sen" +
-      "sory.api.v1.audio.CustomVocabularyWords\"" +
-      "\353\001\n\013AudioConfig\022K\n\010encoding\030\001 \001(\0162/.sens" +
-      "ory.api.v1.audio.AudioConfig.AudioEncodi" +
-      "ngB\010\372B\005\202\001\002\020\001\022!\n\017sampleRateHertz\030\002 \001(\005B\010\372" +
-      "B\005\032\003(\300>\022\"\n\021audioChannelCount\030\003 \001(\005B\007\372B\004\032" +
-      "\002 \000\022\024\n\014languageCode\030\004 \001(\t\"2\n\rAudioEncodi" +
-      "ng\022\014\n\010LINEAR16\020\000\022\010\n\004FLAC\020\001\022\t\n\005MULAW\020\002\"b\n" +
-      "\024VoiceSynthesisConfig\022\035\n\tmodelName\030\002 \001(\t" +
-      "B\n\372B\007r\005\020\001\030\377\001\022%\n\017sampleRateHertz\030\003 \001(\005B\014\372" +
-      "B\t\032\007\030\200\356\005(\300>J\004\010\001\020\002*I\n\031AudioPostProcessing" +
-      "Action\022\013\n\007NOT_SET\020\000\022\t\n\005FLUSH\020\001\022\t\n\005RESET\020" +
-      "\002\022\t\n\005FINAL\020\003*7\n\tWordState\022\025\n\021WORDSTATE_P" +
-      "ENDING\020\000\022\023\n\017WORDSTATE_FINAL\020\001*N\n\024Thresho" +
-      "ldSensitivity\022\n\n\006LOWEST\020\000\022\007\n\003LOW\020\001\022\n\n\006ME" +
-      "DIUM\020\002\022\010\n\004HIGH\020\003\022\013\n\007HIGHEST\020\0042m\n\013AudioMo" +
-      "dels\022^\n\tGetModels\022&.sensory.api.v1.audio" +
-      ".GetModelsRequest\032\'.sensory.api.v1.audio" +
-      ".GetModelsResponse\"\0002\367\001\n\017AudioBiometrics" +
-      "\022w\n\020CreateEnrollment\022-.sensory.api.v1.au" +
-      "dio.CreateEnrollmentRequest\032..sensory.ap" +
-      "i.v1.audio.CreateEnrollmentResponse\"\000(\0010" +
-      "\001\022k\n\014Authenticate\022).sensory.api.v1.audio" +
-      ".AuthenticateRequest\032*.sensory.api.v1.au" +
-      "dio.AuthenticateResponse\"\000(\0010\0012\205\003\n\013Audio" +
-      "Events\022n\n\rValidateEvent\022*.sensory.api.v1" +
-      ".audio.ValidateEventRequest\032+.sensory.ap" +
-      "i.v1.audio.ValidateEventResponse\"\000(\0010\001\022}" +
-      "\n\023CreateEnrolledEvent\0220.sensory.api.v1.a" +
-      "udio.CreateEnrolledEventRequest\032..sensor" +
-      "y.api.v1.audio.CreateEnrollmentResponse\"" +
-      "\000(\0010\001\022\206\001\n\025ValidateEnrolledEvent\0222.sensor" +
-      "y.api.v1.audio.ValidateEnrolledEventRequ" +
-      "est\0323.sensory.api.v1.audio.ValidateEnrol" +
-      "ledEventResponse\"\000(\0010\0012|\n\023AudioTranscrip" +
-      "tions\022e\n\nTranscribe\022\'.sensory.api.v1.aud" +
-      "io.TranscribeRequest\032(.sensory.api.v1.au" +
-      "dio.TranscribeResponse\"\000(\0010\0012\207\001\n\016AudioSy" +
-      "nthesis\022u\n\020SynthesizeSpeech\022-.sensory.ap" +
-      "i.v1.audio.SynthesizeSpeechRequest\032..sen" +
-      "sory.api.v1.audio.SynthesizeSpeechRespon" +
-      "se\"\0000\001Bt\n\034ai.sensorycloud.api.v1.audioB\026" +
-      "SensoryApiV1AudioProtoP\001Z:gitlab.com/sen" +
-      "sory-cloud/server/titan.git/pkg/api/v1/a" +
-      "udiob\006proto3"
+      "\001\002\020\001\022\014\n\004topN\030\005 \001(\005\"\275\002\n\033CreateEnrollmentE" +
+      "ventConfig\022:\n\005audio\030\001 \001(\0132!.sensory.api." +
+      "v1.audio.AudioConfigB\010\372B\005\212\001\002\020\001\022\031\n\006userId" +
+      "\030\002 \001(\tB\t\372B\006r\004\020\001\030\177\022\035\n\tmodelName\030\003 \001(\tB\n\372B" +
+      "\007r\005\020\001\030\377\001\022\035\n\013description\030\004 \001(\tB\010\372B\005r\003\030\377\007\022" +
+      ",\n\027enrollmentNumUtterances\030\005 \001(\rB\t\372B\006*\004\030" +
+      "\n(\000H\000\022-\n\022enrollmentDuration\030\006 \001(\002B\017\372B\014\n\n" +
+      "\035\000\000pA-\000\000\000\000H\000\022\034\n\013referenceId\030\007 \001(\tB\007\372B\004r\002" +
+      "\030\177B\016\n\014enrollLength\"\213\002\n\033ValidateEnrolledE" +
+      "ventConfig\022:\n\005audio\030\001 \001(\0132!.sensory.api." +
+      "v1.audio.AudioConfigB\010\372B\005\212\001\002\020\001\022 \n\014enroll" +
+      "mentId\030\002 \001(\tB\010\372B\005r\003\260\001\001H\000\022\033\n\021enrollmentGr" +
+      "oupId\030\003 \001(\tH\000\022I\n\013sensitivity\030\004 \001(\0162*.sen" +
+      "sory.api.v1.audio.ThresholdSensitivityB\010" +
+      "\372B\005\202\001\002\020\001\022\027\n\017enrollmentToken\030\005 \001(\014B\r\n\006aut" +
+      "hId\022\003\370B\001\"2\n\025CustomVocabularyWords\022\031\n\005wor" +
+      "ds\030\001 \003(\tB\n\372B\007\222\001\004\010\001\020d\"\201\001\n\025TranscribeEvent" +
+      "Config\022\035\n\tmodelName\030\001 \001(\tB\n\372B\007r\005\020\001\030\377\001\022I\n" +
+      "\013sensitivity\030\002 \001(\0162*.sensory.api.v1.audi" +
+      "o.ThresholdSensitivityB\010\372B\005\202\001\002\020\001\"\262\004\n\020Tra" +
+      "nscribeConfig\022:\n\005audio\030\001 \001(\0132!.sensory.a" +
+      "pi.v1.audio.AudioConfigB\010\372B\005\212\001\002\020\001\022\035\n\tmod" +
+      "elName\030\002 \001(\tB\n\372B\007r\005\020\001\030\377\001\022\031\n\006userId\030\003 \001(\t" +
+      "B\t\372B\006r\004\020\001\030\177\022\'\n\037enablePunctuationCapitali" +
+      "zation\030\004 \001(\010\022\031\n\021doSingleUtterance\030\005 \001(\010\022" +
+      "B\n\016vadSensitivity\030\006 \001(\0162*.sensory.api.v1" +
+      ".audio.ThresholdSensitivity\022\023\n\013vadDurati" +
+      "on\030\007 \001(\002\022N\n\032customVocabRewardThreshold\030\010" +
+      " \001(\0162*.sensory.api.v1.audio.ThresholdSen" +
+      "sitivity\022\032\n\022customVocabularyId\030\t \001(\t\022C\n\016" +
+      "customWordList\030\n \001(\0132+.sensory.api.v1.au" +
+      "dio.CustomVocabularyWords\022\025\n\rdoOfflineMo" +
+      "de\030\013 \001(\010\022C\n\016wakeWordConfig\030\014 \001(\0132+.senso" +
+      "ry.api.v1.audio.TranscribeEventConfig\"\353\001" +
+      "\n\013AudioConfig\022K\n\010encoding\030\001 \001(\0162/.sensor" +
+      "y.api.v1.audio.AudioConfig.AudioEncoding" +
+      "B\010\372B\005\202\001\002\020\001\022!\n\017sampleRateHertz\030\002 \001(\005B\010\372B\005" +
+      "\032\003(\300>\022\"\n\021audioChannelCount\030\003 \001(\005B\007\372B\004\032\002 " +
+      "\000\022\024\n\014languageCode\030\004 \001(\t\"2\n\rAudioEncoding" +
+      "\022\014\n\010LINEAR16\020\000\022\010\n\004FLAC\020\001\022\t\n\005MULAW\020\002\"b\n\024V" +
+      "oiceSynthesisConfig\022\035\n\tmodelName\030\002 \001(\tB\n" +
+      "\372B\007r\005\020\001\030\377\001\022%\n\017sampleRateHertz\030\003 \001(\005B\014\372B\t" +
+      "\032\007\030\200\356\005(\300>J\004\010\001\020\002*I\n\031AudioPostProcessingAc" +
+      "tion\022\013\n\007NOT_SET\020\000\022\t\n\005FLUSH\020\001\022\t\n\005RESET\020\002\022" +
+      "\t\n\005FINAL\020\003*7\n\tWordState\022\025\n\021WORDSTATE_PEN" +
+      "DING\020\000\022\023\n\017WORDSTATE_FINAL\020\001*N\n\024Threshold" +
+      "Sensitivity\022\n\n\006LOWEST\020\000\022\007\n\003LOW\020\001\022\n\n\006MEDI" +
+      "UM\020\002\022\010\n\004HIGH\020\003\022\013\n\007HIGHEST\020\0042m\n\013AudioMode" +
+      "ls\022^\n\tGetModels\022&.sensory.api.v1.audio.G" +
+      "etModelsRequest\032\'.sensory.api.v1.audio.G" +
+      "etModelsResponse\"\0002\367\001\n\017AudioBiometrics\022w" +
+      "\n\020CreateEnrollment\022-.sensory.api.v1.audi" +
+      "o.CreateEnrollmentRequest\032..sensory.api." +
+      "v1.audio.CreateEnrollmentResponse\"\000(\0010\001\022" +
+      "k\n\014Authenticate\022).sensory.api.v1.audio.A" +
+      "uthenticateRequest\032*.sensory.api.v1.audi" +
+      "o.AuthenticateResponse\"\000(\0010\0012\205\003\n\013AudioEv" +
+      "ents\022n\n\rValidateEvent\022*.sensory.api.v1.a" +
+      "udio.ValidateEventRequest\032+.sensory.api." +
+      "v1.audio.ValidateEventResponse\"\000(\0010\001\022}\n\023" +
+      "CreateEnrolledEvent\0220.sensory.api.v1.aud" +
+      "io.CreateEnrolledEventRequest\032..sensory." +
+      "api.v1.audio.CreateEnrollmentResponse\"\000(" +
+      "\0010\001\022\206\001\n\025ValidateEnrolledEvent\0222.sensory." +
+      "api.v1.audio.ValidateEnrolledEventReques" +
+      "t\0323.sensory.api.v1.audio.ValidateEnrolle" +
+      "dEventResponse\"\000(\0010\0012|\n\023AudioTranscripti" +
+      "ons\022e\n\nTranscribe\022\'.sensory.api.v1.audio" +
+      ".TranscribeRequest\032(.sensory.api.v1.audi" +
+      "o.TranscribeResponse\"\000(\0010\0012\207\001\n\016AudioSynt" +
+      "hesis\022u\n\020SynthesizeSpeech\022-.sensory.api." +
+      "v1.audio.SynthesizeSpeechRequest\032..senso" +
+      "ry.api.v1.audio.SynthesizeSpeechResponse" +
+      "\"\0000\001B|\n\034ai.sensorycloud.api.v1.audioB\026Se" +
+      "nsoryApiV1AudioProtoP\001Z:gitlab.com/senso" +
+      "ry-cloud/server/titan.git/pkg/api/v1/aud" +
+      "io\242\002\005SENGAb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -437,92 +458,104 @@ public final class SensoryApiV1AudioProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_AuthenticateResponse_descriptor,
         new java.lang.String[] { "AudioEnergy", "Success", "Token", "UserId", "EnrollmentId", "ModelPrompt", "PercentSegmentComplete", });
-    internal_static_sensory_api_v1_audio_ValidateEventResponse_descriptor =
+    internal_static_sensory_api_v1_audio_SoundIdTopNResponse_descriptor =
       getDescriptor().getMessageTypes().get(14);
+    internal_static_sensory_api_v1_audio_SoundIdTopNResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sensory_api_v1_audio_SoundIdTopNResponse_descriptor,
+        new java.lang.String[] { "ResultId", "LogitScore", "ProbabilityScore", });
+    internal_static_sensory_api_v1_audio_ValidateEventResponse_descriptor =
+      getDescriptor().getMessageTypes().get(15);
     internal_static_sensory_api_v1_audio_ValidateEventResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_ValidateEventResponse_descriptor,
-        new java.lang.String[] { "AudioEnergy", "Success", "ResultId", "Score", "PostProcessingAction", });
+        new java.lang.String[] { "AudioEnergy", "Success", "ResultId", "Score", "TopNResponse", "ResultStartTime", "ResultEndTime", "PostProcessingAction", });
     internal_static_sensory_api_v1_audio_ValidateEnrolledEventResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_sensory_api_v1_audio_ValidateEnrolledEventResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_ValidateEnrolledEventResponse_descriptor,
         new java.lang.String[] { "AudioEnergy", "Success", "EnrollmentId", "UserId", "ModelPrompt", });
     internal_static_sensory_api_v1_audio_TranscribeWord_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_sensory_api_v1_audio_TranscribeWord_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_TranscribeWord_descriptor,
         new java.lang.String[] { "BegintimeMs", "EndtimeMs", "Confidence", "WordState", "WordIndex", "Word", });
     internal_static_sensory_api_v1_audio_TranscribeWordResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_sensory_api_v1_audio_TranscribeWordResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_TranscribeWordResponse_descriptor,
         new java.lang.String[] { "Words", "FirstWordIndex", "LastWordIndex", });
     internal_static_sensory_api_v1_audio_TranscribeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_sensory_api_v1_audio_TranscribeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_TranscribeResponse_descriptor,
         new java.lang.String[] { "AudioEnergy", "WordList", "HasVoiceActivity", "PostProcessingAction", });
     internal_static_sensory_api_v1_audio_SynthesizeSpeechResponse_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_sensory_api_v1_audio_SynthesizeSpeechResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_SynthesizeSpeechResponse_descriptor,
         new java.lang.String[] { "Config", "AudioContent", "StreamingResponse", });
     internal_static_sensory_api_v1_audio_CreateEnrollmentConfig_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_sensory_api_v1_audio_CreateEnrollmentConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_CreateEnrollmentConfig_descriptor,
         new java.lang.String[] { "Audio", "UserId", "DeviceId", "ModelName", "Description", "IsLivenessEnabled", "EnrollmentNumUtterances", "EnrollmentDuration", "ReferenceId", "DisableServerEnrollmentTemplateStorage", "EnrollLength", });
     internal_static_sensory_api_v1_audio_AuthenticateConfig_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_sensory_api_v1_audio_AuthenticateConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_AuthenticateConfig_descriptor,
         new java.lang.String[] { "Audio", "EnrollmentId", "EnrollmentGroupId", "DoIncludeToken", "Sensitivity", "Security", "IsLivenessEnabled", "EnrollmentToken", "AuthId", });
     internal_static_sensory_api_v1_audio_ValidateEventConfig_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_sensory_api_v1_audio_ValidateEventConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_ValidateEventConfig_descriptor,
-        new java.lang.String[] { "Audio", "ModelName", "UserId", "Sensitivity", });
+        new java.lang.String[] { "Audio", "ModelName", "UserId", "Sensitivity", "TopN", });
     internal_static_sensory_api_v1_audio_CreateEnrollmentEventConfig_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_sensory_api_v1_audio_CreateEnrollmentEventConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_CreateEnrollmentEventConfig_descriptor,
         new java.lang.String[] { "Audio", "UserId", "ModelName", "Description", "EnrollmentNumUtterances", "EnrollmentDuration", "ReferenceId", "EnrollLength", });
     internal_static_sensory_api_v1_audio_ValidateEnrolledEventConfig_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_sensory_api_v1_audio_ValidateEnrolledEventConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_ValidateEnrolledEventConfig_descriptor,
         new java.lang.String[] { "Audio", "EnrollmentId", "EnrollmentGroupId", "Sensitivity", "EnrollmentToken", "AuthId", });
     internal_static_sensory_api_v1_audio_CustomVocabularyWords_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_sensory_api_v1_audio_CustomVocabularyWords_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_CustomVocabularyWords_descriptor,
         new java.lang.String[] { "Words", });
+    internal_static_sensory_api_v1_audio_TranscribeEventConfig_descriptor =
+      getDescriptor().getMessageTypes().get(27);
+    internal_static_sensory_api_v1_audio_TranscribeEventConfig_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sensory_api_v1_audio_TranscribeEventConfig_descriptor,
+        new java.lang.String[] { "ModelName", "Sensitivity", });
     internal_static_sensory_api_v1_audio_TranscribeConfig_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_sensory_api_v1_audio_TranscribeConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_TranscribeConfig_descriptor,
-        new java.lang.String[] { "Audio", "ModelName", "UserId", "EnablePunctuationCapitalization", "DoSingleUtterance", "VadSensitivity", "VadDuration", "CustomVocabRewardThreshold", "CustomVocabularyId", "CustomWordList", });
+        new java.lang.String[] { "Audio", "ModelName", "UserId", "EnablePunctuationCapitalization", "DoSingleUtterance", "VadSensitivity", "VadDuration", "CustomVocabRewardThreshold", "CustomVocabularyId", "CustomWordList", "DoOfflineMode", "WakeWordConfig", });
     internal_static_sensory_api_v1_audio_AudioConfig_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_sensory_api_v1_audio_AudioConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_AudioConfig_descriptor,
         new java.lang.String[] { "Encoding", "SampleRateHertz", "AudioChannelCount", "LanguageCode", });
     internal_static_sensory_api_v1_audio_VoiceSynthesisConfig_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_sensory_api_v1_audio_VoiceSynthesisConfig_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sensory_api_v1_audio_VoiceSynthesisConfig_descriptor,

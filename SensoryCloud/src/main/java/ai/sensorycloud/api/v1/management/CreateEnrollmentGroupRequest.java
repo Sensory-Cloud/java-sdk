@@ -25,7 +25,8 @@ private static final long serialVersionUID = 0L;
     description_ = "";
     modelName_ = "";
     userId_ = "";
-    enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    enrollmentIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   @java.lang.Override
@@ -35,93 +36,6 @@ private static final long serialVersionUID = 0L;
     return new CreateEnrollmentGroupRequest();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private CreateEnrollmentGroupRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            id_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            name_ = s;
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            description_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            modelName_ = s;
-            break;
-          }
-          case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            userId_ = s;
-            break;
-          }
-          case 50: {
-            java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              enrollmentIds_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            enrollmentIds_.add(s);
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        enrollmentIds_ = enrollmentIds_.getUnmodifiableView();
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.management.SensoryApiV1ManagementEnrollmentProto.internal_static_sensory_api_v1_management_CreateEnrollmentGroupRequest_descriptor;
@@ -136,7 +50,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object id_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object id_ = "";
   /**
    * <pre>
    * Identifier for enrollment group
@@ -182,7 +97,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object name_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object name_ = "";
   /**
    * <pre>
    * Name of the enrollment group
@@ -228,7 +144,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int DESCRIPTION_FIELD_NUMBER = 3;
-  private volatile java.lang.Object description_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object description_ = "";
   /**
    * <pre>
    * Description for the enrollment group
@@ -274,7 +191,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 4;
-  private volatile java.lang.Object modelName_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object modelName_ = "";
   /**
    * <pre>
    * Model name for the model used by this enrollment group
@@ -320,7 +238,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int USERID_FIELD_NUMBER = 5;
-  private volatile java.lang.Object userId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object userId_ = "";
   /**
    * <pre>
    * User ID of the user that owns the enrollment group
@@ -366,7 +285,9 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ENROLLMENTIDS_FIELD_NUMBER = 6;
-  private com.google.protobuf.LazyStringList enrollmentIds_;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.LazyStringArrayList enrollmentIds_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
   /**
    * <pre>
    * List of enrollment IDs to include in the enrollment group
@@ -448,7 +369,7 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < enrollmentIds_.size(); i++) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, enrollmentIds_.getRaw(i));
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -480,7 +401,7 @@ private static final long serialVersionUID = 0L;
       size += dataSize;
       size += 1 * getEnrollmentIdsList().size();
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -507,7 +428,7 @@ private static final long serialVersionUID = 0L;
         .equals(other.getUserId())) return false;
     if (!getEnrollmentIdsList()
         .equals(other.getEnrollmentIdsList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -532,7 +453,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ENROLLMENTIDS_FIELD_NUMBER;
       hash = (53 * hash) + getEnrollmentIdsList().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -581,11 +502,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -653,34 +576,25 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       id_ = "";
-
       name_ = "";
-
       description_ = "";
-
       modelName_ = "";
-
       userId_ = "";
-
-      enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
+      enrollmentIds_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       return this;
     }
 
@@ -707,19 +621,32 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest buildPartial() {
       ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest result = new ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest(this);
-      int from_bitField0_ = bitField0_;
-      result.id_ = id_;
-      result.name_ = name_;
-      result.description_ = description_;
-      result.modelName_ = modelName_;
-      result.userId_ = userId_;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        enrollmentIds_ = enrollmentIds_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      }
-      result.enrollmentIds_ = enrollmentIds_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.id_ = id_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.name_ = name_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.description_ = description_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.modelName_ = modelName_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.userId_ = userId_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        enrollmentIds_.makeImmutable();
+        result.enrollmentIds_ = enrollmentIds_;
+      }
     }
 
     @java.lang.Override
@@ -768,35 +695,40 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest.getDefaultInstance()) return this;
       if (!other.getId().isEmpty()) {
         id_ = other.id_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
+        bitField0_ |= 0x00000002;
         onChanged();
       }
       if (!other.getDescription().isEmpty()) {
         description_ = other.description_;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
       if (!other.getModelName().isEmpty()) {
         modelName_ = other.modelName_;
+        bitField0_ |= 0x00000008;
         onChanged();
       }
       if (!other.getUserId().isEmpty()) {
         userId_ = other.userId_;
+        bitField0_ |= 0x00000010;
         onChanged();
       }
       if (!other.enrollmentIds_.isEmpty()) {
         if (enrollmentIds_.isEmpty()) {
           enrollmentIds_ = other.enrollmentIds_;
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ |= 0x00000020;
         } else {
           ensureEnrollmentIdsIsMutable();
           enrollmentIds_.addAll(other.enrollmentIds_);
         }
         onChanged();
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -811,17 +743,61 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              id_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              name_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            case 26: {
+              description_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
+            case 34: {
+              modelName_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 34
+            case 42: {
+              userId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 42
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+              ensureEnrollmentIdsIsMutable();
+              enrollmentIds_.add(s);
+              break;
+            } // case 50
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.management.CreateEnrollmentGroupRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
     private int bitField0_;
@@ -879,11 +855,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       id_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -896,8 +870,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearId() {
-      
       id_ = getDefaultInstance().getId();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -912,12 +886,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       id_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -975,11 +947,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setName(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       name_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -992,8 +962,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearName() {
-      
       name_ = getDefaultInstance().getName();
+      bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
@@ -1008,12 +978,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       name_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -1071,11 +1039,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setDescription(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       description_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1088,8 +1054,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearDescription() {
-      
       description_ = getDefaultInstance().getDescription();
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
@@ -1104,12 +1070,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       description_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1167,11 +1131,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setModelName(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       modelName_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1184,8 +1146,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearModelName() {
-      
       modelName_ = getDefaultInstance().getModelName();
+      bitField0_ = (bitField0_ & ~0x00000008);
       onChanged();
       return this;
     }
@@ -1200,12 +1162,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setModelNameBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       modelName_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1263,11 +1223,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setUserId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       userId_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1280,8 +1238,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearUserId() {
-      
       userId_ = getDefaultInstance().getUserId();
+      bitField0_ = (bitField0_ & ~0x00000010);
       onChanged();
       return this;
     }
@@ -1296,22 +1254,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setUserIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       userId_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.LazyStringList enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.LazyStringArrayList enrollmentIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureEnrollmentIdsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
+      if (!enrollmentIds_.isModifiable()) {
         enrollmentIds_ = new com.google.protobuf.LazyStringArrayList(enrollmentIds_);
-        bitField0_ |= 0x00000001;
-       }
+      }
+      bitField0_ |= 0x00000020;
     }
     /**
      * <pre>
@@ -1323,7 +1280,8 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ProtocolStringList
         getEnrollmentIdsList() {
-      return enrollmentIds_.getUnmodifiableView();
+      enrollmentIds_.makeImmutable();
+      return enrollmentIds_;
     }
     /**
      * <pre>
@@ -1373,11 +1331,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentIds(
         int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureEnrollmentIdsIsMutable();
+      if (value == null) { throw new NullPointerException(); }
+      ensureEnrollmentIdsIsMutable();
       enrollmentIds_.set(index, value);
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1392,11 +1349,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder addEnrollmentIds(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureEnrollmentIdsIsMutable();
+      if (value == null) { throw new NullPointerException(); }
+      ensureEnrollmentIdsIsMutable();
       enrollmentIds_.add(value);
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1414,6 +1370,7 @@ private static final long serialVersionUID = 0L;
       ensureEnrollmentIdsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, enrollmentIds_);
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1426,8 +1383,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearEnrollmentIds() {
-      enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
+      enrollmentIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000020);;
       onChanged();
       return this;
     }
@@ -1442,12 +1400,11 @@ private static final long serialVersionUID = 0L;
      */
     public Builder addEnrollmentIdsBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       ensureEnrollmentIdsIsMutable();
       enrollmentIds_.add(value);
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1484,7 +1441,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new CreateEnrollmentGroupRequest(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

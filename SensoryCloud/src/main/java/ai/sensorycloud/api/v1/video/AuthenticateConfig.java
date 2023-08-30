@@ -31,96 +31,6 @@ private static final long serialVersionUID = 0L;
     return new AuthenticateConfig();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private AuthenticateConfig(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-            authIdCase_ = 1;
-            authId_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-            authIdCase_ = 2;
-            authId_ = s;
-            break;
-          }
-          case 24: {
-
-            isLivenessEnabled_ = input.readBool();
-            break;
-          }
-          case 32: {
-            int rawValue = input.readEnum();
-
-            livenessThreshold_ = rawValue;
-            break;
-          }
-          case 42: {
-            ai.sensorycloud.api.common.CompressionConfiguration.Builder subBuilder = null;
-            if (compression_ != null) {
-              subBuilder = compression_.toBuilder();
-            }
-            compression_ = input.readMessage(ai.sensorycloud.api.common.CompressionConfiguration.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(compression_);
-              compression_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 48: {
-
-            doIncludeToken_ = input.readBool();
-            break;
-          }
-          case 58: {
-
-            enrollmentToken_ = input.readBytes();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.video.SensoryApiV1VideoProto.internal_static_sensory_api_v1_video_AuthenticateConfig_descriptor;
@@ -135,6 +45,7 @@ private static final long serialVersionUID = 0L;
   }
 
   private int authIdCase_ = 0;
+  @SuppressWarnings("serial")
   private java.lang.Object authId_;
   public enum AuthIdCase
       implements com.google.protobuf.Internal.EnumLite,
@@ -304,7 +215,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ISLIVENESSENABLED_FIELD_NUMBER = 3;
-  private boolean isLivenessEnabled_;
+  private boolean isLivenessEnabled_ = false;
   /**
    * <pre>
    * Enable a liveness check on the image, which will further improve the security of authentication at the expense of a slightly slower response.
@@ -319,7 +230,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int LIVENESSTHRESHOLD_FIELD_NUMBER = 4;
-  private int livenessThreshold_;
+  private int livenessThreshold_ = 0;
   /**
    * <pre>
    * The liveness threshold
@@ -340,8 +251,7 @@ private static final long serialVersionUID = 0L;
    * @return The livenessThreshold.
    */
   @java.lang.Override public ai.sensorycloud.api.v1.video.RecognitionThreshold getLivenessThreshold() {
-    @SuppressWarnings("deprecation")
-    ai.sensorycloud.api.v1.video.RecognitionThreshold result = ai.sensorycloud.api.v1.video.RecognitionThreshold.valueOf(livenessThreshold_);
+    ai.sensorycloud.api.v1.video.RecognitionThreshold result = ai.sensorycloud.api.v1.video.RecognitionThreshold.forNumber(livenessThreshold_);
     return result == null ? ai.sensorycloud.api.v1.video.RecognitionThreshold.UNRECOGNIZED : result;
   }
 
@@ -380,11 +290,11 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.CompressionConfigurationOrBuilder getCompressionOrBuilder() {
-    return getCompression();
+    return compression_ == null ? ai.sensorycloud.api.common.CompressionConfiguration.getDefaultInstance() : compression_;
   }
 
   public static final int DOINCLUDETOKEN_FIELD_NUMBER = 6;
-  private boolean doIncludeToken_;
+  private boolean doIncludeToken_ = false;
   /**
    * <pre>
    * A boolean indicating if the response should include an OAuth token for the user associated with the enrollmentId
@@ -401,7 +311,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ENROLLMENTTOKEN_FIELD_NUMBER = 7;
-  private com.google.protobuf.ByteString enrollmentToken_;
+  private com.google.protobuf.ByteString enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
   /**
    * <pre>
    * Encrypted enrollment token that was provided on enrollment creation
@@ -451,7 +361,7 @@ private static final long serialVersionUID = 0L;
     if (!enrollmentToken_.isEmpty()) {
       output.writeBytes(7, enrollmentToken_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -486,7 +396,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(7, enrollmentToken_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -526,7 +436,7 @@ private static final long serialVersionUID = 0L;
       case 0:
       default:
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -563,7 +473,7 @@ private static final long serialVersionUID = 0L;
       case 0:
       default:
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -612,11 +522,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.AuthenticateConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.video.AuthenticateConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -684,36 +596,27 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.video.AuthenticateConfig.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       isLivenessEnabled_ = false;
-
       livenessThreshold_ = 0;
-
-      if (compressionBuilder_ == null) {
-        compression_ = null;
-      } else {
-        compression_ = null;
+      compression_ = null;
+      if (compressionBuilder_ != null) {
+        compressionBuilder_.dispose();
         compressionBuilder_ = null;
       }
       doIncludeToken_ = false;
-
       enrollmentToken_ = com.google.protobuf.ByteString.EMPTY;
-
       authIdCase_ = 0;
       authId_ = null;
       return this;
@@ -742,24 +645,36 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.video.AuthenticateConfig buildPartial() {
       ai.sensorycloud.api.v1.video.AuthenticateConfig result = new ai.sensorycloud.api.v1.video.AuthenticateConfig(this);
-      if (authIdCase_ == 1) {
-        result.authId_ = authId_;
-      }
-      if (authIdCase_ == 2) {
-        result.authId_ = authId_;
-      }
-      result.isLivenessEnabled_ = isLivenessEnabled_;
-      result.livenessThreshold_ = livenessThreshold_;
-      if (compressionBuilder_ == null) {
-        result.compression_ = compression_;
-      } else {
-        result.compression_ = compressionBuilder_.build();
-      }
-      result.doIncludeToken_ = doIncludeToken_;
-      result.enrollmentToken_ = enrollmentToken_;
-      result.authIdCase_ = authIdCase_;
+      if (bitField0_ != 0) { buildPartial0(result); }
+      buildPartialOneofs(result);
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.video.AuthenticateConfig result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.isLivenessEnabled_ = isLivenessEnabled_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.livenessThreshold_ = livenessThreshold_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.compression_ = compressionBuilder_ == null
+            ? compression_
+            : compressionBuilder_.build();
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.doIncludeToken_ = doIncludeToken_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.enrollmentToken_ = enrollmentToken_;
+      }
+    }
+
+    private void buildPartialOneofs(ai.sensorycloud.api.v1.video.AuthenticateConfig result) {
+      result.authIdCase_ = authIdCase_;
+      result.authId_ = this.authId_;
     }
 
     @java.lang.Override
@@ -838,7 +753,7 @@ private static final long serialVersionUID = 0L;
           break;
         }
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -853,17 +768,69 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.video.AuthenticateConfig parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+              authIdCase_ = 1;
+              authId_ = s;
+              break;
+            } // case 10
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+              authIdCase_ = 2;
+              authId_ = s;
+              break;
+            } // case 18
+            case 24: {
+              isLivenessEnabled_ = input.readBool();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 24
+            case 32: {
+              livenessThreshold_ = input.readEnum();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 32
+            case 42: {
+              input.readMessage(
+                  getCompressionFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 42
+            case 48: {
+              doIncludeToken_ = input.readBool();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 48
+            case 58: {
+              enrollmentToken_ = input.readBytes();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 58
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.video.AuthenticateConfig) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
     private int authIdCase_ = 0;
@@ -881,6 +848,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private int bitField0_;
 
     /**
      * <pre>
@@ -958,10 +926,8 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  authIdCase_ = 1;
+      if (value == null) { throw new NullPointerException(); }
+      authIdCase_ = 1;
       authId_ = value;
       onChanged();
       return this;
@@ -993,10 +959,8 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       authIdCase_ = 1;
       authId_ = value;
       onChanged();
@@ -1079,10 +1043,8 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentGroupId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  authIdCase_ = 2;
+      if (value == null) { throw new NullPointerException(); }
+      authIdCase_ = 2;
       authId_ = value;
       onChanged();
       return this;
@@ -1114,10 +1076,8 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentGroupIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       authIdCase_ = 2;
       authId_ = value;
       onChanged();
@@ -1147,8 +1107,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setIsLivenessEnabled(boolean value) {
-      
+
       isLivenessEnabled_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1161,7 +1122,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIsLivenessEnabled() {
-      
+      bitField0_ = (bitField0_ & ~0x00000004);
       isLivenessEnabled_ = false;
       onChanged();
       return this;
@@ -1189,8 +1150,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setLivenessThresholdValue(int value) {
-      
       livenessThreshold_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1204,8 +1165,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public ai.sensorycloud.api.v1.video.RecognitionThreshold getLivenessThreshold() {
-      @SuppressWarnings("deprecation")
-      ai.sensorycloud.api.v1.video.RecognitionThreshold result = ai.sensorycloud.api.v1.video.RecognitionThreshold.valueOf(livenessThreshold_);
+      ai.sensorycloud.api.v1.video.RecognitionThreshold result = ai.sensorycloud.api.v1.video.RecognitionThreshold.forNumber(livenessThreshold_);
       return result == null ? ai.sensorycloud.api.v1.video.RecognitionThreshold.UNRECOGNIZED : result;
     }
     /**
@@ -1221,7 +1181,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
         throw new NullPointerException();
       }
-      
+      bitField0_ |= 0x00000008;
       livenessThreshold_ = value.getNumber();
       onChanged();
       return this;
@@ -1235,7 +1195,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearLivenessThreshold() {
-      
+      bitField0_ = (bitField0_ & ~0x00000008);
       livenessThreshold_ = 0;
       onChanged();
       return this;
@@ -1253,7 +1213,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the compression field is set.
      */
     public boolean hasCompression() {
-      return compressionBuilder_ != null || compression_ != null;
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
      * <pre>
@@ -1283,11 +1243,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         compression_ = value;
-        onChanged();
       } else {
         compressionBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000010;
+      onChanged();
       return this;
     }
     /**
@@ -1301,11 +1261,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.common.CompressionConfiguration.Builder builderForValue) {
       if (compressionBuilder_ == null) {
         compression_ = builderForValue.build();
-        onChanged();
       } else {
         compressionBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000010;
+      onChanged();
       return this;
     }
     /**
@@ -1317,17 +1277,18 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeCompression(ai.sensorycloud.api.common.CompressionConfiguration value) {
       if (compressionBuilder_ == null) {
-        if (compression_ != null) {
-          compression_ =
-            ai.sensorycloud.api.common.CompressionConfiguration.newBuilder(compression_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000010) != 0) &&
+          compression_ != null &&
+          compression_ != ai.sensorycloud.api.common.CompressionConfiguration.getDefaultInstance()) {
+          getCompressionBuilder().mergeFrom(value);
         } else {
           compression_ = value;
         }
-        onChanged();
       } else {
         compressionBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000010;
+      onChanged();
       return this;
     }
     /**
@@ -1338,14 +1299,13 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.common.CompressionConfiguration compression = 5;</code>
      */
     public Builder clearCompression() {
-      if (compressionBuilder_ == null) {
-        compression_ = null;
-        onChanged();
-      } else {
-        compression_ = null;
+      bitField0_ = (bitField0_ & ~0x00000010);
+      compression_ = null;
+      if (compressionBuilder_ != null) {
+        compressionBuilder_.dispose();
         compressionBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
@@ -1356,7 +1316,7 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.common.CompressionConfiguration compression = 5;</code>
      */
     public ai.sensorycloud.api.common.CompressionConfiguration.Builder getCompressionBuilder() {
-      
+      bitField0_ |= 0x00000010;
       onChanged();
       return getCompressionFieldBuilder().getBuilder();
     }
@@ -1423,8 +1383,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setDoIncludeToken(boolean value) {
-      
+
       doIncludeToken_ = value;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1439,7 +1400,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearDoIncludeToken() {
-      
+      bitField0_ = (bitField0_ & ~0x00000020);
       doIncludeToken_ = false;
       onChanged();
       return this;
@@ -1470,11 +1431,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setEnrollmentToken(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       enrollmentToken_ = value;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
@@ -1488,7 +1447,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearEnrollmentToken() {
-      
+      bitField0_ = (bitField0_ & ~0x00000040);
       enrollmentToken_ = getDefaultInstance().getEnrollmentToken();
       onChanged();
       return this;
@@ -1526,7 +1485,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new AuthenticateConfig(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

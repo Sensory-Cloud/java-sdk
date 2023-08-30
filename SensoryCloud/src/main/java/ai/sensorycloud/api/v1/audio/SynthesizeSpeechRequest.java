@@ -30,69 +30,6 @@ private static final long serialVersionUID = 0L;
     return new SynthesizeSpeechRequest();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private SynthesizeSpeechRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            phrase_ = s;
-            break;
-          }
-          case 18: {
-            ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.Builder subBuilder = null;
-            if (config_ != null) {
-              subBuilder = config_.toBuilder();
-            }
-            config_ = input.readMessage(ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(config_);
-              config_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.audio.SensoryApiV1AudioProto.internal_static_sensory_api_v1_audio_SynthesizeSpeechRequest_descriptor;
@@ -107,7 +44,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PHRASE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object phrase_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object phrase_ = "";
   /**
    * <pre>
    * The raw text to create voice synthesis for
@@ -187,7 +125,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.v1.audio.VoiceSynthesisConfigOrBuilder getConfigOrBuilder() {
-    return getConfig();
+    return config_ == null ? ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.getDefaultInstance() : config_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -210,7 +148,7 @@ private static final long serialVersionUID = 0L;
     if (config_ != null) {
       output.writeMessage(2, getConfig());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -226,7 +164,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getConfig());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -248,7 +186,7 @@ private static final long serialVersionUID = 0L;
       if (!getConfig()
           .equals(other.getConfig())) return false;
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -265,7 +203,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getConfig().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -314,11 +252,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -386,28 +326,22 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       phrase_ = "";
-
-      if (configBuilder_ == null) {
-        config_ = null;
-      } else {
-        config_ = null;
+      config_ = null;
+      if (configBuilder_ != null) {
+        configBuilder_.dispose();
         configBuilder_ = null;
       }
       return this;
@@ -436,14 +370,21 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest buildPartial() {
       ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest result = new ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest(this);
-      result.phrase_ = phrase_;
-      if (configBuilder_ == null) {
-        result.config_ = config_;
-      } else {
-        result.config_ = configBuilder_.build();
-      }
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.phrase_ = phrase_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.config_ = configBuilder_ == null
+            ? config_
+            : configBuilder_.build();
+      }
     }
 
     @java.lang.Override
@@ -492,12 +433,13 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest.getDefaultInstance()) return this;
       if (!other.getPhrase().isEmpty()) {
         phrase_ = other.phrase_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (other.hasConfig()) {
         mergeConfig(other.getConfig());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -512,19 +454,45 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              phrase_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              input.readMessage(
+                  getConfigFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.audio.SynthesizeSpeechRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object phrase_ = "";
     /**
@@ -579,11 +547,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setPhrase(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       phrase_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -596,8 +562,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPhrase() {
-      
       phrase_ = getDefaultInstance().getPhrase();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -612,12 +578,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setPhraseBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       phrase_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -634,7 +598,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the config field is set.
      */
     public boolean hasConfig() {
-      return configBuilder_ != null || config_ != null;
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <pre>
@@ -664,11 +628,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         config_ = value;
-        onChanged();
       } else {
         configBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -682,11 +646,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.Builder builderForValue) {
       if (configBuilder_ == null) {
         config_ = builderForValue.build();
-        onChanged();
       } else {
         configBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -698,17 +662,18 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeConfig(ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig value) {
       if (configBuilder_ == null) {
-        if (config_ != null) {
-          config_ =
-            ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.newBuilder(config_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000002) != 0) &&
+          config_ != null &&
+          config_ != ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.getDefaultInstance()) {
+          getConfigBuilder().mergeFrom(value);
         } else {
           config_ = value;
         }
-        onChanged();
       } else {
         configBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -719,14 +684,13 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.v1.audio.VoiceSynthesisConfig config = 2;</code>
      */
     public Builder clearConfig() {
-      if (configBuilder_ == null) {
-        config_ = null;
-        onChanged();
-      } else {
-        config_ = null;
+      bitField0_ = (bitField0_ & ~0x00000002);
+      config_ = null;
+      if (configBuilder_ != null) {
+        configBuilder_.dispose();
         configBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
@@ -737,7 +701,7 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.v1.audio.VoiceSynthesisConfig config = 2;</code>
      */
     public ai.sensorycloud.api.v1.audio.VoiceSynthesisConfig.Builder getConfigBuilder() {
-      
+      bitField0_ |= 0x00000002;
       onChanged();
       return getConfigFieldBuilder().getBuilder();
     }
@@ -809,7 +773,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new SynthesizeSpeechRequest(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

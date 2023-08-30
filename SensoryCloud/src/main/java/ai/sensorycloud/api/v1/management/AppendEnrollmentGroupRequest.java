@@ -21,7 +21,8 @@ private static final long serialVersionUID = 0L;
   }
   private AppendEnrollmentGroupRequest() {
     groupId_ = "";
-    enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    enrollmentIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   @java.lang.Override
@@ -31,69 +32,6 @@ private static final long serialVersionUID = 0L;
     return new AppendEnrollmentGroupRequest();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private AppendEnrollmentGroupRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            groupId_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              enrollmentIds_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            enrollmentIds_.add(s);
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        enrollmentIds_ = enrollmentIds_.getUnmodifiableView();
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.management.SensoryApiV1ManagementEnrollmentProto.internal_static_sensory_api_v1_management_AppendEnrollmentGroupRequest_descriptor;
@@ -108,7 +46,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int GROUPID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object groupId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object groupId_ = "";
   /**
    * <pre>
    * Enrollment group ID to append enrollments to
@@ -154,7 +93,9 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ENROLLMENTIDS_FIELD_NUMBER = 2;
-  private com.google.protobuf.LazyStringList enrollmentIds_;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.LazyStringArrayList enrollmentIds_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
   /**
    * <pre>
    * List of enrollment IDS to append
@@ -224,7 +165,7 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < enrollmentIds_.size(); i++) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, enrollmentIds_.getRaw(i));
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -244,7 +185,7 @@ private static final long serialVersionUID = 0L;
       size += dataSize;
       size += 1 * getEnrollmentIdsList().size();
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -263,7 +204,7 @@ private static final long serialVersionUID = 0L;
         .equals(other.getGroupId())) return false;
     if (!getEnrollmentIdsList()
         .equals(other.getEnrollmentIdsList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -280,7 +221,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ENROLLMENTIDS_FIELD_NUMBER;
       hash = (53 * hash) + getEnrollmentIdsList().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -329,11 +270,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -401,26 +344,21 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       groupId_ = "";
-
-      enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
+      enrollmentIds_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       return this;
     }
 
@@ -447,15 +385,20 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest buildPartial() {
       ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest result = new ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest(this);
-      int from_bitField0_ = bitField0_;
-      result.groupId_ = groupId_;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        enrollmentIds_ = enrollmentIds_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      }
-      result.enrollmentIds_ = enrollmentIds_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.groupId_ = groupId_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        enrollmentIds_.makeImmutable();
+        result.enrollmentIds_ = enrollmentIds_;
+      }
     }
 
     @java.lang.Override
@@ -504,19 +447,20 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest.getDefaultInstance()) return this;
       if (!other.getGroupId().isEmpty()) {
         groupId_ = other.groupId_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (!other.enrollmentIds_.isEmpty()) {
         if (enrollmentIds_.isEmpty()) {
           enrollmentIds_ = other.enrollmentIds_;
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ |= 0x00000002;
         } else {
           ensureEnrollmentIdsIsMutable();
           enrollmentIds_.addAll(other.enrollmentIds_);
         }
         onChanged();
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -531,17 +475,41 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              groupId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+              ensureEnrollmentIdsIsMutable();
+              enrollmentIds_.add(s);
+              break;
+            } // case 18
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.management.AppendEnrollmentGroupRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
     private int bitField0_;
@@ -599,11 +567,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setGroupId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       groupId_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -616,8 +582,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearGroupId() {
-      
       groupId_ = getDefaultInstance().getGroupId();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -632,22 +598,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setGroupIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       groupId_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.LazyStringList enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.LazyStringArrayList enrollmentIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureEnrollmentIdsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
+      if (!enrollmentIds_.isModifiable()) {
         enrollmentIds_ = new com.google.protobuf.LazyStringArrayList(enrollmentIds_);
-        bitField0_ |= 0x00000001;
-       }
+      }
+      bitField0_ |= 0x00000002;
     }
     /**
      * <pre>
@@ -659,7 +624,8 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ProtocolStringList
         getEnrollmentIdsList() {
-      return enrollmentIds_.getUnmodifiableView();
+      enrollmentIds_.makeImmutable();
+      return enrollmentIds_;
     }
     /**
      * <pre>
@@ -709,11 +675,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentIds(
         int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureEnrollmentIdsIsMutable();
+      if (value == null) { throw new NullPointerException(); }
+      ensureEnrollmentIdsIsMutable();
       enrollmentIds_.set(index, value);
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -728,11 +693,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder addEnrollmentIds(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureEnrollmentIdsIsMutable();
+      if (value == null) { throw new NullPointerException(); }
+      ensureEnrollmentIdsIsMutable();
       enrollmentIds_.add(value);
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -750,6 +714,7 @@ private static final long serialVersionUID = 0L;
       ensureEnrollmentIdsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, enrollmentIds_);
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -762,8 +727,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearEnrollmentIds() {
-      enrollmentIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
+      enrollmentIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000002);;
       onChanged();
       return this;
     }
@@ -778,12 +744,11 @@ private static final long serialVersionUID = 0L;
      */
     public Builder addEnrollmentIdsBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       ensureEnrollmentIdsIsMutable();
       enrollmentIds_.add(value);
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -820,7 +785,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new AppendEnrollmentGroupRequest(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

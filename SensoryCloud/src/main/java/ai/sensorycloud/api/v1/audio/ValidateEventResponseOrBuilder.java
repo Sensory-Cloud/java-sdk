@@ -61,30 +61,76 @@ public interface ValidateEventResponseOrBuilder extends
 
   /**
    * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  java.util.List<ai.sensorycloud.api.v1.audio.SoundIdTopNResponse> 
+      getTopNResponseList();
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  ai.sensorycloud.api.v1.audio.SoundIdTopNResponse getTopNResponse(int index);
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  int getTopNResponseCount();
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  java.util.List<? extends ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder> 
+      getTopNResponseOrBuilderList();
+  /**
+   * <pre>
+   * Array of the top N most likely results
+   * </pre>
+   *
+   * <code>repeated .sensory.api.v1.audio.SoundIdTopNResponse topNResponse = 5;</code>
+   */
+  ai.sensorycloud.api.v1.audio.SoundIdTopNResponseOrBuilder getTopNResponseOrBuilder(
+      int index);
+
+  /**
+   * <pre>
    * If a post processing audio action was requested, this will be populated with the specific
    * action that was completed along with the actionId optionally set by the client.
    * </pre>
    *
+   * <code>float ResultStartTime = 6;</code>
+   * @return The resultStartTime.
+   */
+  float getResultStartTime();
+
+  /**
+   * <code>float ResultEndTime = 7;</code>
+   * @return The resultEndTime.
+   */
+  float getResultEndTime();
+
+  /**
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    * @return Whether the postProcessingAction field is set.
    */
   boolean hasPostProcessingAction();
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    * @return The postProcessingAction.
    */
   ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingAction getPostProcessingAction();
   /**
-   * <pre>
-   * If a post processing audio action was requested, this will be populated with the specific
-   * action that was completed along with the actionId optionally set by the client.
-   * </pre>
-   *
    * <code>.sensory.api.v1.audio.AudioResponsePostProcessingAction postProcessingAction = 10;</code>
    */
   ai.sensorycloud.api.v1.audio.AudioResponsePostProcessingActionOrBuilder getPostProcessingActionOrBuilder();

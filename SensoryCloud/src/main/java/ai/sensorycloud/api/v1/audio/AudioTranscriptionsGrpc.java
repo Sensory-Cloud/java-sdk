@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/audio/audio.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AudioTranscriptionsGrpc {
 
   private AudioTranscriptionsGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.audio.AudioTranscriptions";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.audio.AudioTranscriptions";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.audio.TranscribeRequest,
@@ -98,7 +98,7 @@ public final class AudioTranscriptionsGrpc {
    * Handles all audio transcriptions
    * </pre>
    */
-  public static abstract class AudioTranscriptionsImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -106,30 +106,34 @@ public final class AudioTranscriptionsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.TranscribeRequest> transcribe(
+    default io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.TranscribeRequest> transcribe(
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.TranscribeResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getTranscribeMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getTranscribeMethod(),
-            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.TranscribeRequest,
-                ai.sensorycloud.api.v1.audio.TranscribeResponse>(
-                  this, METHODID_TRANSCRIBE)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service AudioTranscriptions.
    * <pre>
    * Handles all audio transcriptions
    * </pre>
    */
-  public static final class AudioTranscriptionsStub extends io.grpc.stub.AbstractAsyncStub<AudioTranscriptionsStub> {
+  public static abstract class AudioTranscriptionsImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return AudioTranscriptionsGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service AudioTranscriptions.
+   * <pre>
+   * Handles all audio transcriptions
+   * </pre>
+   */
+  public static final class AudioTranscriptionsStub
+      extends io.grpc.stub.AbstractAsyncStub<AudioTranscriptionsStub> {
     private AudioTranscriptionsStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -155,11 +159,13 @@ public final class AudioTranscriptionsGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service AudioTranscriptions.
    * <pre>
    * Handles all audio transcriptions
    * </pre>
    */
-  public static final class AudioTranscriptionsBlockingStub extends io.grpc.stub.AbstractBlockingStub<AudioTranscriptionsBlockingStub> {
+  public static final class AudioTranscriptionsBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<AudioTranscriptionsBlockingStub> {
     private AudioTranscriptionsBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -173,11 +179,13 @@ public final class AudioTranscriptionsGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service AudioTranscriptions.
    * <pre>
    * Handles all audio transcriptions
    * </pre>
    */
-  public static final class AudioTranscriptionsFutureStub extends io.grpc.stub.AbstractFutureStub<AudioTranscriptionsFutureStub> {
+  public static final class AudioTranscriptionsFutureStub
+      extends io.grpc.stub.AbstractFutureStub<AudioTranscriptionsFutureStub> {
     private AudioTranscriptionsFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -197,10 +205,10 @@ public final class AudioTranscriptionsGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final AudioTranscriptionsImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(AudioTranscriptionsImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -228,6 +236,18 @@ public final class AudioTranscriptionsGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getTranscribeMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.TranscribeRequest,
+              ai.sensorycloud.api.v1.audio.TranscribeResponse>(
+                service, METHODID_TRANSCRIBE)))
+        .build();
+  }
+
   private static abstract class AudioTranscriptionsBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     AudioTranscriptionsBaseDescriptorSupplier() {}
@@ -251,9 +271,9 @@ public final class AudioTranscriptionsGrpc {
   private static final class AudioTranscriptionsMethodDescriptorSupplier
       extends AudioTranscriptionsBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    AudioTranscriptionsMethodDescriptorSupplier(String methodName) {
+    AudioTranscriptionsMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 

@@ -59,5 +59,5 @@ public interface CreateEnrollmentRequestOrBuilder extends
    */
   com.google.protobuf.ByteString getImageContent();
 
-  public ai.sensorycloud.api.v1.video.CreateEnrollmentRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.video.CreateEnrollmentRequest.StreamingRequestCase getStreamingRequestCase();
 }

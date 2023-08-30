@@ -125,5 +125,5 @@ public interface ValidateEnrolledEventConfigOrBuilder extends
    */
   com.google.protobuf.ByteString getEnrollmentToken();
 
-  public ai.sensorycloud.api.v1.audio.ValidateEnrolledEventConfig.AuthIdCase getAuthIdCase();
+  ai.sensorycloud.api.v1.audio.ValidateEnrolledEventConfig.AuthIdCase getAuthIdCase();
 }

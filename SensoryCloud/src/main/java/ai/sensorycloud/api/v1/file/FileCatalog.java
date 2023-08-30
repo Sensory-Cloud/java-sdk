@@ -30,76 +30,6 @@ private static final long serialVersionUID = 0L;
     return new FileCatalog();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private FileCatalog(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              files_ = new java.util.ArrayList<ai.sensorycloud.api.v1.file.FileInfo>();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            files_.add(
-                input.readMessage(ai.sensorycloud.api.v1.file.FileInfo.parser(), extensionRegistry));
-            break;
-          }
-          case 18: {
-            ai.sensorycloud.api.v1.file.VersionedFileCategory.Builder subBuilder = null;
-            if (category_ != null) {
-              subBuilder = category_.toBuilder();
-            }
-            category_ = input.readMessage(ai.sensorycloud.api.v1.file.VersionedFileCategory.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(category_);
-              category_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        files_ = java.util.Collections.unmodifiableList(files_);
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.file.SensoryApiV1FileProto.internal_static_sensory_api_v1_file_FileCatalog_descriptor;
@@ -114,6 +44,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int FILES_FIELD_NUMBER = 1;
+  @SuppressWarnings("serial")
   private java.util.List<ai.sensorycloud.api.v1.file.FileInfo> files_;
   /**
    * <pre>
@@ -208,7 +139,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.v1.file.VersionedFileCategoryOrBuilder getCategoryOrBuilder() {
-    return getCategory();
+    return category_ == null ? ai.sensorycloud.api.v1.file.VersionedFileCategory.getDefaultInstance() : category_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -231,7 +162,7 @@ private static final long serialVersionUID = 0L;
     if (category_ != null) {
       output.writeMessage(2, getCategory());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -248,7 +179,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getCategory());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -270,7 +201,7 @@ private static final long serialVersionUID = 0L;
       if (!getCategory()
           .equals(other.getCategory())) return false;
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -289,7 +220,7 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
       hash = (53 * hash) + getCategory().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -338,11 +269,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileCatalog parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileCatalog parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -410,33 +343,28 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.file.FileCatalog.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-        getFilesFieldBuilder();
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       if (filesBuilder_ == null) {
         files_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
       } else {
+        files_ = null;
         filesBuilder_.clear();
       }
-      if (categoryBuilder_ == null) {
-        category_ = null;
-      } else {
-        category_ = null;
+      bitField0_ = (bitField0_ & ~0x00000001);
+      category_ = null;
+      if (categoryBuilder_ != null) {
+        categoryBuilder_.dispose();
         categoryBuilder_ = null;
       }
       return this;
@@ -465,7 +393,13 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.file.FileCatalog buildPartial() {
       ai.sensorycloud.api.v1.file.FileCatalog result = new ai.sensorycloud.api.v1.file.FileCatalog(this);
-      int from_bitField0_ = bitField0_;
+      buildPartialRepeatedFields(result);
+      if (bitField0_ != 0) { buildPartial0(result); }
+      onBuilt();
+      return result;
+    }
+
+    private void buildPartialRepeatedFields(ai.sensorycloud.api.v1.file.FileCatalog result) {
       if (filesBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           files_ = java.util.Collections.unmodifiableList(files_);
@@ -475,13 +409,15 @@ private static final long serialVersionUID = 0L;
       } else {
         result.files_ = filesBuilder_.build();
       }
-      if (categoryBuilder_ == null) {
-        result.category_ = category_;
-      } else {
-        result.category_ = categoryBuilder_.build();
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.file.FileCatalog result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.category_ = categoryBuilder_ == null
+            ? category_
+            : categoryBuilder_.build();
       }
-      onBuilt();
-      return result;
     }
 
     @java.lang.Override
@@ -557,7 +493,7 @@ private static final long serialVersionUID = 0L;
       if (other.hasCategory()) {
         mergeCategory(other.getCategory());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -572,17 +508,50 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.file.FileCatalog parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              ai.sensorycloud.api.v1.file.FileInfo m =
+                  input.readMessage(
+                      ai.sensorycloud.api.v1.file.FileInfo.parser(),
+                      extensionRegistry);
+              if (filesBuilder_ == null) {
+                ensureFilesIsMutable();
+                files_.add(m);
+              } else {
+                filesBuilder_.addMessage(m);
+              }
+              break;
+            } // case 10
+            case 18: {
+              input.readMessage(
+                  getCategoryFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.file.FileCatalog) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
     private int bitField0_;
@@ -911,7 +880,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the category field is set.
      */
     public boolean hasCategory() {
-      return categoryBuilder_ != null || category_ != null;
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <pre>
@@ -941,11 +910,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         category_ = value;
-        onChanged();
       } else {
         categoryBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -959,11 +928,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.v1.file.VersionedFileCategory.Builder builderForValue) {
       if (categoryBuilder_ == null) {
         category_ = builderForValue.build();
-        onChanged();
       } else {
         categoryBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -975,17 +944,18 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeCategory(ai.sensorycloud.api.v1.file.VersionedFileCategory value) {
       if (categoryBuilder_ == null) {
-        if (category_ != null) {
-          category_ =
-            ai.sensorycloud.api.v1.file.VersionedFileCategory.newBuilder(category_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000002) != 0) &&
+          category_ != null &&
+          category_ != ai.sensorycloud.api.v1.file.VersionedFileCategory.getDefaultInstance()) {
+          getCategoryBuilder().mergeFrom(value);
         } else {
           category_ = value;
         }
-        onChanged();
       } else {
         categoryBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000002;
+      onChanged();
       return this;
     }
     /**
@@ -996,14 +966,13 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.v1.file.VersionedFileCategory category = 2;</code>
      */
     public Builder clearCategory() {
-      if (categoryBuilder_ == null) {
-        category_ = null;
-        onChanged();
-      } else {
-        category_ = null;
+      bitField0_ = (bitField0_ & ~0x00000002);
+      category_ = null;
+      if (categoryBuilder_ != null) {
+        categoryBuilder_.dispose();
         categoryBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
@@ -1014,7 +983,7 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.v1.file.VersionedFileCategory category = 2;</code>
      */
     public ai.sensorycloud.api.v1.file.VersionedFileCategory.Builder getCategoryBuilder() {
-      
+      bitField0_ |= 0x00000002;
       onChanged();
       return getCategoryFieldBuilder().getBuilder();
     }
@@ -1086,7 +1055,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new FileCatalog(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

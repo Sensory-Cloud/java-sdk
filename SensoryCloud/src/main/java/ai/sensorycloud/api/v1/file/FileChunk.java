@@ -30,60 +30,6 @@ private static final long serialVersionUID = 0L;
     return new FileChunk();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private FileChunk(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-
-            bytes_ = input.readBytes();
-            break;
-          }
-          case 16: {
-
-            offset_ = input.readInt64();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.file.SensoryApiV1FileProto.internal_static_sensory_api_v1_file_FileChunk_descriptor;
@@ -98,7 +44,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int BYTES_FIELD_NUMBER = 1;
-  private com.google.protobuf.ByteString bytes_;
+  private com.google.protobuf.ByteString bytes_ = com.google.protobuf.ByteString.EMPTY;
   /**
    * <pre>
    * The bytes to be sent to the
@@ -113,7 +59,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int OFFSET_FIELD_NUMBER = 2;
-  private long offset_;
+  private long offset_ = 0L;
   /**
    * <pre>
    * The offset value based on the number of bytes currently written
@@ -147,7 +93,7 @@ private static final long serialVersionUID = 0L;
     if (offset_ != 0L) {
       output.writeInt64(2, offset_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -164,7 +110,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(2, offset_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -183,7 +129,7 @@ private static final long serialVersionUID = 0L;
         .equals(other.getBytes())) return false;
     if (getOffset()
         != other.getOffset()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -199,7 +145,7 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + OFFSET_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getOffset());
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -248,11 +194,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.file.FileChunk parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.file.FileChunk parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -320,26 +268,20 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.file.FileChunk.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       bytes_ = com.google.protobuf.ByteString.EMPTY;
-
       offset_ = 0L;
-
       return this;
     }
 
@@ -366,10 +308,19 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.file.FileChunk buildPartial() {
       ai.sensorycloud.api.v1.file.FileChunk result = new ai.sensorycloud.api.v1.file.FileChunk(this);
-      result.bytes_ = bytes_;
-      result.offset_ = offset_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.file.FileChunk result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.bytes_ = bytes_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.offset_ = offset_;
+      }
     }
 
     @java.lang.Override
@@ -422,7 +373,7 @@ private static final long serialVersionUID = 0L;
       if (other.getOffset() != 0L) {
         setOffset(other.getOffset());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -437,19 +388,43 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.file.FileChunk parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              bytes_ = input.readBytes();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 16: {
+              offset_ = input.readInt64();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.file.FileChunk) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private com.google.protobuf.ByteString bytes_ = com.google.protobuf.ByteString.EMPTY;
     /**
@@ -474,11 +449,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setBytes(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       bytes_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -491,7 +464,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearBytes() {
-      
+      bitField0_ = (bitField0_ & ~0x00000001);
       bytes_ = getDefaultInstance().getBytes();
       onChanged();
       return this;
@@ -520,8 +493,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setOffset(long value) {
-      
+
       offset_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -534,7 +508,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearOffset() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       offset_ = 0L;
       onChanged();
       return this;
@@ -572,7 +546,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new FileChunk(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

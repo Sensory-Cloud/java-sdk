@@ -144,5 +144,5 @@ public interface AuthenticateConfigOrBuilder extends
    */
   com.google.protobuf.ByteString getEnrollmentToken();
 
-  public ai.sensorycloud.api.v1.video.AuthenticateConfig.AuthIdCase getAuthIdCase();
+  ai.sensorycloud.api.v1.video.AuthenticateConfig.AuthIdCase getAuthIdCase();
 }

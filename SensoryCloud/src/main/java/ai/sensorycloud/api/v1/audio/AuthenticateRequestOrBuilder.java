@@ -69,5 +69,5 @@ public interface AuthenticateRequestOrBuilder extends
    */
   com.google.protobuf.ByteString getAudioContent();
 
-  public ai.sensorycloud.api.v1.audio.AuthenticateRequest.StreamingRequestCase getStreamingRequestCase();
+  ai.sensorycloud.api.v1.audio.AuthenticateRequest.StreamingRequestCase getStreamingRequestCase();
 }

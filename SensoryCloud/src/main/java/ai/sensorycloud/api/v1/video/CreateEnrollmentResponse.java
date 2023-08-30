@@ -23,6 +23,7 @@ private static final long serialVersionUID = 0L;
     enrollmentId_ = "";
     modelName_ = "";
     modelVersion_ = "";
+    boundingBox_ = emptyLongList();
   }
 
   @java.lang.Override
@@ -32,96 +33,6 @@ private static final long serialVersionUID = 0L;
     return new CreateEnrollmentResponse();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private CreateEnrollmentResponse(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-
-            percentComplete_ = input.readInt64();
-            break;
-          }
-          case 16: {
-
-            isAlive_ = input.readBool();
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            enrollmentId_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            modelName_ = s;
-            break;
-          }
-          case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            modelVersion_ = s;
-            break;
-          }
-          case 53: {
-
-            score_ = input.readFloat();
-            break;
-          }
-          case 58: {
-            ai.sensorycloud.api.common.EnrollmentToken.Builder subBuilder = null;
-            if (enrollmentToken_ != null) {
-              subBuilder = enrollmentToken_.toBuilder();
-            }
-            enrollmentToken_ = input.readMessage(ai.sensorycloud.api.common.EnrollmentToken.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(enrollmentToken_);
-              enrollmentToken_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.v1.video.SensoryApiV1VideoProto.internal_static_sensory_api_v1_video_CreateEnrollmentResponse_descriptor;
@@ -136,7 +47,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PERCENTCOMPLETE_FIELD_NUMBER = 1;
-  private long percentComplete_;
+  private long percentComplete_ = 0L;
   /**
    * <pre>
    * Percent Complete as values between 0 and 100
@@ -151,7 +62,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ISALIVE_FIELD_NUMBER = 2;
-  private boolean isAlive_;
+  private boolean isAlive_ = false;
   /**
    * <pre>
    * Liveness check bit. This value with always be false if 'isLivenessEnabled' is set to false in the CreateEnrollmentConfig
@@ -166,7 +77,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ENROLLMENTID_FIELD_NUMBER = 3;
-  private volatile java.lang.Object enrollmentId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object enrollmentId_ = "";
   /**
    * <pre>
    * If enrollment is successful, this value will be the unique Enrollment ID
@@ -212,7 +124,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int MODELNAME_FIELD_NUMBER = 4;
-  private volatile java.lang.Object modelName_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object modelName_ = "";
   /**
    * <pre>
    * Model used for enrollment
@@ -258,7 +171,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int MODELVERSION_FIELD_NUMBER = 5;
-  private volatile java.lang.Object modelVersion_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object modelVersion_ = "";
   /**
    * <pre>
    * Model version used for enrollment
@@ -304,7 +218,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SCORE_FIELD_NUMBER = 6;
-  private float score_;
+  private float score_ = 0F;
   /**
    * <pre>
    * Score of the enrollment. Currently only used for error messages.
@@ -356,7 +270,78 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public ai.sensorycloud.api.common.EnrollmentTokenOrBuilder getEnrollmentTokenOrBuilder() {
-    return getEnrollmentToken();
+    return enrollmentToken_ == null ? ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance() : enrollmentToken_;
+  }
+
+  public static final int DIDFINDFACE_FIELD_NUMBER = 8;
+  private boolean didFindFace_ = false;
+  /**
+   * <pre>
+   * Indicates if a face was found in the uploaded image
+   * </pre>
+   *
+   * <code>bool didFindFace = 8;</code>
+   * @return The didFindFace.
+   */
+  @java.lang.Override
+  public boolean getDidFindFace() {
+    return didFindFace_;
+  }
+
+  public static final int BOUNDINGBOX_FIELD_NUMBER = 9;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.Internal.LongList boundingBox_;
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 9;</code>
+   * @return A list containing the boundingBox.
+   */
+  @java.lang.Override
+  public java.util.List<java.lang.Long>
+      getBoundingBoxList() {
+    return boundingBox_;
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 9;</code>
+   * @return The count of boundingBox.
+   */
+  public int getBoundingBoxCount() {
+    return boundingBox_.size();
+  }
+  /**
+   * <pre>
+   * The bounding box of the face
+   * </pre>
+   *
+   * <code>repeated int64 boundingBox = 9;</code>
+   * @param index The index of the element to return.
+   * @return The boundingBox at the given index.
+   */
+  public long getBoundingBox(int index) {
+    return boundingBox_.getLong(index);
+  }
+  private int boundingBoxMemoizedSerializedSize = -1;
+
+  public static final int PROBABILITYFACE_FIELD_NUMBER = 10;
+  private float probabilityFace_ = 0F;
+  /**
+   * <pre>
+   * The model's confidence in its face detection
+   * </pre>
+   *
+   * <code>float probabilityFace = 10;</code>
+   * @return The probabilityFace.
+   */
+  @java.lang.Override
+  public float getProbabilityFace() {
+    return probabilityFace_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -373,6 +358,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    getSerializedSize();
     if (percentComplete_ != 0L) {
       output.writeInt64(1, percentComplete_);
     }
@@ -394,7 +380,20 @@ private static final long serialVersionUID = 0L;
     if (enrollmentToken_ != null) {
       output.writeMessage(7, getEnrollmentToken());
     }
-    unknownFields.writeTo(output);
+    if (didFindFace_ != false) {
+      output.writeBool(8, didFindFace_);
+    }
+    if (getBoundingBoxList().size() > 0) {
+      output.writeUInt32NoTag(74);
+      output.writeUInt32NoTag(boundingBoxMemoizedSerializedSize);
+    }
+    for (int i = 0; i < boundingBox_.size(); i++) {
+      output.writeInt64NoTag(boundingBox_.getLong(i));
+    }
+    if (java.lang.Float.floatToRawIntBits(probabilityFace_) != 0) {
+      output.writeFloat(10, probabilityFace_);
+    }
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -428,7 +427,29 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, getEnrollmentToken());
     }
-    size += unknownFields.getSerializedSize();
+    if (didFindFace_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(8, didFindFace_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < boundingBox_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeInt64SizeNoTag(boundingBox_.getLong(i));
+      }
+      size += dataSize;
+      if (!getBoundingBoxList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      boundingBoxMemoizedSerializedSize = dataSize;
+    }
+    if (java.lang.Float.floatToRawIntBits(probabilityFace_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(10, probabilityFace_);
+    }
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -461,7 +482,14 @@ private static final long serialVersionUID = 0L;
       if (!getEnrollmentToken()
           .equals(other.getEnrollmentToken())) return false;
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (getDidFindFace()
+        != other.getDidFindFace()) return false;
+    if (!getBoundingBoxList()
+        .equals(other.getBoundingBoxList())) return false;
+    if (java.lang.Float.floatToIntBits(getProbabilityFace())
+        != java.lang.Float.floatToIntBits(
+            other.getProbabilityFace())) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -491,7 +519,17 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ENROLLMENTTOKEN_FIELD_NUMBER;
       hash = (53 * hash) + getEnrollmentToken().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (37 * hash) + DIDFINDFACE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getDidFindFace());
+    if (getBoundingBoxCount() > 0) {
+      hash = (37 * hash) + BOUNDINGBOX_FIELD_NUMBER;
+      hash = (53 * hash) + getBoundingBoxList().hashCode();
+    }
+    hash = (37 * hash) + PROBABILITYFACE_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getProbabilityFace());
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -540,11 +578,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.v1.video.CreateEnrollmentResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.v1.video.CreateEnrollmentResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -612,40 +652,32 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.v1.video.CreateEnrollmentResponse.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       percentComplete_ = 0L;
-
       isAlive_ = false;
-
       enrollmentId_ = "";
-
       modelName_ = "";
-
       modelVersion_ = "";
-
       score_ = 0F;
-
-      if (enrollmentTokenBuilder_ == null) {
-        enrollmentToken_ = null;
-      } else {
-        enrollmentToken_ = null;
+      enrollmentToken_ = null;
+      if (enrollmentTokenBuilder_ != null) {
+        enrollmentTokenBuilder_.dispose();
         enrollmentTokenBuilder_ = null;
       }
+      didFindFace_ = false;
+      boundingBox_ = emptyLongList();
+      probabilityFace_ = 0F;
       return this;
     }
 
@@ -672,19 +704,51 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.v1.video.CreateEnrollmentResponse buildPartial() {
       ai.sensorycloud.api.v1.video.CreateEnrollmentResponse result = new ai.sensorycloud.api.v1.video.CreateEnrollmentResponse(this);
-      result.percentComplete_ = percentComplete_;
-      result.isAlive_ = isAlive_;
-      result.enrollmentId_ = enrollmentId_;
-      result.modelName_ = modelName_;
-      result.modelVersion_ = modelVersion_;
-      result.score_ = score_;
-      if (enrollmentTokenBuilder_ == null) {
-        result.enrollmentToken_ = enrollmentToken_;
-      } else {
-        result.enrollmentToken_ = enrollmentTokenBuilder_.build();
-      }
+      buildPartialRepeatedFields(result);
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartialRepeatedFields(ai.sensorycloud.api.v1.video.CreateEnrollmentResponse result) {
+      if (((bitField0_ & 0x00000100) != 0)) {
+        boundingBox_.makeImmutable();
+        bitField0_ = (bitField0_ & ~0x00000100);
+      }
+      result.boundingBox_ = boundingBox_;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.v1.video.CreateEnrollmentResponse result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.percentComplete_ = percentComplete_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.isAlive_ = isAlive_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.enrollmentId_ = enrollmentId_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.modelName_ = modelName_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.modelVersion_ = modelVersion_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.score_ = score_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.enrollmentToken_ = enrollmentTokenBuilder_ == null
+            ? enrollmentToken_
+            : enrollmentTokenBuilder_.build();
+      }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        result.didFindFace_ = didFindFace_;
+      }
+      if (((from_bitField0_ & 0x00000200) != 0)) {
+        result.probabilityFace_ = probabilityFace_;
+      }
     }
 
     @java.lang.Override
@@ -739,14 +803,17 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getEnrollmentId().isEmpty()) {
         enrollmentId_ = other.enrollmentId_;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
       if (!other.getModelName().isEmpty()) {
         modelName_ = other.modelName_;
+        bitField0_ |= 0x00000008;
         onChanged();
       }
       if (!other.getModelVersion().isEmpty()) {
         modelVersion_ = other.modelVersion_;
+        bitField0_ |= 0x00000010;
         onChanged();
       }
       if (other.getScore() != 0F) {
@@ -755,7 +822,23 @@ private static final long serialVersionUID = 0L;
       if (other.hasEnrollmentToken()) {
         mergeEnrollmentToken(other.getEnrollmentToken());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      if (other.getDidFindFace() != false) {
+        setDidFindFace(other.getDidFindFace());
+      }
+      if (!other.boundingBox_.isEmpty()) {
+        if (boundingBox_.isEmpty()) {
+          boundingBox_ = other.boundingBox_;
+          bitField0_ = (bitField0_ & ~0x00000100);
+        } else {
+          ensureBoundingBoxIsMutable();
+          boundingBox_.addAll(other.boundingBox_);
+        }
+        onChanged();
+      }
+      if (other.getProbabilityFace() != 0F) {
+        setProbabilityFace(other.getProbabilityFace());
+      }
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -770,19 +853,96 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.v1.video.CreateEnrollmentResponse parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              percentComplete_ = input.readInt64();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 8
+            case 16: {
+              isAlive_ = input.readBool();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
+            case 26: {
+              enrollmentId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
+            case 34: {
+              modelName_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 34
+            case 42: {
+              modelVersion_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 42
+            case 53: {
+              score_ = input.readFloat();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 53
+            case 58: {
+              input.readMessage(
+                  getEnrollmentTokenFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 58
+            case 64: {
+              didFindFace_ = input.readBool();
+              bitField0_ |= 0x00000080;
+              break;
+            } // case 64
+            case 72: {
+              long v = input.readInt64();
+              ensureBoundingBoxIsMutable();
+              boundingBox_.addLong(v);
+              break;
+            } // case 72
+            case 74: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              ensureBoundingBoxIsMutable();
+              while (input.getBytesUntilLimit() > 0) {
+                boundingBox_.addLong(input.readInt64());
+              }
+              input.popLimit(limit);
+              break;
+            } // case 74
+            case 85: {
+              probabilityFace_ = input.readFloat();
+              bitField0_ |= 0x00000200;
+              break;
+            } // case 85
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.v1.video.CreateEnrollmentResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private long percentComplete_ ;
     /**
@@ -807,8 +967,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setPercentComplete(long value) {
-      
+
       percentComplete_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -821,7 +982,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPercentComplete() {
-      
+      bitField0_ = (bitField0_ & ~0x00000001);
       percentComplete_ = 0L;
       onChanged();
       return this;
@@ -850,8 +1011,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setIsAlive(boolean value) {
-      
+
       isAlive_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -864,7 +1026,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIsAlive() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       isAlive_ = false;
       onChanged();
       return this;
@@ -923,11 +1085,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       enrollmentId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -940,8 +1100,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearEnrollmentId() {
-      
       enrollmentId_ = getDefaultInstance().getEnrollmentId();
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
@@ -956,12 +1116,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setEnrollmentIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       enrollmentId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -1019,11 +1177,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setModelName(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       modelName_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1036,8 +1192,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearModelName() {
-      
       modelName_ = getDefaultInstance().getModelName();
+      bitField0_ = (bitField0_ & ~0x00000008);
       onChanged();
       return this;
     }
@@ -1052,12 +1208,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setModelNameBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       modelName_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1115,11 +1269,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setModelVersion(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       modelVersion_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1132,8 +1284,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearModelVersion() {
-      
       modelVersion_ = getDefaultInstance().getModelVersion();
+      bitField0_ = (bitField0_ & ~0x00000010);
       onChanged();
       return this;
     }
@@ -1148,12 +1300,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setModelVersionBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       modelVersion_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1181,8 +1331,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setScore(float value) {
-      
+
       score_ = value;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1195,7 +1346,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearScore() {
-      
+      bitField0_ = (bitField0_ & ~0x00000020);
       score_ = 0F;
       onChanged();
       return this;
@@ -1214,7 +1365,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the enrollmentToken field is set.
      */
     public boolean hasEnrollmentToken() {
-      return enrollmentTokenBuilder_ != null || enrollmentToken_ != null;
+      return ((bitField0_ & 0x00000040) != 0);
     }
     /**
      * <pre>
@@ -1246,11 +1397,11 @@ private static final long serialVersionUID = 0L;
           throw new NullPointerException();
         }
         enrollmentToken_ = value;
-        onChanged();
       } else {
         enrollmentTokenBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000040;
+      onChanged();
       return this;
     }
     /**
@@ -1265,11 +1416,11 @@ private static final long serialVersionUID = 0L;
         ai.sensorycloud.api.common.EnrollmentToken.Builder builderForValue) {
       if (enrollmentTokenBuilder_ == null) {
         enrollmentToken_ = builderForValue.build();
-        onChanged();
       } else {
         enrollmentTokenBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000040;
+      onChanged();
       return this;
     }
     /**
@@ -1282,17 +1433,18 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeEnrollmentToken(ai.sensorycloud.api.common.EnrollmentToken value) {
       if (enrollmentTokenBuilder_ == null) {
-        if (enrollmentToken_ != null) {
-          enrollmentToken_ =
-            ai.sensorycloud.api.common.EnrollmentToken.newBuilder(enrollmentToken_).mergeFrom(value).buildPartial();
+        if (((bitField0_ & 0x00000040) != 0) &&
+          enrollmentToken_ != null &&
+          enrollmentToken_ != ai.sensorycloud.api.common.EnrollmentToken.getDefaultInstance()) {
+          getEnrollmentTokenBuilder().mergeFrom(value);
         } else {
           enrollmentToken_ = value;
         }
-        onChanged();
       } else {
         enrollmentTokenBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000040;
+      onChanged();
       return this;
     }
     /**
@@ -1304,14 +1456,13 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
      */
     public Builder clearEnrollmentToken() {
-      if (enrollmentTokenBuilder_ == null) {
-        enrollmentToken_ = null;
-        onChanged();
-      } else {
-        enrollmentToken_ = null;
+      bitField0_ = (bitField0_ & ~0x00000040);
+      enrollmentToken_ = null;
+      if (enrollmentTokenBuilder_ != null) {
+        enrollmentTokenBuilder_.dispose();
         enrollmentTokenBuilder_ = null;
       }
-
+      onChanged();
       return this;
     }
     /**
@@ -1323,7 +1474,7 @@ private static final long serialVersionUID = 0L;
      * <code>.sensory.api.common.EnrollmentToken enrollmentToken = 7;</code>
      */
     public ai.sensorycloud.api.common.EnrollmentToken.Builder getEnrollmentTokenBuilder() {
-      
+      bitField0_ |= 0x00000040;
       onChanged();
       return getEnrollmentTokenFieldBuilder().getBuilder();
     }
@@ -1364,6 +1515,203 @@ private static final long serialVersionUID = 0L;
       }
       return enrollmentTokenBuilder_;
     }
+
+    private boolean didFindFace_ ;
+    /**
+     * <pre>
+     * Indicates if a face was found in the uploaded image
+     * </pre>
+     *
+     * <code>bool didFindFace = 8;</code>
+     * @return The didFindFace.
+     */
+    @java.lang.Override
+    public boolean getDidFindFace() {
+      return didFindFace_;
+    }
+    /**
+     * <pre>
+     * Indicates if a face was found in the uploaded image
+     * </pre>
+     *
+     * <code>bool didFindFace = 8;</code>
+     * @param value The didFindFace to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDidFindFace(boolean value) {
+
+      didFindFace_ = value;
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Indicates if a face was found in the uploaded image
+     * </pre>
+     *
+     * <code>bool didFindFace = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDidFindFace() {
+      bitField0_ = (bitField0_ & ~0x00000080);
+      didFindFace_ = false;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.Internal.LongList boundingBox_ = emptyLongList();
+    private void ensureBoundingBoxIsMutable() {
+      if (!((bitField0_ & 0x00000100) != 0)) {
+        boundingBox_ = mutableCopy(boundingBox_);
+        bitField0_ |= 0x00000100;
+      }
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @return A list containing the boundingBox.
+     */
+    public java.util.List<java.lang.Long>
+        getBoundingBoxList() {
+      return ((bitField0_ & 0x00000100) != 0) ?
+               java.util.Collections.unmodifiableList(boundingBox_) : boundingBox_;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @return The count of boundingBox.
+     */
+    public int getBoundingBoxCount() {
+      return boundingBox_.size();
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @param index The index of the element to return.
+     * @return The boundingBox at the given index.
+     */
+    public long getBoundingBox(int index) {
+      return boundingBox_.getLong(index);
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @param index The index to set the value at.
+     * @param value The boundingBox to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBoundingBox(
+        int index, long value) {
+
+      ensureBoundingBoxIsMutable();
+      boundingBox_.setLong(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @param value The boundingBox to add.
+     * @return This builder for chaining.
+     */
+    public Builder addBoundingBox(long value) {
+
+      ensureBoundingBoxIsMutable();
+      boundingBox_.addLong(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @param values The boundingBox to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllBoundingBox(
+        java.lang.Iterable<? extends java.lang.Long> values) {
+      ensureBoundingBoxIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, boundingBox_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The bounding box of the face
+     * </pre>
+     *
+     * <code>repeated int64 boundingBox = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBoundingBox() {
+      boundingBox_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000100);
+      onChanged();
+      return this;
+    }
+
+    private float probabilityFace_ ;
+    /**
+     * <pre>
+     * The model's confidence in its face detection
+     * </pre>
+     *
+     * <code>float probabilityFace = 10;</code>
+     * @return The probabilityFace.
+     */
+    @java.lang.Override
+    public float getProbabilityFace() {
+      return probabilityFace_;
+    }
+    /**
+     * <pre>
+     * The model's confidence in its face detection
+     * </pre>
+     *
+     * <code>float probabilityFace = 10;</code>
+     * @param value The probabilityFace to set.
+     * @return This builder for chaining.
+     */
+    public Builder setProbabilityFace(float value) {
+
+      probabilityFace_ = value;
+      bitField0_ |= 0x00000200;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The model's confidence in its face detection
+     * </pre>
+     *
+     * <code>float probabilityFace = 10;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearProbabilityFace() {
+      bitField0_ = (bitField0_ & ~0x00000200);
+      probabilityFace_ = 0F;
+      onChanged();
+      return this;
+    }
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1397,7 +1745,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new CreateEnrollmentResponse(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

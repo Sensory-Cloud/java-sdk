@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: oauth/oauth.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class OauthServiceGrpc {
 
   private OauthServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.oauth.OauthService";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.oauth.OauthService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.oauth.TokenRequest,
@@ -191,7 +191,7 @@ public final class OauthServiceGrpc {
    * Service for OAuth function
    * </pre>
    */
-  public static abstract class OauthServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -199,7 +199,7 @@ public final class OauthServiceGrpc {
      * Endpoint does not require an authorization token
      * </pre>
      */
-    public void getToken(ai.sensorycloud.api.oauth.TokenRequest request,
+    default void getToken(ai.sensorycloud.api.oauth.TokenRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.common.TokenResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetTokenMethod(), responseObserver);
     }
@@ -214,7 +214,7 @@ public final class OauthServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void signToken(ai.sensorycloud.api.oauth.SignTokenRequest request,
+    default void signToken(ai.sensorycloud.api.oauth.SignTokenRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.common.TokenResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSignTokenMethod(), responseObserver);
     }
@@ -225,7 +225,7 @@ public final class OauthServiceGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getWhoAmI(ai.sensorycloud.api.oauth.WhoAmIRequest request,
+    default void getWhoAmI(ai.sensorycloud.api.oauth.WhoAmIRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.oauth.WhoAmIResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetWhoAmIMethod(), responseObserver);
     }
@@ -236,51 +236,34 @@ public final class OauthServiceGrpc {
      * to validate tokens signed by the Sensory cloud.
      * </pre>
      */
-    public void getPublicKey(ai.sensorycloud.api.oauth.PublicKeyRequest request,
+    default void getPublicKey(ai.sensorycloud.api.oauth.PublicKeyRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.oauth.PublicKeyResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetPublicKeyMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetTokenMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.oauth.TokenRequest,
-                ai.sensorycloud.api.common.TokenResponse>(
-                  this, METHODID_GET_TOKEN)))
-          .addMethod(
-            getSignTokenMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.oauth.SignTokenRequest,
-                ai.sensorycloud.api.common.TokenResponse>(
-                  this, METHODID_SIGN_TOKEN)))
-          .addMethod(
-            getGetWhoAmIMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.oauth.WhoAmIRequest,
-                ai.sensorycloud.api.oauth.WhoAmIResponse>(
-                  this, METHODID_GET_WHO_AM_I)))
-          .addMethod(
-            getGetPublicKeyMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.oauth.PublicKeyRequest,
-                ai.sensorycloud.api.oauth.PublicKeyResponse>(
-                  this, METHODID_GET_PUBLIC_KEY)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service OauthService.
    * <pre>
    * Service for OAuth function
    * </pre>
    */
-  public static final class OauthServiceStub extends io.grpc.stub.AbstractAsyncStub<OauthServiceStub> {
+  public static abstract class OauthServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return OauthServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service OauthService.
+   * <pre>
+   * Service for OAuth function
+   * </pre>
+   */
+  public static final class OauthServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<OauthServiceStub> {
     private OauthServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -346,11 +329,13 @@ public final class OauthServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service OauthService.
    * <pre>
    * Service for OAuth function
    * </pre>
    */
-  public static final class OauthServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<OauthServiceBlockingStub> {
+  public static final class OauthServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<OauthServiceBlockingStub> {
     private OauthServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -412,11 +397,13 @@ public final class OauthServiceGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service OauthService.
    * <pre>
    * Service for OAuth function
    * </pre>
    */
-  public static final class OauthServiceFutureStub extends io.grpc.stub.AbstractFutureStub<OauthServiceFutureStub> {
+  public static final class OauthServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<OauthServiceFutureStub> {
     private OauthServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -491,10 +478,10 @@ public final class OauthServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final OauthServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(OauthServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -535,6 +522,39 @@ public final class OauthServiceGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetTokenMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.oauth.TokenRequest,
+              ai.sensorycloud.api.common.TokenResponse>(
+                service, METHODID_GET_TOKEN)))
+        .addMethod(
+          getSignTokenMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.oauth.SignTokenRequest,
+              ai.sensorycloud.api.common.TokenResponse>(
+                service, METHODID_SIGN_TOKEN)))
+        .addMethod(
+          getGetWhoAmIMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.oauth.WhoAmIRequest,
+              ai.sensorycloud.api.oauth.WhoAmIResponse>(
+                service, METHODID_GET_WHO_AM_I)))
+        .addMethod(
+          getGetPublicKeyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.oauth.PublicKeyRequest,
+              ai.sensorycloud.api.oauth.PublicKeyResponse>(
+                service, METHODID_GET_PUBLIC_KEY)))
+        .build();
+  }
+
   private static abstract class OauthServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     OauthServiceBaseDescriptorSupplier() {}
@@ -558,9 +578,9 @@ public final class OauthServiceGrpc {
   private static final class OauthServiceMethodDescriptorSupplier
       extends OauthServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    OauthServiceMethodDescriptorSupplier(String methodName) {
+    OauthServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 

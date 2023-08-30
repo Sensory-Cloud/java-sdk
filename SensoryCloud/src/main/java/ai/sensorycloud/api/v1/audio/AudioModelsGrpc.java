@@ -8,14 +8,14 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.0-SNAPSHOT)",
+    value = "by gRPC proto compiler (version 1.57.2)",
     comments = "Source: v1/audio/audio.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class AudioModelsGrpc {
 
   private AudioModelsGrpc() {}
 
-  public static final String SERVICE_NAME = "sensory.api.v1.audio.AudioModels";
+  public static final java.lang.String SERVICE_NAME = "sensory.api.v1.audio.AudioModels";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ai.sensorycloud.api.v1.audio.GetModelsRequest,
@@ -98,7 +98,7 @@ public final class AudioModelsGrpc {
    * Handles the retrieval and management of audio models
    * </pre>
    */
-  public static abstract class AudioModelsImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -106,30 +106,34 @@ public final class AudioModelsGrpc {
      * Authorization metadata is required {"authorization": "Bearer &lt;TOKEN&gt;"}
      * </pre>
      */
-    public void getModels(ai.sensorycloud.api.v1.audio.GetModelsRequest request,
+    default void getModels(ai.sensorycloud.api.v1.audio.GetModelsRequest request,
         io.grpc.stub.StreamObserver<ai.sensorycloud.api.v1.audio.GetModelsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetModelsMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetModelsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                ai.sensorycloud.api.v1.audio.GetModelsRequest,
-                ai.sensorycloud.api.v1.audio.GetModelsResponse>(
-                  this, METHODID_GET_MODELS)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service AudioModels.
    * <pre>
    * Handles the retrieval and management of audio models
    * </pre>
    */
-  public static final class AudioModelsStub extends io.grpc.stub.AbstractAsyncStub<AudioModelsStub> {
+  public static abstract class AudioModelsImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return AudioModelsGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service AudioModels.
+   * <pre>
+   * Handles the retrieval and management of audio models
+   * </pre>
+   */
+  public static final class AudioModelsStub
+      extends io.grpc.stub.AbstractAsyncStub<AudioModelsStub> {
     private AudioModelsStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -155,11 +159,13 @@ public final class AudioModelsGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service AudioModels.
    * <pre>
    * Handles the retrieval and management of audio models
    * </pre>
    */
-  public static final class AudioModelsBlockingStub extends io.grpc.stub.AbstractBlockingStub<AudioModelsBlockingStub> {
+  public static final class AudioModelsBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<AudioModelsBlockingStub> {
     private AudioModelsBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -184,11 +190,13 @@ public final class AudioModelsGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service AudioModels.
    * <pre>
    * Handles the retrieval and management of audio models
    * </pre>
    */
-  public static final class AudioModelsFutureStub extends io.grpc.stub.AbstractFutureStub<AudioModelsFutureStub> {
+  public static final class AudioModelsFutureStub
+      extends io.grpc.stub.AbstractFutureStub<AudioModelsFutureStub> {
     private AudioModelsFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -220,10 +228,10 @@ public final class AudioModelsGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final AudioModelsImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(AudioModelsImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -252,6 +260,18 @@ public final class AudioModelsGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetModelsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ai.sensorycloud.api.v1.audio.GetModelsRequest,
+              ai.sensorycloud.api.v1.audio.GetModelsResponse>(
+                service, METHODID_GET_MODELS)))
+        .build();
+  }
+
   private static abstract class AudioModelsBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     AudioModelsBaseDescriptorSupplier() {}
@@ -275,9 +295,9 @@ public final class AudioModelsGrpc {
   private static final class AudioModelsMethodDescriptorSupplier
       extends AudioModelsBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    AudioModelsMethodDescriptorSupplier(String methodName) {
+    AudioModelsMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 

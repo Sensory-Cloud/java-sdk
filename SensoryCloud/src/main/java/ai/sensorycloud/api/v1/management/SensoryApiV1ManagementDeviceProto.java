@@ -112,10 +112,10 @@ public final class SensoryApiV1ManagementDeviceProto {
       "nt.DeviceResponse\"\000\022e\n\014DeleteDevice\022(.se" +
       "nsory.api.v1.management.DeviceRequest\032)." +
       "sensory.api.v1.management.DeviceResponse" +
-      "\"\000B\211\001\n!ai.sensorycloud.api.v1.management" +
+      "\"\000B\220\001\n!ai.sensorycloud.api.v1.management" +
       "B!SensoryApiV1ManagementDeviceProtoP\001Z?g" +
       "itlab.com/sensory-cloud/server/titan.git" +
-      "/pkg/api/v1/managementb\006proto3"
+      "/pkg/api/v1/management\242\002\004SENGb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

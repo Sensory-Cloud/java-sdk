@@ -32,73 +32,6 @@ private static final long serialVersionUID = 0L;
     return new TokenResponse();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private TokenResponse(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            accessToken_ = s;
-            break;
-          }
-          case 16: {
-
-            expiresIn_ = input.readInt32();
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            keyId_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            tokenType_ = s;
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.common.SensoryApiCommonProto.internal_static_sensory_api_common_TokenResponse_descriptor;
@@ -113,7 +46,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ACCESSTOKEN_FIELD_NUMBER = 1;
-  private volatile java.lang.Object accessToken_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object accessToken_ = "";
   /**
    * <pre>
    * Signed JSON web token that should be added to any subsequent request
@@ -159,7 +93,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int EXPIRESIN_FIELD_NUMBER = 2;
-  private int expiresIn_;
+  private int expiresIn_ = 0;
   /**
    * <pre>
    * Number of seconds until this token will expire
@@ -174,7 +108,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int KEYID_FIELD_NUMBER = 3;
-  private volatile java.lang.Object keyId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object keyId_ = "";
   /**
    * <pre>
    * Signing key identifier which can be used to retrieve the matching public key via the GetPublicKey request
@@ -220,7 +155,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TOKENTYPE_FIELD_NUMBER = 4;
-  private volatile java.lang.Object tokenType_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object tokenType_ = "";
   /**
    * <pre>
    * Token type
@@ -291,7 +227,7 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokenType_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, tokenType_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -313,7 +249,7 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokenType_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, tokenType_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -336,7 +272,7 @@ private static final long serialVersionUID = 0L;
         .equals(other.getKeyId())) return false;
     if (!getTokenType()
         .equals(other.getTokenType())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -355,7 +291,7 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getKeyId().hashCode();
     hash = (37 * hash) + TOKENTYPE_FIELD_NUMBER;
     hash = (53 * hash) + getTokenType().hashCode();
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -404,11 +340,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.TokenResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.common.TokenResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -476,30 +414,22 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.common.TokenResponse.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       accessToken_ = "";
-
       expiresIn_ = 0;
-
       keyId_ = "";
-
       tokenType_ = "";
-
       return this;
     }
 
@@ -526,12 +456,25 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.common.TokenResponse buildPartial() {
       ai.sensorycloud.api.common.TokenResponse result = new ai.sensorycloud.api.common.TokenResponse(this);
-      result.accessToken_ = accessToken_;
-      result.expiresIn_ = expiresIn_;
-      result.keyId_ = keyId_;
-      result.tokenType_ = tokenType_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.common.TokenResponse result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.accessToken_ = accessToken_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.expiresIn_ = expiresIn_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.keyId_ = keyId_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.tokenType_ = tokenType_;
+      }
     }
 
     @java.lang.Override
@@ -580,6 +523,7 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.common.TokenResponse.getDefaultInstance()) return this;
       if (!other.getAccessToken().isEmpty()) {
         accessToken_ = other.accessToken_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (other.getExpiresIn() != 0) {
@@ -587,13 +531,15 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getKeyId().isEmpty()) {
         keyId_ = other.keyId_;
+        bitField0_ |= 0x00000004;
         onChanged();
       }
       if (!other.getTokenType().isEmpty()) {
         tokenType_ = other.tokenType_;
+        bitField0_ |= 0x00000008;
         onChanged();
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -608,19 +554,53 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.common.TokenResponse parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              accessToken_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 16: {
+              expiresIn_ = input.readInt32();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 16
+            case 26: {
+              keyId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
+            case 34: {
+              tokenType_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 34
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.common.TokenResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object accessToken_ = "";
     /**
@@ -675,11 +655,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setAccessToken(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       accessToken_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -692,8 +670,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearAccessToken() {
-      
       accessToken_ = getDefaultInstance().getAccessToken();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -708,12 +686,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setAccessTokenBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       accessToken_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -741,8 +717,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setExpiresIn(int value) {
-      
+
       expiresIn_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -755,7 +732,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearExpiresIn() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       expiresIn_ = 0;
       onChanged();
       return this;
@@ -814,11 +791,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setKeyId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       keyId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -831,8 +806,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearKeyId() {
-      
       keyId_ = getDefaultInstance().getKeyId();
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
@@ -847,12 +822,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setKeyIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       keyId_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -910,11 +883,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setTokenType(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       tokenType_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -927,8 +898,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearTokenType() {
-      
       tokenType_ = getDefaultInstance().getTokenType();
+      bitField0_ = (bitField0_ & ~0x00000008);
       onChanged();
       return this;
     }
@@ -943,12 +914,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setTokenTypeBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       tokenType_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -985,7 +954,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new TokenResponse(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 

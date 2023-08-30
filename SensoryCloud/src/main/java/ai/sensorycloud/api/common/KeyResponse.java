@@ -33,84 +33,6 @@ private static final long serialVersionUID = 0L;
     return new KeyResponse();
   }
 
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private KeyResponse(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            id_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            name_ = s;
-            break;
-          }
-          case 24: {
-            int rawValue = input.readEnum();
-
-            keyType_ = rawValue;
-            break;
-          }
-          case 32: {
-
-            expiration_ = input.readInt64();
-            break;
-          }
-          case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            tenantId_ = s;
-            break;
-          }
-          case 48: {
-
-            disabled_ = input.readBool();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return ai.sensorycloud.api.common.SensoryApiCommonProto.internal_static_sensory_api_common_KeyResponse_descriptor;
@@ -125,7 +47,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object id_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object id_ = "";
   /**
    * <pre>
    * The the uuid associated with this key
@@ -171,7 +94,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int NAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object name_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object name_ = "";
   /**
    * <pre>
    * The name associated with this key
@@ -217,7 +141,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int KEYTYPE_FIELD_NUMBER = 3;
-  private int keyType_;
+  private int keyType_ = 0;
   /**
    * <pre>
    * The key type
@@ -238,13 +162,12 @@ private static final long serialVersionUID = 0L;
    * @return The keyType.
    */
   @java.lang.Override public ai.sensorycloud.api.common.KeyType getKeyType() {
-    @SuppressWarnings("deprecation")
-    ai.sensorycloud.api.common.KeyType result = ai.sensorycloud.api.common.KeyType.valueOf(keyType_);
+    ai.sensorycloud.api.common.KeyType result = ai.sensorycloud.api.common.KeyType.forNumber(keyType_);
     return result == null ? ai.sensorycloud.api.common.KeyType.UNRECOGNIZED : result;
   }
 
   public static final int EXPIRATION_FIELD_NUMBER = 4;
-  private long expiration_;
+  private long expiration_ = 0L;
   /**
    * <pre>
    * Optional seconds until this key expires.
@@ -260,7 +183,8 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TENANTID_FIELD_NUMBER = 5;
-  private volatile java.lang.Object tenantId_;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object tenantId_ = "";
   /**
    * <pre>
    * TenantId for this key
@@ -306,7 +230,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int DISABLED_FIELD_NUMBER = 6;
-  private boolean disabled_;
+  private boolean disabled_ = false;
   /**
    * <pre>
    * Indicates if this key is disabled
@@ -352,7 +276,7 @@ private static final long serialVersionUID = 0L;
     if (disabled_ != false) {
       output.writeBool(6, disabled_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -382,7 +306,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(6, disabled_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -408,7 +332,7 @@ private static final long serialVersionUID = 0L;
         .equals(other.getTenantId())) return false;
     if (getDisabled()
         != other.getDisabled()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -433,7 +357,7 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + DISABLED_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getDisabled());
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -482,11 +406,13 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
   public static ai.sensorycloud.api.common.KeyResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
+
   public static ai.sensorycloud.api.common.KeyResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -554,34 +480,24 @@ private static final long serialVersionUID = 0L;
 
     // Construct using ai.sensorycloud.api.common.KeyResponse.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
+
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       id_ = "";
-
       name_ = "";
-
       keyType_ = 0;
-
       expiration_ = 0L;
-
       tenantId_ = "";
-
       disabled_ = false;
-
       return this;
     }
 
@@ -608,14 +524,31 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ai.sensorycloud.api.common.KeyResponse buildPartial() {
       ai.sensorycloud.api.common.KeyResponse result = new ai.sensorycloud.api.common.KeyResponse(this);
-      result.id_ = id_;
-      result.name_ = name_;
-      result.keyType_ = keyType_;
-      result.expiration_ = expiration_;
-      result.tenantId_ = tenantId_;
-      result.disabled_ = disabled_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
+    }
+
+    private void buildPartial0(ai.sensorycloud.api.common.KeyResponse result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.id_ = id_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.name_ = name_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.keyType_ = keyType_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.expiration_ = expiration_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.tenantId_ = tenantId_;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.disabled_ = disabled_;
+      }
     }
 
     @java.lang.Override
@@ -664,10 +597,12 @@ private static final long serialVersionUID = 0L;
       if (other == ai.sensorycloud.api.common.KeyResponse.getDefaultInstance()) return this;
       if (!other.getId().isEmpty()) {
         id_ = other.id_;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
+        bitField0_ |= 0x00000002;
         onChanged();
       }
       if (other.keyType_ != 0) {
@@ -678,12 +613,13 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getTenantId().isEmpty()) {
         tenantId_ = other.tenantId_;
+        bitField0_ |= 0x00000010;
         onChanged();
       }
       if (other.getDisabled() != false) {
         setDisabled(other.getDisabled());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -698,19 +634,63 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ai.sensorycloud.api.common.KeyResponse parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              id_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              name_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            case 24: {
+              keyType_ = input.readEnum();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 24
+            case 32: {
+              expiration_ = input.readInt64();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 32
+            case 42: {
+              tenantId_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 42
+            case 48: {
+              disabled_ = input.readBool();
+              bitField0_ |= 0x00000020;
+              break;
+            } // case 48
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ai.sensorycloud.api.common.KeyResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object id_ = "";
     /**
@@ -765,11 +745,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       id_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -782,8 +760,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearId() {
-      
       id_ = getDefaultInstance().getId();
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
@@ -798,12 +776,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       id_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
@@ -861,11 +837,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setName(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       name_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -878,8 +852,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearName() {
-      
       name_ = getDefaultInstance().getName();
+      bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
@@ -894,12 +868,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       name_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
@@ -926,8 +898,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setKeyTypeValue(int value) {
-      
       keyType_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
@@ -941,8 +913,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public ai.sensorycloud.api.common.KeyType getKeyType() {
-      @SuppressWarnings("deprecation")
-      ai.sensorycloud.api.common.KeyType result = ai.sensorycloud.api.common.KeyType.valueOf(keyType_);
+      ai.sensorycloud.api.common.KeyType result = ai.sensorycloud.api.common.KeyType.forNumber(keyType_);
       return result == null ? ai.sensorycloud.api.common.KeyType.UNRECOGNIZED : result;
     }
     /**
@@ -958,7 +929,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
         throw new NullPointerException();
       }
-      
+      bitField0_ |= 0x00000004;
       keyType_ = value.getNumber();
       onChanged();
       return this;
@@ -972,7 +943,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearKeyType() {
-      
+      bitField0_ = (bitField0_ & ~0x00000004);
       keyType_ = 0;
       onChanged();
       return this;
@@ -1003,8 +974,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setExpiration(long value) {
-      
+
       expiration_ = value;
+      bitField0_ |= 0x00000008;
       onChanged();
       return this;
     }
@@ -1018,7 +990,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearExpiration() {
-      
+      bitField0_ = (bitField0_ & ~0x00000008);
       expiration_ = 0L;
       onChanged();
       return this;
@@ -1077,11 +1049,9 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setTenantId(
         java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       tenantId_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1094,8 +1064,8 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearTenantId() {
-      
       tenantId_ = getDefaultInstance().getTenantId();
+      bitField0_ = (bitField0_ & ~0x00000010);
       onChanged();
       return this;
     }
@@ -1110,12 +1080,10 @@ private static final long serialVersionUID = 0L;
      */
     public Builder setTenantIdBytes(
         com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
       tenantId_ = value;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
@@ -1143,8 +1111,9 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setDisabled(boolean value) {
-      
+
       disabled_ = value;
+      bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
@@ -1157,7 +1126,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearDisabled() {
-      
+      bitField0_ = (bitField0_ & ~0x00000020);
       disabled_ = false;
       onChanged();
       return this;
@@ -1195,7 +1164,18 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new KeyResponse(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 
