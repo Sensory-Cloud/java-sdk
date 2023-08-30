@@ -766,5 +766,5 @@ Ensure you have gradle installed and you are compiling with JDK8
 brew install gradle
 ```
 
-You will also need to download `protoc` from:  https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.57.2/
-Then move it to `/usr/local/bin/` or a directory that is in your system's PATH
+You will also need to download `protoc` from:  https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java 
+Then move it to `/usr/local/bin/protoc-gen-grpc-java` or a directory that is in your system's PATH and make it executable (`chmod +x`)
